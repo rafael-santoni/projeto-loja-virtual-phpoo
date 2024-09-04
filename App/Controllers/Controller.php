@@ -7,10 +7,10 @@ use App\Classes\Uri;
 class Controller {
 
 	const NAMESPACE_CONTROLLER = '\\App\\Controllers\\';
-	const FOLDERS_CONTROLLER = ['Admin', 'Site'];
+	const FOLDERS_CONTROLLER = ['Site', 'Admin'];
 	const ERROR_CONTROLLER = '\\App\\Controllers\\Erro\\ErroController';
 
-	private $controller;
+	// private $controller;
 	private $uri;
 
 	public function __construct(){
@@ -27,4 +27,16 @@ class Controller {
 		return ucfirst(DEFAULT_CONTROLLER).'Controller';
 	}
 
+	public function controller(){
+		$controller = $this->getController();
+
+		foreach (self::FOLDERS_CONTROLLER as $folderController) {
+			if(class_exists(self::NAMESPACE_CONTROLLER.$folderController.'\\'.$controller)){
+				return self::NAMESPACE_CONTROLLER.$folderController.'\\'.$controller;
+			}
+		}
+
+		return self::ERROR_CONTROLLER;
+	}
+	
 }
