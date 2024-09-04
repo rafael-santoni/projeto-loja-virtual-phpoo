@@ -1,10 +1,22 @@
 <?php
 
-$controller = new App\Controllers\Controller;
-$object = $controller->controller();
+/**
+ * Chamando o controller digitado na URL
+ * http://localhost:8127/controller
+ */ 
+$callController = new App\Controllers\Controller;
+$calledController = $callController->controller();
 
-$method = new App\Controllers\Method;
+$controller = new $calledController();
 
-// dump($controller->getController());
-// dump($controller->controller());
-// dump($method->method($object));
+/**
+ * Chamando o método digitado na URL
+ * http://localhost:8127/controller/metodo
+ */
+$callMethod = new App\Controllers\Method;
+$method = $callMethod->method($controller);
+
+/**
+ * Chamando o controller atraves da classe Controller e da classe Method
+ */
+$controller->$method();
