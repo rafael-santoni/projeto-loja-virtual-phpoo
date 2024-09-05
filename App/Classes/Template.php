@@ -9,13 +9,12 @@ class Template {
 	}
 
 	public function init(){
-		$twig = new \Twig_Environment($this->loader(), [
+		return new \Twig_Environment($this->loader(), [
 			'debug' => true,
 			// 'cache' => ''
 			'auto_reload' => true
 		]);
 
-		return $twig;
 	}
 
 }

@@ -19,6 +19,8 @@ class Method {
 			// return (isset($explodeUri[2])) ? $explodeUri[2] : null ;
 			return (!isset($explodeUri[2])) ?: $explodeUri[2];
 		}
+
+		return DEFAULT_METHOD;
 		
 	}
 
