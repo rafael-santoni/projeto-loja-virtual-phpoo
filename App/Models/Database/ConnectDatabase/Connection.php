@@ -13,7 +13,7 @@ class Connection {
 	}
 
 	public function connectDatabase(){
-		
+		return $this->interfaceConnectDatabase->connectDatabase();
 	}
 
 }
