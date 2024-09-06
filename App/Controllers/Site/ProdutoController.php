@@ -2,7 +2,9 @@
 
 namespace App\Controllers\Site;
 
-class ProdutoController {
+use App\Controllers\BaseController;
+
+class ProdutoController extends BaseController {
 
 	public function index()
 	{
