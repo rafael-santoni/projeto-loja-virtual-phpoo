@@ -3,8 +3,53 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{{ titulo }}</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/table.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/button.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/form.css" />
+	<link rel="stylesheet" type="text/css" href="{{ site_url() }}/assets/css/style.css" />
+
+	<script type="text/javascript" src="{{ site_url() }}/assets/js/boxOver.js"></script>
 </head>
 <body>
-	{% block site_content %}{% endblock %}
+	<div id="main_container">
+		<div class="top_bar">
+
+			<!--include do top-->
+
+			<div id="main_content">
+				<div id="menu_tab">
+					<!--include do menu-->
+				</div>
+				<div class="crumb_navigation"><!--breadcrumb--></div>
+				<div class="left_content">
+					<div class="title_box">Categorias</div>
+					<ul class="left_menu">
+						<!--incllude left menu-->
+					</ul>
+					<div class="title_box">Promoção</div>
+					<div class="border_box">
+						<div class="product_title"><!--nome do produto em promoção--></div>
+						<div class="product_image"><!--imagem do produto em promoção--></div>
+						<div class="proc_price">
+							<!--preço do produto-->
+						</div>
+					</div>
+					<div class="title_box">Newsletter</div>
+					<div class="border_box">
+						<input type="text" name="newsletter" class="newsletter" value="Seu email" />
+						<a href="" class="join">cadastrar email</a>
+						<div class="banner_adds">
+							<a href="">
+								<!--banner promoção, propaganmda-->
+							</a>
+						</div>
+					</div>
+					<div class="center_content">
+						{% block content %}{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
