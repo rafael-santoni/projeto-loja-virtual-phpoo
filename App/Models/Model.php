@@ -18,10 +18,23 @@ class Model {
 	}
 
 	public function fetchAll(){
-		
+
+		$sql = "SELECT * FROM {$this->table}";
+		$this->typeDatabase->prepare($sql);
+		$this->typeDatabase->execute();
+
+		return $this->typeDatabase->fetchAll();
+
 	}
 
-	public function find(){
+	public function find($field, $value, $fetch=null){
+
+		$sql = "SELECT * FROM {$this->table} WHERE {$field} = ?";
+		$this->typeDatabase->prepare($sql);
+		$this->typeDatabase->bindValue(1, $value);
+		$this->typeDatabase->execute();
+
+		return ($fetch == null) ? $this->typeDatabase->fetch() : $this->typeDatabase->fetchAll() ;
 		
 	}
 
