@@ -17,39 +17,100 @@
 			<!--include do top-->
 
 			<div id="main_content">
+
 				<div id="menu_tab">
 					<!--include do menu-->
 				</div>
+
 				<div class="crumb_navigation"><!--breadcrumb--></div>
+
 				<div class="left_content">
+
 					<div class="title_box">Categorias</div>
 					<ul class="left_menu">
 						<!--incllude left menu-->
 					</ul>
+
 					<div class="title_box">Promoção</div>
 					<div class="border_box">
 						<div class="product_title"><!--nome do produto em promoção--></div>
 						<div class="product_image"><!--imagem do produto em promoção--></div>
-						<div class="proc_price">
+						<div class="prod_price">
 							<!--preço do produto-->
 						</div>
 					</div>
+
 					<div class="title_box">Newsletter</div>
 					<div class="border_box">
 						<input type="text" name="newsletter" class="newsletter" value="Seu email" />
 						<a href="" class="join">cadastrar email</a>
-						<div class="banner_adds">
+						<div class="banner_ads">
 							<a href="">
-								<!--banner promoção, propaganmda-->
+								<!--banner de promoção, propaganda-->
 							</a>
 						</div>
 					</div>
+
 					<div class="center_content">
 						{% block content %}{% endblock %}
 					</div>
+					
+					<div class="right_content">
+
+						<div class="shopping_cart">
+
+							<div class="cart_title">Carrinho de compras</div>
+							<div class="cart_details">
+								<span id="products_cart"><!--número de produtos no carrinho--></span> <br />
+								<span class="border_cart"></span>Total: <span class="price"><!--total de compras do carrinho--></span>
+							</div>
+							<div class="cart_icon">
+								<a href="" title="header=[Checkout] body=[&nbsp;] fade=[on]"></a>
+								<!--icone do carrinho-->
+							</div>
+
+							<div class="title_box">Novidades</div>
+							<div class="border_box">
+								<div class="product_title"><!--titulo do produto que é novidade--></div>
+								<div class="product_image"><!--imagem do produto que é novidade--></div>
+								<div class="prod_price">
+									<div class="price"><!--preço do produto que é novidade--></div>
+								</div>
+							</div>
+
+							<div class="title_box">Marcas</div>
+							<!--include das marcas-->
+
+							<div class="banner_ads">
+								<!--banner promoção, propaganda-->
+							</div>
+
+						</div>
+
+					</div>
+
 				</div>
+
+				<div class="footer">
+					<div class="left_footer">
+						<!--imagem do footer-->
+					</div>
+
+					<div class="center_footer">
+						Loja Virtual RS-Dev. Todos os direitos reservados {{ 'now' | date('d/m/Y') }} <br />
+						<!--imagem da loja-->
+					</div>
+
+					<div class="right_footer">
+						<a href="#">home</a> <a href="#">about</a> <a href="#">sitemap</a> <a href="#">rss</a> <a href="#">contact us</a>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript" src="{{ site_url() }}/bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/carrinho.js"></script>
 </body>
 </html>
