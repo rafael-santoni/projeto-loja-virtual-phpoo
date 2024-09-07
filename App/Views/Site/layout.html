@@ -15,11 +15,13 @@
 		<div class="top_bar">
 
 			<!--include do top-->
+			{% include 'includes/site_header.html' %}
 
 			<div id="main_content">
 
 				<div id="menu_tab">
 					<!--include do menu-->
+					{% include 'includes/site_menu.html' %}
 				</div>
 
 				<div class="crumb_navigation"><!--breadcrumb--></div>
@@ -29,6 +31,7 @@
 					<div class="title_box">Categorias</div>
 					<ul class="left_menu">
 						<!--incllude left menu-->
+						{% include 'includes/site_left_menu.html' %}
 					</ul>
 
 					<div class="title_box">Promoção</div>
@@ -44,9 +47,10 @@
 					<div class="border_box">
 						<input type="text" name="newsletter" class="newsletter" value="Seu email" />
 						<a href="" class="join">cadastrar email</a>
-						<div class="banner_ads">
+						<div class="banner_adds">
 							<a href="">
 								<!--banner de promoção, propaganda-->
+								<img src="{{ site_url() }}/assets/images/bann2.jpg" alt="" border="0" />
 							</a>
 						</div>
 					</div>
@@ -65,7 +69,9 @@
 								<span class="border_cart"></span>Total: <span class="price"><!--total de compras do carrinho--></span>
 							</div>
 							<div class="cart_icon">
-								<a href="" title="header=[Checkout] body=[&nbsp;] fade=[on]"></a>
+								<a href="" title="header=[Checkout] body=[&nbsp;] fade=[on]">
+									<img src="{{ site_url() }}/assets/images/shoppingcart.png" alt="" width="48" height="48" border="0" />
+								</a>
 								<!--icone do carrinho-->
 							</div>
 
@@ -81,8 +87,9 @@
 							<div class="title_box">Marcas</div>
 							<!--include das marcas-->
 
-							<div class="banner_ads">
+							<div class="banner_adds">
 								<!--banner promoção, propaganda-->
+								<img src="{{ site_url() }}/assets/images/bann1.jpg" alt="" border="0" />
 							</div>
 
 						</div>
@@ -94,11 +101,13 @@
 				<div class="footer">
 					<div class="left_footer">
 						<!--imagem do footer-->
+						<img src="{{ site_url() }}/assets/images/footer_logo.png" alt="" width="170" height="49" />
 					</div>
 
 					<div class="center_footer">
 						Loja Virtual RS-Dev. Todos os direitos reservados {{ 'now' | date('d/m/Y') }} <br />
 						<!--imagem da loja-->
+						<img src="{{ site_url() }}/assets/images/payment.gif" alt="" />
 					</div>
 
 					<div class="right_footer">
