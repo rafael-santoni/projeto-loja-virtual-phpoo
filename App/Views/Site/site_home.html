@@ -14,13 +14,13 @@
 				</a>
 			</div>
 
-			<div class="product_image">
+			<div class="product_image" style="text-align: center;">
 				<a href="/detalhes/{{ produto.produto_slug }}">
 					<img src="{{ site_url() }}/{{ produto.produto_foto }}" alt="foto {{ produto.produto_slug }}" height="90" width="90" />
 				</a>
 			</div>
 
-			<div class="prod_price">
+			<div class="prod_price" style="text-align: center;">
 				{% if (produto.produto_promocao == 1) %}
 					<span class="reduce" style="margin-right: 2px;">
 						R$ {{ produto.produto_valor | number_format(2,',','.') }}
@@ -38,6 +38,10 @@
 
 		<div class="bottom_prod_box"></div>
 		<div class="prod_details_tab">
+			<a href="#" class="btn-add-carrinho" title="header=[Adicionar ao carrinho] body=[&nbsp;] fade=[on]">
+				<img src="{{ site_url() }}/assets/images/cart.gif" alt="" border="0" class="left_bt" />
+			</a>
+
 			{% if (produto.produto_destaque == 1) %}
 				<a href="#" title="header=[Destaque] body=[&nbsp;] fade=[on]">
 					<img src="{{ site_url() }}/assets/images/favs.gif" alt="" border="0" class="left_bt" />

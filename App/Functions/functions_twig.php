@@ -20,3 +20,10 @@ $novidade = new \Twig_SimpleFunction('novidade', function(){
 	
 	return $produtoRepository->ultimoProdutoAdicionado();
 });
+
+// Listar produtos em promoção no left menu
+$promocao = new \Twig_SimpleFunction('promocao', function(){
+	$produtoRepository = new ProdutoRepository;
+	
+	return $produtoRepository->listarProdutosPromocao(1);
+});
