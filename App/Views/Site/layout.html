@@ -24,7 +24,9 @@
 					{% include 'includes/site_menu.html' %}
 				</div>
 
-				<div class="crumb_navigation"><!--breadcrumb--></div>
+				<div class="crumb_navigation">
+					{{ breadCrumb() | raw }}
+				</div>
 
 				<div class="left_content">
 

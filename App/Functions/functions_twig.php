@@ -2,6 +2,7 @@
 
 use App\Repositories\Site\CategoriaRepository;
 use App\Repositories\Site\ProdutoRepository;
+use App\Classes\BreadCrumb;
 
 $site_url = new \Twig_SimpleFunction('site_url', function(){
 	return 'http://'.$_SERVER['SERVER_NAME'].':8127';
@@ -26,4 +27,11 @@ $promocao = new \Twig_SimpleFunction('promocao', function(){
 	$produtoRepository = new ProdutoRepository;
 	
 	return $produtoRepository->listarProdutosPromocao(1);
+});
+
+// Bread crumb
+$breadCrumb = new \Twig_SimpleFunction('breadCrumb', function(){
+	$breadCrumb = new BreadCrumb;
+	
+	return $breadCrumb->createBreadCrumb();
 });
