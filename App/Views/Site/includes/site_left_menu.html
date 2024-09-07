@@ -1,0 +1,13 @@
+{% set i=0 %}
+
+{% for categoria in categorias() %}
+
+	{% if (i%2 == 0) %} {% set cor = 'even' %} {% else %} {% set cor = 'odd' %} {% endif %}
+
+	<li class="{{ cor }}">
+		<a href="/categoria/{{ categoria.categoria_slug }}">{{ categoria.categoria_nome }}</a>
+	</li>
+
+	{% set i = i+1 %}
+
+{% endfor %}
