@@ -2,7 +2,7 @@
 
 namespace App\Models\Database\TypeDatabase;
 
-use App\Interface\InterfaceTypeDatabase;
+use App\Interfaces\InterfaceTypeDatabase;
 use App\Models\Database\ConnectDatabase\Connection;
 use App\Models\Database\ConnectDatabase\ConnectPdoDatabase;
 
@@ -22,7 +22,7 @@ class TypePdoDatabase implements InterfaceTypeDatabase {
 		$this->objectPdo = $this->pdo->prepare($sql);
 	}
 
-	public function bindValues($key,$value){
+	public function bindValue($key,$value){
 		$this->objectPdo->bindValue($key,$value);
 	}
 

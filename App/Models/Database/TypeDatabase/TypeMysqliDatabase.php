@@ -22,9 +22,9 @@ class TypeMysqliDatabase implements InterfaceTypeDatabase {
 		$this->objectMysqli = $this->mysqli->prepare($sql);
 	}
 
-	public function bindValues($key,$value){
+	public function bindValue($key,$value){
 
-		$type = substr(gettype($value), 0, 1)
+		$type = substr(gettype($value), 0, 1);
 		$this->objectMysqli->bind_param($type,$value);
 
 	}

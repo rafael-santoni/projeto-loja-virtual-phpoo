@@ -10,11 +10,11 @@ class ConnectMysqliDatabase implements InterfaceConnectDatabase {
 	private $mysqli;
 
 	public function __construct(){
-		$this->mysqli = new Mysqli("localhost","root","root","loja_phpoo");
+		$this->mysqli = new Mysqli("localhost:3307","conn","ADMonly","loja_phpoo");
 	}
 
 	public function connectDatabase(){
-		$this->mysqli;
+		return $this->mysqli;
 	}
 
 }
