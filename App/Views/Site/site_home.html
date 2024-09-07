@@ -13,22 +13,41 @@
 					{{ produto.produto_nome }}
 				</a>
 			</div>
+
+			<div class="product_image">
+				<a href="/detalhes/{{ produto.produto_slug }}">
+					<img src="{{ site_url() }}/{{ produto.produto_foto }}" alt="foto {{ produto.produto_slug }}" height="90" width="90" />
+				</a>
+			</div>
+
+			<div class="prod_price">
+				{% if (produto.produto_promocao == 1) %}
+					<span class="reduce" style="margin-right: 2px;">
+						R$ {{ produto.produto_valor | number_format(2,',','.') }}
+					</span>
+					<span class="price">
+						R$ {{ produto.produto_valor_promocao | number_format(2,',','.') }}
+					</span>
+				{% else %}
+					<span class="price">
+						R$ {{ produto.produto_valor | number_format(2,',','.') }}
+					</span>
+				{% endif %}
+			</div>
 		</div>
 
-		<div class="product_image">
-			<a href="/detalhes/{{ produto.produto_slug }}">
-				<img src="{{ site_url() }}/{{ produto.produto_foto }}" alt="foto {{ produto.produto_slug }}" height="90" width="90" />
-			</a>
-		</div>
+		<div class="bottom_prod_box"></div>
+		<div class="prod_details_tab">
+			{% if (produto.produto_destaque == 1) %}
+				<a href="#" title="header=[Destaque] body=[&nbsp;] fade=[on]">
+					<img src="{{ site_url() }}/assets/images/favs.gif" alt="" border="0" class="left_bt" />
+				</a>
+			{% endif %}
 
-		<div class="prod_price">
-			{% if(produto.produto_promocao) == 1 %}
-				<span class="reduce">
-					R$ {{ produto.produto_valor | number_format(2,',','.') }}
-				</span>
-					R$ {{ produto.produto_valor_promocao | number_format(2,',','.') }}
-			{% else %}
-				R$ {{ produto.produto_valor | number_format(2,',','.') }}
+			{% if (produto.produto_presente == 1) %}
+				<a href="#" title="header=[Para Presente] body=[&nbsp;] fade=[on]">
+					<img src="{{ site_url() }}/assets/images/favorites.gif" alt="" border="0" class="left_bt" />
+				</a>
 			{% endif %}
 		</div>
 	</div>
@@ -45,22 +64,42 @@
 					{{ produtoPromocao.produto_nome }}
 				</a>
 			</div>
+
+			<div class="product_img">
+				<a href="/detalhes/{{ produtoPromocao.produto_slug }}">
+					<img src="{{ site_url() }}/{{ produtoPromocao.produto_foto }}" alt="foto {{ produtoPromocao.produto_slug }}" height="90" width="90" />
+				</a>
+			</div>
+
+			<div class="prod_price">
+				{% if(produtoPromocao.produto_promocao) == 1 %}
+					<span class="reduce" style="margin-right: 2px;">
+						R$ {{ produtoPromocao.produto_valor | number_format(2,',','.') }}
+					</span>
+					<span class="price">
+						R$ {{ produtoPromocao.produto_valor_promocao | number_format(2,',','.') }}
+					</span>
+				{% else %}
+					<span class="price">
+						R$ {{ produtoPromocao.produto_valor | number_format(2,',','.') }}
+					</span>
+				{% endif %}
+			</div>
+
 		</div>
 
-		<div class="product_image">
-			<a href="/detalhes/{{ produtoPromocao.produto_slug }}">
-				<img src="{{ site_url() }}/{{ produtoPromocao.produto_foto }}" alt="foto {{ produtoPromocao.produto_slug }}" height="90" width="90" />
-			</a>
-		</div>
+		<div class="bottom_prod_box"></div>
+		<div class="prod_details_tab">
+			{% if (produtoPromocao.produto_destaque == 1) %}
+				<a href="#" title="header=[Destaque] body=[&nbsp;] fade=[on]">
+					<img src="{{ site_url() }}/assets/images/favs.gif" alt="" border="0" class="left_bt" />
+				</a>
+			{% endif %}
 
-		<div class="prod_price">
-			{% if(produtoPromocao.produto_promocao) == 1 %}
-				<span class="reduce">
-					R$ {{ produtoPromocao.produto_valor | number_format(2,',','.') }}
-				</span>
-					R$ {{ produtoPromocao.produto_valor_promocao | number_format(2,',','.') }}
-			{% else %}
-				R$ {{ produtoPromocao.produto_valor | number_format(2,',','.') }}
+			{% if (produtoPromocao.produto_presente == 1) %}
+				<a href="#" title="header=[Para Presente] body=[&nbsp;] fade=[on]">
+					<img src="{{ site_url() }}/assets/images/favorites.gif" alt="" border="0" class="left_bt" />
+				</a>
 			{% endif %}
 		</div>
 	</div>
