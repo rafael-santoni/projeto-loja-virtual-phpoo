@@ -10,16 +10,12 @@ class HomeController extends BaseController {
 
 	public function index()	{
 
-		// $user = new User;
-
-		// dump($user->fetchAll());
-		// dump($user->find('id',3));
-
-		// $produtoRepository = new ProdutoRepository;
-		// dump($produtoRepository->listarProdutosOrdenadosComLimite(3));
+		$produtoRepository = new ProdutoRepository;
+		$produtosDestaque = $produtoRepository->listarProdutosOrdenadosPeloDestaque(6);
 
 		$dados = [
-			'titulo' => 'Loja Virtual - Eletrônicos | SmartPhones | Periféricos Para PC - RS-Dev'
+			'titulo' => 'Loja Virtual - Eletrônicos | SmartPhones | Periféricos Para PC - RS-Dev',
+			'produtos' => $produtosDestaque
 		];
 
 		$template = $this->twig->loadTemplate('site_home.html');
