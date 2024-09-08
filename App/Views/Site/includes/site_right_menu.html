@@ -39,9 +39,22 @@
 					</div>
 
 					<div class="title_box">Marcas</div>
-					<!--include das marcas-->
+					<ul class="left_menu">
+					{% set i=0 %}
+					{% for marca in marcas() %}
+
+						{% if (i%2 == 0) %} {% set cor = 'even' %} {% else %} {% set cor = 'odd' %} {% endif %}
+
+						<li class="{{ cor }}">
+							<a href="/marca/{{ marca.marca_slug }}">{{ marca.marca_nome }}</a>
+						</li>
+
+						{% set i = i+1 %}
+
+					{% endfor %}
+					</ul>
 
 					<div class="banner_adds">
-						<!--banner promoção, propaganda-->
+						
 						<img src="{{ site_url() }}/assets/images/bann1.jpg" alt="" border="0" />
 					</div>
