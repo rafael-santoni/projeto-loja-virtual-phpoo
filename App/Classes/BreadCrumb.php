@@ -22,17 +22,17 @@ class BreadCrumb {
 			$explodeIgual = explode('=', $this->uri);
 
 			return '<span style="color: #000;">Você está buscando:</span>
-					<span style="font-style=italic;"><a href="/" style="text-decoration: none;">Início</a>/'.str_replace('+', '-', $explodeIgual[1].'</span>');
+					<span style="font-style=italic;color:blue;"><a href="/" style="text-decoration:none;color:blue;">Início</a>/'.str_replace('+', '-', $explodeIgual[1].'</span>');
 		}
 
 		// Bread crumb para a página inicial
 		if($this->uri == '/'){
-			return '<span style="color: #000;">Navegação</span>: <span style="font-style=italic;">Início</span>';
+			return '<span style="color: #000;">Navegação</span>: <span style="font-style=italic;color:blue;">Início</span>';
 		}
 
 		// Bread crumb para ouyras páginas internas do site
 		return '<span style="color: #000;">Navegação</span>:
-				<span style="font-style=italic;"> <a href="/" style="font-style=italic;">Início</a>/'.ucfirst(ltrim($this->uri, '/').'</span>');
+				<span style="font-style=italic; color:blue;"> <a href="/" style="text-decoration:none;color:blue;">Início</a>/'.ltrim($this->uri,'/').'</span>';
 		
 	}
 
