@@ -2,7 +2,7 @@
 
 {% block site_content %}
 
-<div class="center_title_bar">Últimos produtos adicionados</div>
+<h2 class="center_title_bar">Últimos produtos adicionados</h2>
 
 {% for produto in produtos %}
 	<div class="prod_box">
@@ -57,7 +57,7 @@
 	</div>
 {% endfor %}
 
-<div class="center_title_bar">Produtos em promoção</div>
+<h2 class="center_title_bar">Produtos em promoção</h2>
 
 {% for produtoPromocao in produtosPromocao %}
 	<div class="prod_box">
@@ -94,6 +94,10 @@
 
 		<div class="bottom_prod_box"></div>
 		<div class="prod_details_tab">
+			<a href="#" class="btn-add-carrinho" title="header=[Adicionar ao carrinho] body=[&nbsp;] fade=[on]">
+				<img src="{{ site_url() }}/assets/images/cart.gif" alt="" border="0" class="left_bt" />
+			</a>
+			
 			{% if (produtoPromocao.produto_destaque == 1) %}
 				<a href="#" title="header=[Destaque] body=[&nbsp;] fade=[on]">
 					<img src="{{ site_url() }}/assets/images/favs.gif" alt="" border="0" class="left_bt" />

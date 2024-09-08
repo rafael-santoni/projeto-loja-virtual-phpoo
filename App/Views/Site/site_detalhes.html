@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+
+<h2 class="center_title_bar">Detalhes do produto {{ produto.produto_nome }}</h2>
+
+<img src="{{ site_url() }}/{{ produto.produto_foto }}" height="120" width="150" alt="" />
+
+<div class="prod_price">
+	{% if(produto.produto_promocao) == 1 %}
+		<span class="reduce" style="margin-right: 2px;">
+			R$ {{ produto.produto_valor | number_format(2,',','.') }}
+		</span>
+		<span class="price">
+			R$ {{ produto.produto_valor_promocao | number_format(2,',','.') }}
+		</span>
+	{% else %}
+		<span class="price">
+			R$ {{ produto.produto_valor | number_format(2,',','.') }}
+		</span>
+	{% endif %}
+</div>
+
+<div class="prod_details_tab">
+	<a href="#" class="btn-add-carrinho" title="header=[Adicionar ao carrinho] body=[&nbsp;] fade=[on]">
+		<img src="{{ site_url() }}/assets/images/cart.gif" alt="" border="0" class="left_bt" />
+	</a>
+
+	{% if (produto.produto_destaque == 1) %}
+		<a href="#" title="header=[Destaque] body=[&nbsp;] fade=[on]">
+			<img src="{{ site_url() }}/assets/images/favs.gif" alt="" border="0" class="left_bt" />
+		</a>
+	{% endif %}
+
+	{% if (produto.produto_presente == 1) %}
+		<a href="#" title="header=[Para Presente] body=[&nbsp;] fade=[on]">
+			<img src="{{ site_url() }}/assets/images/favorites.gif" alt="" border="0" class="left_bt" />
+		</a>
+	{% endif %}
+</div>
+
+<div style="clear: both;"></div>
+<hr />
+{{ produto.produto_descricao | raw }}
+
+{% endblock %}
