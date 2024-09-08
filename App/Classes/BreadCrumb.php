@@ -12,7 +12,7 @@ class BreadCrumb {
 
 		$uri = new Uri;
 		$this->uri = $uri->getUri();
-		
+
 	}
 
 	public function createBreadCrumb(){
@@ -22,7 +22,7 @@ class BreadCrumb {
 			$explodeIgual = explode('=', $this->uri);
 
 			return '<span style="color: #000;">Você está buscando:</span>
-					<span style="font-style=italic;color:blue;"><a href="/" style="text-decoration:none;color:blue;">Início</a>/'.str_replace('+', '-', $explodeIgual[1].'</span>');
+					<span style="font-style=italic;color:blue;">'.str_replace('+', '-', $explodeIgual[1]).'</span>';
 		}
 
 		// Bread crumb para a página inicial
@@ -33,7 +33,7 @@ class BreadCrumb {
 		// Bread crumb para ouyras páginas internas do site
 		return '<span style="color: #000;">Navegação</span>:
 				<span style="font-style=italic; color:blue;"> <a href="/" style="text-decoration:none;color:blue;">Início</a>/'.ltrim($this->uri,'/').'</span>';
-		
+
 	}
 
 }

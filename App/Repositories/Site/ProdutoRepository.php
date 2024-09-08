@@ -20,7 +20,7 @@ class ProdutoRepository {
 		$this->produto->typeDatabase->execute();
 
 		return $this->produto->typeDatabase->fetch();
-		
+
 	}
 
 	// Listar os produtos em destaque
@@ -31,7 +31,7 @@ class ProdutoRepository {
 		$this->produto->typeDatabase->execute();
 
 		return $this->produto->typeDatabase->fetchAll();
-		
+
 	}
 
 	// Listar os produtos em promoção
@@ -42,7 +42,20 @@ class ProdutoRepository {
 		$this->produto->typeDatabase->execute();
 
 		return $this->produto->typeDatabase->fetchAll();
-		
+
+	}
+
+	// Buscar Produto
+	public function buscarProduto($busca){
+
+		$sql = "SELECT * FROM {$this->produto->table} WHERE produto_nome LIKE ? OR produto_descricao LIKE ?";
+		$this->produto->typeDatabase->prepare($sql);
+		$this->produto->typeDatabase->bindValue(1,'%'.$busca.'%');
+		$this->produto->typeDatabase->bindValue(2,'%'.$busca.'%');
+		$this->produto->typeDatabase->execute();
+
+		return $this->produto->typeDatabase->fetchAll();
+
 	}
 
 }

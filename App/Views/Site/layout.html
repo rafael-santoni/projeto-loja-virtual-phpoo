@@ -12,97 +12,97 @@
 </head>
 <body>
 	<div id="main_container">
-		<div class="top_bar">
 
-			<!--include do top-->
-			{% include 'includes/site_header.html' %}
+		<!--include do top_menu/header-->
+		{% include 'includes/site_header.html' %}
 
-			<div id="main_content">
+		<div id="main_content">
 
-				<div id="menu_tab">
-					<!--include do menu-->
-					{% include 'includes/site_menu.html' %}
-				</div>
-
-				<div class="crumb_navigation">
-					{{ breadCrumb() | raw }}
-				</div>
-
-				<div class="left_content">
-
-					<div class="title_box">Categorias</div>
-					<ul class="left_menu">
-						<!--incllude left menu-->
-						{% include 'includes/site_left_menu.html' %}
-					</ul>
-
-					<div class="title_box">Promoção</div>
-					<div class="border_box">
-						{% for promocao in promocao() %}
-							<div class="product_title">{{ promocao.produto_nome }}</div>
-							<div class="product_image">
-								<img src="{{ site_url() }}/{{ promocao.produto_foto }}" width="90" height="90" />
-							</div>
-							<div class="prod_price">
-								{% if (promocao.produto_promocao == 1) %}
-									<span class="reduce" style="margin-right: 2px;">
-										R$ {{ promocao.produto_valor | number_format(2,',','.') }}
-									</span>
-									<span class="price">
-										R$ {{ promocao.produto_valor_promocao | number_format(2,',','.') }}
-									</span>
-								{% else %}
-									<span class="price">
-										R$ {{ promocao.produto_valor | number_format(2,',','.') }}
-									</span>
-								{% endif %}
-							</div>
-						{% endfor %}
-					</div>
-
-					<div class="title_box">Newsletter</div>
-					<div class="border_box">
-						<input type="text" name="newsletter" class="newsletter" value="Seu email" />
-						<a href="" class="join">cadastrar email</a>
-					</div>
-
-					<div class="banner_adds">
-						<a href="">
-							<!--banner de promoção, propaganda-->
-							<img src="{{ site_url() }}/assets/images/bann2.jpg" alt="" border="0" />
-						</a>
-					</div>
-
-				</div>
-
-				<div class="center_content">
-					{% block site_content %}{% endblock %}
-				</div>
-				
-				<div class="right_content">
-					{% include 'includes/site_right_menu.html' %}
-				</div>
-
-				<div class="footer">
-					<div class="left_footer">
-						<!--imagem do footer-->
-						<img src="{{ site_url() }}/assets/images/footer_logo.png" alt="" width="170" height="49" />
-					</div>
-
-					<div class="center_footer">
-						Loja Virtual RS-Dev. Todos os direitos reservados {{ 'now' | date('d/m/Y') }} <br />
-						<!--imagem da loja-->
-						<img src="{{ site_url() }}/assets/images/payment.gif" alt="" />
-					</div>
-
-					<div class="right_footer">
-						<a href="#">home</a> <a href="#">about</a> <a href="#">sitemap</a> <a href="#">rss</a> <a href="#">contact us</a>
-					</div>
-				</div>
-				
+			<div id="menu_tab">
+				<!--include do menu-->
+				{% include 'includes/site_menu.html' %}
 			</div>
-		</div>
-	</div>
+
+			<div class="crumb_navigation">
+				<!--include do Bread Crumb-->
+				{{ breadCrumb() | raw }}
+			</div>
+
+			<div class="left_content">
+
+				<div class="title_box">Categorias</div>
+				<ul class="left_menu">
+					<!--incllude left menu-->
+					{% include 'includes/site_left_menu.html' %}
+				</ul>
+
+				<div class="title_box">Promoção</div>
+				<div class="border_box">
+					{% for promocao in promocao() %}
+						<div class="product_title">{{ promocao.produto_nome }}</div>
+						<div class="product_image">
+							<img src="{{ site_url() }}/{{ promocao.produto_foto }}" width="90" height="90" />
+						</div>
+						<div class="prod_price">
+							{% if (promocao.produto_promocao == 1) %}
+								<span class="reduce" style="margin-right: 2px;">
+									R$ {{ promocao.produto_valor | number_format(2,',','.') }}
+								</span>
+								<span class="price">
+									R$ {{ promocao.produto_valor_promocao | number_format(2,',','.') }}
+								</span>
+							{% else %}
+								<span class="price">
+									R$ {{ promocao.produto_valor | number_format(2,',','.') }}
+								</span>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="title_box">Newsletter</div>
+				<div class="border_box">
+					<input type="text" name="newsletter" class="newsletter" value="Seu email" />
+					<a href="" class="join">cadastrar email</a>
+				</div>
+
+				<div class="banner_adds">
+					<a href="">
+						<!--banner de promoção, propaganda-->
+						<img src="{{ site_url() }}/assets/images/bann2.jpg" alt="" border="0" />
+					</a>
+				</div>
+
+			</div><!--.left_content-->
+
+			<div class="center_content">
+				{% block site_content %}{% endblock %}
+			</div>
+
+			<div class="right_content">
+				<!--include do right menu-->
+				{% include 'includes/site_right_menu.html' %}
+			</div>
+
+		</div><!--#main_content"-->
+
+		<div class="footer">
+			<div class="left_footer">
+				<!--imagem do footer-->
+				<img src="{{ site_url() }}/assets/images/footer_logo.png" alt="" width="170" height="49" />
+			</div>
+
+			<div class="center_footer">
+				Loja Virtual RS-Dev. Todos os direitos reservados {{ 'now' | date('d/m/Y') }} <br />
+				<!--imagem da loja-->
+				<img src="{{ site_url() }}/assets/images/payment.gif" alt="" />
+			</div>
+
+			<div class="right_footer">
+				<a href="#">home</a> <a href="#">about</a> <a href="#">sitemap</a> <a href="#">rss</a> <a href="#">contact us</a>
+			</div>
+		</div><!--.footer-->
+	</div><!--#main_container-->
 
 	<script type="text/javascript" src="{{ site_url() }}/bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/carrinho.js"></script>
