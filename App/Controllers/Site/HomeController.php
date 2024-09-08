@@ -3,7 +3,6 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
-// use App\Models\Site\User;
 use App\Repositories\Site\ProdutoRepository;
 
 class HomeController extends BaseController {
@@ -26,7 +25,7 @@ class HomeController extends BaseController {
 
 		$template = $this->twig->loadTemplate('site_home.html');
 		$template->display($dados);
-		
+
 	}
 
 }
