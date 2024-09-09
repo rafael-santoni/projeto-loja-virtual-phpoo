@@ -56,7 +56,7 @@ class Carrinho {
     public function produtosCarrinho(){
 
         if($this->statusCarrinho->carrinhoExiste()) {
-            return $this->->statusCarrinho->carrinho();
+            return $this->statusCarrinho->carrinho();
         }
 
     }
