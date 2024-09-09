@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+
+<table class="ui celled table">
+
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+            <th>Subtotal</th>
+            <th>Remover</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.produtos.produto_nome }}</td>
+                <td>
+                    <div class="ui form">
+                        <div class="inline">
+                            <input type="text" value="{{ produto.qtd }}" style="height: 2px; width: 10px;" />
+                            <button class="mini ui blue button btn-alterar-quantidade" data-id="{{ produto.produtos.id }}">Alterar</button>
+                        </div>
+                    </div>
+                </td>
+                <td>R$ {{ produto.valor | number_format(2,',','.') }}</td>
+                <td>R$ {{ produto.subtotal | number_format(2,',','.') }}</td>
+                <td>
+                    <button class="mini ui red button btn-remover-produto" data-id="{{ produto.produtos.id }}">Remover</button>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                Total da compra: <span class="price">R$ {{ valorProdutosCarrinho() | number_format(2,',','.') }} </span>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+
+{% endblock %}

@@ -18,6 +18,20 @@ class CarrinhoController extends BaseController {
 
     }
 
+    public function index(){
+
+        $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
+
+        $dados = [
+            'titulo' => 'Loja Virtual - RS-Dev | Carrinho',
+            'produtos' => $produtos
+        ];
+
+        $template = $this->twig->loadTemplate('site_carrinho.html');
+        $template->display($dados);
+
+    }
+
     public function add($param){
         $this->carrinho->add($param[0]);
     }
