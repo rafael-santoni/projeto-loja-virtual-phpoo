@@ -6,7 +6,7 @@ use App\Classes\StatusCarrinho;
 
 class Carrinho {
 
-    public $statusCarrinho;
+    private $statusCarrinho;
 
     public function __construct(){
 
@@ -27,6 +27,38 @@ class Carrinho {
 
     public function produtoCarrinho($id){
         return $_SESSION['carrinho'][$id];
+    }
+
+    public function update($id, $qtd){
+
+        if($this->statusCarrinho->produtoEstaNoCarrinho()) {
+            $_SESSION['carrinho'][$id] = $qtd;
+        }
+
+    }
+
+    public function remove($id){
+
+        if($this->statusCarrinho->produtoEstaNoCarrinho()) {
+            unset($_SESSION['carrinho'][$id]);
+        }
+
+    }
+
+    public function clear(){
+
+        if($this->statusCarrinho->carrinhoExiste()) {
+            unset($_SESSION['carrinho']);
+        }
+
+    }
+
+    public function produtosCarrinho(){
+
+        if($this->statusCarrinho->carrinhoExiste()) {
+            return $this->->statusCarrinho->carrinho();
+        }
+
     }
 
 }
