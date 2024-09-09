@@ -13,7 +13,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(retorno) {
                 products_cart.html(retorno.numeroProdutosCarrinho);
-                price_cart.html(retorno.valorProdutosCarrinho);
+                price_cart.html("R$ " + retorno.valorProdutosCarrinho.toLocaleString("pt-BR"));
             }
         });
     }

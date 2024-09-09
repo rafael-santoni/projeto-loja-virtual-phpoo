@@ -13,11 +13,13 @@ $twig->addFunction($marcas);
 $twig->addFunction($novidade);
 $twig->addFunction($promocao);
 $twig->addFunction($breadCrumb);
+$twig->addFunction($valorProdutosCarrinho);
+$twig->addFunction($numeroProdutosCarrinho);
 
 /**
  * Chamando o controller digitado na URL
  * http://localhost:8127/controller
- */ 
+ */
 $callController = new App\Controllers\Controller;
 $calledController = $callController->controller();
 

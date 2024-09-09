@@ -2,7 +2,9 @@
 
 // use App\Repositories\Site\CategoriaRepository;
 use App\Repositories\Site\ProdutoRepository;
+use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\BreadCrumb;
+use App\Classes\Carrinho;
 use App\Models\Site\MarcaModel;
 use App\Models\Site\CategoriaModel;
 
@@ -13,37 +15,51 @@ $site_url = new \Twig_SimpleFunction('site_url', function(){
 // Listar as categorias no left menu
 $categorias = new \Twig_SimpleFunction('categorias', function(){
 	// $categoriaRepository = new CategoriaRepository;
-	
+
 	// return $categoriaRepository->listarCategoriasProdutos();
 	$categoriaModel = new CategoriaModel;
-	
+
 	return $categoriaModel->fetchAll();
 });
 
 // Listar as marcas no right menu
 $marcas = new \Twig_SimpleFunction('marcas', function(){
 	$marcaModel = new MarcaModel;
-	
+
 	return $marcaModel->fetchAll();
 });
 
 // Listar as novidades no right menu
 $novidade = new \Twig_SimpleFunction('novidade', function(){
 	$produtoRepository = new ProdutoRepository;
-	
+
 	return $produtoRepository->ultimoProdutoAdicionado();
 });
 
 // Listar produtos em promoção no left menu
 $promocao = new \Twig_SimpleFunction('promocao', function(){
 	$produtoRepository = new ProdutoRepository;
-	
+
 	return $produtoRepository->listarProdutosPromocao(1);
 });
 
 // Bread crumb
 $breadCrumb = new \Twig_SimpleFunction('breadCrumb', function(){
 	$breadCrumb = new BreadCrumb;
-	
+
 	return $breadCrumb->createBreadCrumb();
+});
+
+// Valor total dos produtos no carrinho
+$valorProdutosCarrinho = new \Twig_SimpleFunction('valorProdutosCarrinho', function(){
+	$produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
+
+	return $produtosCarrinhoRepository->totalProdutosCarrinho();
+});
+
+// Número de produtos no carrinho
+$numeroProdutosCarrinho = new \Twig_SimpleFunction('numeroProdutosCarrinho', function(){
+	$produtosCarrinho = new Carrinho;
+
+	return $produtosCarrinho->produtosCarrinho();
 });
