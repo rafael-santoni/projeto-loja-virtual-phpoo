@@ -21,7 +21,7 @@ class FreteController extends BaseController {
         if(empty($this->produtoCarrinhoRepository->produtosNoCarrinho())){
             echo json_encode('produto'); die();
         }
-        
+
         $cep = filter_input(INPUT_POST, 'frete', FILTER_SANITIZE_STRING);
         $this->correios->setFormato('rolo');
         $this->correios->setTipo('sedex');
@@ -35,7 +35,17 @@ class FreteController extends BaseController {
 
         $dadosFrete = $this->correios->calcularFrete();
 
-        var_dump($dadosFrete);
+        if($dadosFrete['erro']['codigo'] != 0) {
+            echo json_encode([
+                'erro' => 'sim',
+                'mensagem' => $dadosFrete['erro']['mensagem']
+            ]);
+        } else {
+            echo json_encode([
+                'erro' => 'nao',
+                'frete' => $dadosFrete
+            ]);
+        }
 
     }
 

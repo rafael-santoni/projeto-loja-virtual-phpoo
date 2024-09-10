@@ -22,8 +22,16 @@ $(document).ready(function() {
             success: function(retorno) {
                 console.log(retorno);
 
-                if(retorno == "produto"){
-                    mensagem_frete.html("Você precisa ter produtos no carrinho para calcular o frete.")
+                if(retorno == "produto") {
+                    mensagem_frete.html("Você precisa ter produtos no carrinho para calcular o frete.");
+                }
+
+                if(retorno.erro == 'sim') {
+                    mensagem_frete.html(retorno.mensagem);
+                }
+
+                if(retorno.erro == 'nao') {
+                    location.reload();
                 }
             }
         });
