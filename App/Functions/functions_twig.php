@@ -65,9 +65,20 @@ $numeroProdutosCarrinho = new \Twig_SimpleFunction('numeroProdutosCarrinho', fun
 	return $produtosCarrinho->produtosCarrinho();
 });
 
-// Pegar dados do frete
-$dadosFrete = new \Twig_SimpleFunction('dadosFrete', function(){
+// // Pegar dados do frete
+// $dadosFrete = new \Twig_SimpleFunction('dadosFrete', function(){
+// 	return new Frete;
+// });
 
-	return new Frete;
+// Valor Total da Compra
+$totalComFrete = new \Twig_SimpleFunction('totalComFrete', function(){
+
+	$carrinho = new ProdutosCarrinhoRepository;
+	$totalCompra = $carrinho->totalProdutosCarrinho();
+
+	$frete = new Frete;
+	$valorFrete = $frete->pegarFrete();
+
+	return $valorFrete + $totalCompra;
 
 });

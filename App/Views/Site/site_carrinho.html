@@ -40,9 +40,9 @@
             <td colspan="3">
                 Total da compra: <span class="price">R$ {{ valorProdutosCarrinho() | number_format(2,',','.') }} </span>
                 <br />
-                Valor do frete: R$ {{ dadosFrete().pegarFrete() | number_format(2,',','.') }}
+                Valor do frete: R$ {{ frete | number_format(2,',','.') }}
                 <br />
-                Valor total da compra:
+                Valor total da compra: R$ {{ totalComFrete() | number_format(2,',','.') }}
             </td>
         </tr>
         <tr>

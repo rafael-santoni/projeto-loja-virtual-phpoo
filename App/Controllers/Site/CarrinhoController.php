@@ -4,6 +4,7 @@ namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Classes\Carrinho;
+use App\Classes\Frete;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 
 class CarrinhoController extends BaseController {
@@ -21,10 +22,13 @@ class CarrinhoController extends BaseController {
     public function index(){
 
         $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
+        
+        $frete = new Frete;
 
         $dados = [
             'titulo' => 'Loja Virtual - RS-Dev | Carrinho',
-            'produtos' => $produtos
+            'produtos' => $produtos,
+            'frete' => $frete->pegarFrete()
         ];
 
         $template = $this->twig->loadTemplate('site_carrinho.html');
