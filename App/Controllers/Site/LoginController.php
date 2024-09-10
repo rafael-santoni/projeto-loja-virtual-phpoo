@@ -3,14 +3,13 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
-use App\Classes\Password;
+use App\Classes\Login;
+use App\Classes\Filters;
+use App\Models\Site\UserLogin;
 
 class LoginController extends BaseController {
 
     public function index(){
-
-        $password = new Password;
-        dump($password->hash('1234'));
 
         $dados = [
             'titulo' => 'Loja Virtual - RS-Dev | Login',
@@ -24,7 +23,23 @@ class LoginController extends BaseController {
     public function logar(){
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            dump("Acesso válido, fazer o login");
+
+            $filter = new Filters;
+            $email = $filter->filter('email', 'string');
+            $password = $filter->filter('password', 'string');
+
+            $login = new Login;
+            $login->setEmail($email);
+            $login->setPassword($password);
+
+            if($login->logar(new UserLogin)) {
+                header('Location:/');
+                die();
+            }
+
+            header('Location:/login');
+            die();
+
         }
 
         header('Location:/');
