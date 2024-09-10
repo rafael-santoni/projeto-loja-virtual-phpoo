@@ -5,6 +5,7 @@ use App\Repositories\Site\ProdutoRepository;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\BreadCrumb;
 use App\Classes\Carrinho;
+use App\Classes\Frete;
 use App\Models\Site\MarcaModel;
 use App\Models\Site\CategoriaModel;
 
@@ -62,4 +63,11 @@ $numeroProdutosCarrinho = new \Twig_SimpleFunction('numeroProdutosCarrinho', fun
 	$produtosCarrinho = new Carrinho;
 
 	return $produtosCarrinho->produtosCarrinho();
+});
+
+// Pegar dados do frete
+$dadosFrete = new \Twig_SimpleFunction('dadosFrete', function(){
+
+	return new Frete;
+
 });

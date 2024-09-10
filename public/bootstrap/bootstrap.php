@@ -15,6 +15,7 @@ $twig->addFunction($promocao);
 $twig->addFunction($breadCrumb);
 $twig->addFunction($valorProdutosCarrinho);
 $twig->addFunction($numeroProdutosCarrinho);
+$twig->addFunction($dadosFrete);
 
 /**
  * Chamando o controller digitado na URL

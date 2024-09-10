@@ -5,6 +5,7 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\Correios;
+use App\Classes\Frete;
 
 class FreteController extends BaseController {
 
@@ -41,6 +42,10 @@ class FreteController extends BaseController {
                 'mensagem' => $dadosFrete['erro']['mensagem']
             ]);
         } else {
+
+            $frete = new Frete;
+            $frete->gravarFrete($dadosFrete['valor']);
+
             echo json_encode([
                 'erro' => 'nao',
                 'frete' => $dadosFrete
