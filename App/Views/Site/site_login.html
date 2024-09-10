@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+
+<h2>Login do usuário</h2>
+
+<form action="/login/logar" method="post">
+    <label for="email">E-mail</label>
+    <input type="text" name="email" placeholder="Digite seu e-mail" />
+
+    <label for="password">Senha</label>
+    <input type="password" name="password" placeholder="Digite sua senha" />
+
+    <button type="submit">Logar</button>
+</form>
+
+{% endblock %}
