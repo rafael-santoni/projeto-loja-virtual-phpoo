@@ -2,10 +2,10 @@
 
 {% block site_content %}
 
-<h2 class="center_title_bar">Produtos da categoria {{ categoria.categoria_nome }}</h2>
+<h2 class="center_title_bar">Produtos da marca {{ marca.marca_nome }}</h2>
 
 {% if(produtos|length <=0) %}
-    Nenhum produto cadastrado para esta categoria.
+    Nenhum produto cadastrado para esta marca.
 {% endif %}
 
 {% for produto in produtos %}
