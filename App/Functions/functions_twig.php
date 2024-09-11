@@ -6,8 +6,10 @@ use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\BreadCrumb;
 use App\Classes\Carrinho;
 use App\Classes\Frete;
+use App\Classes\Logado;
 use App\Models\Site\MarcaModel;
 use App\Models\Site\CategoriaModel;
+use App\Models\Site\UserModel;
 
 $site_url = new \Twig_SimpleFunction('site_url', function(){
 	return 'http://'.$_SERVER['SERVER_NAME'].':8127';
@@ -81,4 +83,19 @@ $totalComFrete = new \Twig_SimpleFunction('totalComFrete', function(){
 
 	return $valorFrete + $totalCompra;
 
+});
+
+// Verifica se o usuário está logado
+$logado = new \Twig_SimpleFunction('logado', function(){
+	$logado = new Logado;
+
+	return $logado->logado();
+});
+
+
+// Pegar dados do usuário
+$user = new \Twig_SimpleFunction('user', function(){
+	$userModel = new UserModel;
+
+	return $userModel->find('id', $_SESSION['id']);
 });

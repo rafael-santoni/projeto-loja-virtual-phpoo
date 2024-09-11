@@ -1,4 +1,14 @@
 <div class="top_bar">
+
+	<div style="float: left; width: 400px; line-height: 35px; margin-left: 5px; color: #FFF;">
+		Bem Vindo,
+		{% if(logado()) %}
+			{{ user().name }} {{ user().sobrenome }} <a href="/login/logout" class="mini ui inverted button red">Logout</a>
+		{% else %}
+			Visitante
+		{% endif %}
+	</div>
+
 	<div class="top_search">
 		<form method="get" action="/busca/">
 			<div class="search_text"><a href="#">Buscar produto</a></div>

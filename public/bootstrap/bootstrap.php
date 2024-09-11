@@ -17,6 +17,8 @@ $twig->addFunction($valorProdutosCarrinho);
 $twig->addFunction($numeroProdutosCarrinho);
 // $twig->addFunction($dadosFrete);
 $twig->addFunction($totalComFrete);
+$twig->addFunction($logado);
+$twig->addFunction($user);
 
 /**
  * Chamando o controller digitado na URL

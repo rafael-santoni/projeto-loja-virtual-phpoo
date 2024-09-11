@@ -6,11 +6,23 @@ use App\Controllers\BaseController;
 use App\Classes\Login;
 use App\Classes\Filters;
 use App\Classes\Redirect;
+use App\Classes\Logado;
 use App\Models\Site\UserLogin;
 
 class LoginController extends BaseController {
 
+    private $redirect;
+
+    public function __construct(){
+        $this->redirect = new Redirect;
+    }
+
     public function index(){
+
+        $logado = new Logado;
+        if($logado->logado()) {
+            $this->redirect->redirect('/');
+        }
 
         $dados = [
             'titulo' => 'Loja Virtual - RS-Dev | Login',
@@ -25,8 +37,6 @@ class LoginController extends BaseController {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            $redirect = new Redirect;
-
             $filter = new Filters;
             $email = $filter->filter('email', 'string');
             $password = $filter->filter('password', 'string');
@@ -36,14 +46,14 @@ class LoginController extends BaseController {
             $login->setPassword($password);
 
             if($login->logar(new UserLogin)) {
-                return $redirect->redirect('/');
+                return $this->redirect->redirect('/');
             }
 
-            return $redirect->redirect('/login');
+            return $this->redirect->redirect('/login');
 
         }
 
-        return $redirect->redirect('/');
+        return $this->redirect->redirect('/');
 
     }
 
