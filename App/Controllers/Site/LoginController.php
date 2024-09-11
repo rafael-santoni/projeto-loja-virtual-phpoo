@@ -5,6 +5,7 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Classes\Login;
 use App\Classes\Filters;
+use App\Classes\Redirect;
 use App\Models\Site\UserLogin;
 
 class LoginController extends BaseController {
@@ -24,6 +25,8 @@ class LoginController extends BaseController {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+            $redirect = new Redirect;
+
             $filter = new Filters;
             $email = $filter->filter('email', 'string');
             $password = $filter->filter('password', 'string');
@@ -33,16 +36,14 @@ class LoginController extends BaseController {
             $login->setPassword($password);
 
             if($login->logar(new UserLogin)) {
-                header('Location:/');
-                die();
+                return $redirect->redirect('/');
             }
 
-            header('Location:/login');
-            die();
+            return $redirect->redirect('/login');
 
         }
 
-        header('Location:/');
+        return $redirect->redirect('/');
 
     }
 

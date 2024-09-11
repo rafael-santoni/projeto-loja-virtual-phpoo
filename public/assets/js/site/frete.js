@@ -22,6 +22,10 @@ $(document).ready(function() {
             success: function(retorno) {
                 console.log(retorno);
 
+                if(retorno == "login") {
+                    window.location.href = "/login"
+                }
+
                 if(retorno == "produto") {
                     mensagem_frete.html("Você precisa ter produtos no carrinho para calcular o frete.");
                 }

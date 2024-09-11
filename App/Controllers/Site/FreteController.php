@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\Correios;
 use App\Classes\Frete;
+use App\Classes\Logado;
 
 class FreteController extends BaseController {
 
@@ -19,8 +20,15 @@ class FreteController extends BaseController {
 
     public function calcular(){
 
+        $logado = new Logado;
+        if(!$logado->logado()) {
+            echo json_encode('login');
+            die();
+        }
+
         if(empty($this->produtoCarrinhoRepository->produtosNoCarrinho())){
-            echo json_encode('produto'); die();
+            echo json_encode('produto');
+            die();
         }
 
         $cep = filter_input(INPUT_POST, 'frete', FILTER_SANITIZE_STRING);
