@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+
+<form action="/cadastro/atualizar" method="post">
+
+    <div class="center_title_bar">Meus Dados</div>
+
+    <div class="prod_box_big">
+
+        <div class="top_prod_box_big"></div>
+
+        <div class="center_prod_box_big">
+            <div class="contact_form">
+
+                <div class="form_row">
+                    <label class="contact"><strong>Nome</strong></label>
+                    <input type="text" class="contact_input" name="nome" placeholder="Nome" value="{{ user.name }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Sobrenome</strong></label>
+                    <input type="text" class="contact_input" name="sobrenome" placeholder="Sobrenome" value="{{ user.sobrenome }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>E-mail</strong></label>
+                    <input type="text" class="contact_input" name="email" placeholder="E-mail" value="{{ user.email }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>DDD</strong></label>
+                    <input type="text" class="contact_input" name="ddd" placeholder="DDD" value="{{ user.ddd }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Tefefone</strong></label>
+                    <input type="text" class="contact_input" name="telefone" placeholder="Telefone" value="{{ user.telefone }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Endereço</strong></label>
+                    <input type="text" class="contact_input" name="endereco" placeholder="Endereço" value="{{ user.endereco }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Bairro</strong></label>
+                    <input type="text" class="contact_input" name="bairro" placeholder="Bairro" value="{{ user.bairro }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Cidade</strong></label>
+                    <input type="text" class="contact_input" name="cidade" placeholder="Cidade" value="{{ user.cidade }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Estado</strong></label>
+                    <input type="text" class="contact_input" name="estado" placeholder="Estado" value="{{ user.estado }}" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>CEP</strong></label>
+                    <input type="text" class="contact_input" name="cep" placeholder="CEP" value="{{ user.cep }}" />
+                    <br /><br />
+                </div>
+
+                <div><button type="submit" class="mini ui green button" style="float: left;">Atualizar</button></div>
+
+            </div>
+        </div>
+
+        <div class="bottom_prod_box_big"></div>
+
+    </div>
+
+</form>
+
+{% endblock %}
