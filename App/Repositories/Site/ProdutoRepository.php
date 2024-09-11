@@ -45,6 +45,17 @@ class ProdutoRepository {
 
 	}
 
+	// Listar os produtos para presentes
+	public function listarProdutosParaPresentes(){
+
+		$sql = "SELECT * FROM {$this->produto->table} WHERE produto_presente=1 ORDER BY RAND()";
+		$this->produto->typeDatabase->prepare($sql);
+		$this->produto->typeDatabase->execute();
+
+		return $this->produto->typeDatabase->fetchAll();
+
+	}
+
 	// Listar os produtos em promoção ordenados randomicamente com limite
 	public function listarProdutosPromocao($limite){
 
