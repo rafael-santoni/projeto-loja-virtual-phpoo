@@ -9,6 +9,7 @@ use App\Classes\Frete;
 use App\Classes\Logado;
 use App\Classes\ErrorsValidate;
 use App\Classes\PersistInput;
+use App\Classes\FlashMessage;
 use App\Models\Site\MarcaModel;
 use App\Models\Site\CategoriaModel;
 use App\Models\Site\UserModel;
@@ -113,4 +114,11 @@ $persist = new \Twig_SimpleFunction('persist', function($field){
 	$persist = new PersistInput;
 
 	return $persist->show($field);
+});
+
+// Mostrar mensagens no template
+$flash = new \Twig_SimpleFunction('flash', function($index){
+	$flash = new FlashMessage;
+
+	return $flash->show($index);
 });

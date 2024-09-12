@@ -8,6 +8,7 @@ use App\Classes\ErrorsValidate;
 use App\Classes\Redirect;
 use App\Classes\Filters;
 use App\Classes\PersistInput;
+use App\Classes\FlashMessage;
 use App\Models\Site\UserModel;
 
 class CadastroController extends BaseController {
@@ -17,6 +18,7 @@ class CadastroController extends BaseController {
     private $redirect;
     private $filter;
     private $userModel;
+    private $flash;
 
     public function __construct(){
 
@@ -25,6 +27,7 @@ class CadastroController extends BaseController {
         $this->redirect = new Redirect;
         $this->filter = new Filters;
         $this->userModel = new UserModel;
+        $this->flash = new FlashMessage;
 
     }
 
@@ -74,9 +77,18 @@ class CadastroController extends BaseController {
                 $attributes = [$nome,$sobrenome,$email,$ddd,$telefone,$endereco,$bairro,$cidade,$estado,$cep];
 
                 if($this->userModel->create($attributes)) {
+
+                    $this->flash->add('mensagem_cadastro', 'Cadastrado com sucesso!', 'success');
+
                     PersistInput::removeInputs();
-                    dump('Cadastrado com sucesso!');
+
+                    return $this->redirect->redirect('/cadastro');
+
                 }
+
+                $this->flash->add('mensagem_cadastro', 'Erro ao cadastrar, tente novamente mais tarde!');
+
+                return $this->redirect->redirect('/cadastro');
 
             } else {
                 $this->redirect->redirect('/cadastro');
