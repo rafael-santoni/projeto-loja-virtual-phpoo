@@ -8,6 +8,7 @@ use App\Classes\Carrinho;
 use App\Classes\Frete;
 use App\Classes\Logado;
 use App\Classes\ErrorsValidate;
+use App\Classes\PersistInput;
 use App\Models\Site\MarcaModel;
 use App\Models\Site\CategoriaModel;
 use App\Models\Site\UserModel;
@@ -105,4 +106,11 @@ $errorField = new \Twig_SimpleFunction('errorField', function($field){
 	$errorValidate = new ErrorsValidate;
 
 	return $errorValidate->show($field);
+});
+
+// Perisistir os dados no formulário
+$persist = new \Twig_SimpleFunction('persist', function($field){
+	$persist = new PersistInput;
+
+	return $persist->show($field);
 });

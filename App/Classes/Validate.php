@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Classes\TypesValidation;
+use App\Classes\PersistInput;
 
 class Validate {
 
@@ -14,7 +15,11 @@ class Validate {
 
     public function validate($rules){
 
+        $persist = new PersistInput;
+
         foreach ($rules as $field => $method) {
+
+            $persist->add($field);
 
             if(substr_count($method, '|') > 0) {
 

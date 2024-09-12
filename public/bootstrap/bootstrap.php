@@ -20,6 +20,7 @@ $twig->addFunction($totalComFrete);
 $twig->addFunction($logado);
 $twig->addFunction($user);
 $twig->addFunction($errorField);
+$twig->addFunction($persist);
 
 /**
  * Chamando o controller digitado na URL
