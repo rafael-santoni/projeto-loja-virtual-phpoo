@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+
+<div class="center_title_bar">Contato</div>
+
+<div class="prod_box_big">
+
+    <div class="top_prod_box_big"></div>
+
+    <div class="center_prod_box_big">
+
+        <div class="contact_form">
+            <form action="/contato/enviar" method="post">
+
+                <div class="form_row">
+                    <label class="contact"><strong>Nome:</strong></label>
+                    <input type="text" class="contact_input" name="nome" value="{{ persist('nome') }}" />
+                    {{ errorField('nome') | raw }}
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Email:</strong></label>
+                    <input type="email" class="contact_input" name="email" value="{{ persist('email') }}" />
+                    {{ errorField('email') | raw }}
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Assunto:</strong></label>
+                    <input type="text" class="contact_input" name="assunto" value="{{ persist('assunto') }}" />
+                    {{ errorField('assunto') | raw }}
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    {{ errorField('mensagem') | raw }}
+                    <label class="contact"><strong>Mensagem:</strong></label>
+                    <textarea class="contact_textarea" name="mensagem"></textarea>
+                    <br /><br />
+                </div>
+
+                <div class="form_row"><button type="submit" class="mini ui green button">Enviar</button></div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="bottom_prod_box_big"></div>
+
+</div>
+
+{% endblock %}
