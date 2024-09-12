@@ -7,6 +7,7 @@ use App\Classes\BreadCrumb;
 use App\Classes\Carrinho;
 use App\Classes\Frete;
 use App\Classes\Logado;
+use App\Classes\ErrorsValidate;
 use App\Models\Site\MarcaModel;
 use App\Models\Site\CategoriaModel;
 use App\Models\Site\UserModel;
@@ -92,10 +93,16 @@ $logado = new \Twig_SimpleFunction('logado', function(){
 	return $logado->logado();
 });
 
-
 // Pegar dados do usuário
 $user = new \Twig_SimpleFunction('user', function(){
 	$userModel = new UserModel;
 
 	return $userModel->find('id', $_SESSION['id']);
+});
+
+// Mensagens de erro do formulário
+$errorField = new \Twig_SimpleFunction('errorField', function($field){
+	$errorValidate = new ErrorsValidate;
+
+	return $errorValidate->show($field);
 });

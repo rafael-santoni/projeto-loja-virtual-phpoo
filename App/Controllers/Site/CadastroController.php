@@ -3,11 +3,25 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
+use App\Classes\Validate;
+use App\Classes\ErrorsValidate;
 use App\Classes\Redirect;
-use App\Classes\Logado;
-use App\Models\Site\UserModel;
+// use App\Classes\Logado;
+// use App\Models\Site\UserModel;
 
 class CadastroController extends BaseController {
+
+    private $validate;
+    private $errorValidate;
+    private $redirect;
+
+    public function __construct(){
+
+        $this->validate = new Validate;
+        $this->errorValidate = new ErrorsValidate;
+        $this->redirect = new Redirect;
+
+    }
 
     public function index(){
 
@@ -37,8 +51,13 @@ class CadastroController extends BaseController {
                 'cep' => 'required|cep',
             ];
 
-            $validate = new \App\Classes\Validate;
-            $validate->validate($rules);
+            $this->validate->validate($rules);
+
+            if(!$this->errorValidate->erroValidacao()) {
+                dump('Nenhum erro nos campos');
+            } else {
+                $this->redirect->redirect('/cadastro');
+            }
 
         }
 

@@ -19,6 +19,7 @@ $twig->addFunction($numeroProdutosCarrinho);
 $twig->addFunction($totalComFrete);
 $twig->addFunction($logado);
 $twig->addFunction($user);
+$twig->addFunction($errorField);
 
 /**
  * Chamando o controller digitado na URL

@@ -2,17 +2,31 @@
 
 namespace App\Classes;
 
+use App\Classes\ErrorsValidate;
+
 class TypesValidation {
+
+    private $errorValidate;
+
+    public function __construct(){
+        $this->errorValidate = new ErrorsValidate;
+    }
 
     public function required($field){
 
-        if($_POST[$field] == '') {
-            dump("O campo $field é obrigatório");
+        if(empty($_POST[$field])) {
+            $message = "O campo {$field} é obrigatório";
+            $this->errorValidate->add($field, $message);
         }
 
     }
 
-    public function email(){
+    public function email($field){
+
+        if(!filter_var($_POST[$field], FILTER_VALIDATE_EMAIL)) {
+            $message = "O campo {$field} deve conter um email válido";
+            $this->errorValidate->add($field, $message);
+        }
 
     }
 
