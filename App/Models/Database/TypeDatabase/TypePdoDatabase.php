@@ -15,7 +15,7 @@ class TypePdoDatabase implements InterfaceTypeDatabase {
 
 		$pdo = new Connection(new ConnectPdoDatabase);
 		$this->pdo = $pdo->connectDatabase();
-		
+
 	}
 
 	public function prepare($sql){
@@ -27,7 +27,7 @@ class TypePdoDatabase implements InterfaceTypeDatabase {
 	}
 
 	public function execute(){
-		$this->objectPdo->execute();
+		return $this->objectPdo->execute();
 	}
 
 	public function rowCount(){

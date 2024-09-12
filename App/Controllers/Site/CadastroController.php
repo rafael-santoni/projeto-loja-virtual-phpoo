@@ -6,20 +6,25 @@ use App\Controllers\BaseController;
 use App\Classes\Validate;
 use App\Classes\ErrorsValidate;
 use App\Classes\Redirect;
-// use App\Classes\Logado;
-// use App\Models\Site\UserModel;
+use App\Classes\Filters;
+use App\Classes\PersistInput;
+use App\Models\Site\UserModel;
 
 class CadastroController extends BaseController {
 
     private $validate;
     private $errorValidate;
     private $redirect;
+    private $filter;
+    private $userModel;
 
     public function __construct(){
 
         $this->validate = new Validate;
         $this->errorValidate = new ErrorsValidate;
         $this->redirect = new Redirect;
+        $this->filter = new Filters;
+        $this->userModel = new UserModel;
 
     }
 
@@ -54,12 +59,34 @@ class CadastroController extends BaseController {
             $this->validate->validate($rules);
 
             if(!$this->errorValidate->erroValidacao()) {
-                dump('Nenhum erro nos campos');
+
+                $nome = $this->filter->filter('nome','string');
+                $sobrenome = $this->filter->filter('sobrenome','string');
+                $email = $this->filter->filter('email','email');
+                $ddd = $this->filter->filter('ddd','string');
+                $telefone = $this->filter->filter('telefone','string');
+                $endereco = $this->filter->filter('endereco','string');
+                $bairro = $this->filter->filter('bairro','string');
+                $cidade = $this->filter->filter('cidade','string');
+                $estado = $this->filter->filter('estado','string');
+                $cep = $this->filter->filter('cep','string');
+
+                $attributes = [$nome,$sobrenome,$email,$ddd,$telefone,$endereco,$bairro,$cidade,$estado,$cep];
+
+                if($this->userModel->create($attributes)) {
+                    PersistInput::removeInputs();
+                    dump('Cadastrado com sucesso!');
+                }
+
             } else {
                 $this->redirect->redirect('/cadastro');
             }
 
         }
+
+    }
+
+    public function atualizar(){
 
     }
 
