@@ -28,7 +28,7 @@ class CadastroController extends BaseController {
                 'nome' => 'required',
                 'sobrenome' => 'required',
                 'email' => 'required|email',
-                // 'ddd' => 'required|ddd',
+                'ddd' => 'required|ddd',
                 'telefone' => 'required|phone',
                 // 'endereco' => 'required',
                 // 'bairro' => 'required',
@@ -36,6 +36,9 @@ class CadastroController extends BaseController {
                 // 'estado' => 'required',
                 'cep' => 'required|cep',
             ];
+
+            $validate = new \App\Classes\Validate;
+            $validate->validate($rules);
 
         }
 
