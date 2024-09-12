@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+
+<form action="/cadastro/cadastrar" method="post">
+
+    <div class="center_title_bar">Cadastro de Usuários</div>
+
+    <div class="prod_box_big">
+
+        <div class="top_prod_box_big"></div>
+
+        <div class="center_prod_box_big">
+            <div class="contact_form">
+
+                <div class="form_row">
+                    <label class="contact"><strong>Nome</strong></label>
+                    <input type="text" class="contact_input" name="nome" placeholder="Nome" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Sobrenome</strong></label>
+                    <input type="text" class="contact_input" name="sobrenome" placeholder="Sobrenome" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>E-mail</strong></label>
+                    <input type="text" class="contact_input" name="email" placeholder="E-mail"" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>DDD</strong></label>
+                    <input type="text" class="contact_input" name="ddd" placeholder="DDD" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Tefefone</strong></label>
+                    <input type="text" class="contact_input" name="telefone" placeholder="Telefone" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Endereço</strong></label>
+                    <input type="text" class="contact_input" name="endereco" placeholder="Endereço" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Bairro</strong></label>
+                    <input type="text" class="contact_input" name="bairro" placeholder="Bairro" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Cidade</strong></label>
+                    <input type="text" class="contact_input" name="cidade" placeholder="Cidade" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Estado</strong></label>
+                    <input type="text" class="contact_input" name="estado" placeholder="Estado" />
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>CEP</strong></label>
+                    <input type="text" class="contact_input" name="cep" placeholder="CEP" />
+                    <br /><br />
+                </div>
+
+                <div><button type="submit" class="mini ui green button" style="float: left;">Cadastrar</button></div>
+
+            </div>
+        </div>
+
+        <div class="bottom_prod_box_big"></div>
+
+    </div>
+
+</form>
+
+{% endblock %}
