@@ -24,7 +24,18 @@ class CadastroController extends BaseController {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            dump('cadastrar ususário no banco');
+            $rules = [
+                'nome' => 'required',
+                'sobrenome' => 'required',
+                'email' => 'required|email',
+                // 'ddd' => 'required|ddd',
+                'telefone' => 'required|phone',
+                // 'endereco' => 'required',
+                // 'bairro' => 'required',
+                // 'cidade' => 'required',
+                // 'estado' => 'required',
+                'cep' => 'required|cep',
+            ];
 
         }
 
