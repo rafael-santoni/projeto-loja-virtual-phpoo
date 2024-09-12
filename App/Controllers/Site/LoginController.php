@@ -7,7 +7,8 @@ use App\Classes\Login;
 use App\Classes\Filters;
 use App\Classes\Redirect;
 use App\Classes\Logado;
-use App\Models\Site\UserLogin;
+use App\Models\Site\UserModel;
+// use App\Models\Site\UserLogin;
 
 class LoginController extends BaseController {
 
@@ -45,7 +46,7 @@ class LoginController extends BaseController {
             $login->setEmail($email);
             $login->setPassword($password);
 
-            if($login->logar(new UserLogin)) {
+            if($login->logar(new UserModel)) {
                 return $this->redirect->redirect('/');
             }
 
@@ -60,7 +61,7 @@ class LoginController extends BaseController {
     public function logout(){
 
         //session_destroy();
-        
+
         unset($_SESSION['id']);
         unset($_SESSION['name']);
         unset($_SESSION['logado']);

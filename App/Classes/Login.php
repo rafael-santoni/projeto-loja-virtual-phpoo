@@ -3,7 +3,8 @@
 namespace App\Classes;
 
 use App\Classes\Password;
-use App\Interfaces\InterfaceLogin;
+use App\Models\Model;
+// use App\Interfaces\InterfaceLogin;
 
 class Login {
 
@@ -18,9 +19,9 @@ class Login {
         $this->password = $password;
     }
 
-    public function logar(InterfaceLogin $interfaceLogin){
+    public function logar(Model $model){
 
-        $userEncontrado = $interfaceLogin->find('email', $this->email);
+        $userEncontrado = $model->find('email', $this->email);
 
         if(!$userEncontrado) {
             return false;
@@ -37,7 +38,7 @@ class Login {
             return true;
 
         } else {
-            
+
             return false;
 
         }

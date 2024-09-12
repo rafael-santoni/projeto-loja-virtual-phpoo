@@ -6,7 +6,7 @@ use App\Models\Database\TypeDatabase\TypePdoDatabase;
 use App\Models\Database\TypeDatabase\TypeMysqliDatabase;
 use App\Models\Database\TypeDatabase\TypeDatabase;
 
-class Model {
+abstract class Model {
 
 	public $typeDatabase;
 
@@ -35,7 +35,7 @@ class Model {
 		$this->typeDatabase->execute();
 
 		return ($fetch == null) ? $this->typeDatabase->fetch() : $this->typeDatabase->fetchAll() ;
-		
+
 	}
 
 }
