@@ -2,6 +2,9 @@
 
 namespace App\Classes;
 
+use App\Interfaces\InterfaceTemplateEmail;
+use App\Classes\TemplateEmail;
+
 class email {
 
     private $email;
@@ -32,7 +35,7 @@ class email {
         $this->mensagem = $mensagem;
     }
 
-    public function setTemplate($template){
+    public function setTemplate(InterfaceTemplateEmail $template){
         $this->template = $template;
     }
 
@@ -41,6 +44,8 @@ class email {
     }
 
     public function enviar(){
+
+        $templateEmail = new TemplateEmail($this->template);
 
         $this->email->CharSet = 'UTF-8';
         $this->->email->SMTPSecure = 'ssl';
@@ -62,8 +67,8 @@ class email {
         }
 
         $this->->email->Subject = $this->assunto;
-        $this->->email->AltBody = 'Este email contém HTML e não poser ser carrgado.';
-        $this->->email->MsgHTML();
+        $this->->email->AltBody = 'Este email contém HTML e não poder ser carrgado.';
+        $this->->email->MsgHTML($templateEmail->show($this->mensagem));
 
         if(!$this->->email->send()){
             return false;
