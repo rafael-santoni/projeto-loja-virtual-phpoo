@@ -2,7 +2,8 @@
     "require": {
         "symfony/var-dumper": "^3.0",
         "twig/twig": "^1.24",
-        "cagartner/correios-consulta": "^0.1.3"
+        "cagartner/correios-consulta": "^0.1.3",
+        "phpmailer/phpmailer": "5.2.16"
     },
     "autoload":{
         "psr-4":{
