@@ -7,6 +7,7 @@ use App\Classes\Validate;
 use App\Classes\ErrorsValidate;
 use App\Classes\FiltersValidate;
 use App\Classes\Redirect;
+use App\Classes\Email;
 
 class ContatoController extends BaseController {
 
@@ -39,6 +40,23 @@ class ContatoController extends BaseController {
             $redirect = new Redirect;
 
             if(!$errosValidate->erroValidacao()) {
+
+                $filters = new Filters;
+                $nome = $filters->filter('nome','string');
+                $email = $filters->filter('email','email');
+                $assunto = $filters->filter('assunto','string');
+                $mensagem = $filters->filter('mensagem','string');
+
+                $phpMailer = new Email();
+                $phpMailer->setPara('contato@meuamil.com.br');
+                $phpMailer->setQuem($email);
+                $phpMailer->setAssunto($assunto);
+                $phpMailer->setMensagem($mensagem);
+                $phpMailer->setTemplate($template);
+
+                if($phpMailer->enviar()) {
+                    $redirect->redirect('/contato');
+                }
 
             }
 
