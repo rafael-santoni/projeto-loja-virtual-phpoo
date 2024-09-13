@@ -2,8 +2,6 @@
 
 namespace App\Classes;
 
-
-
 class ErrorsValidate {
 
     public function add($field, $message){

@@ -4,7 +4,6 @@ namespace App\Classes;
 
 use App\Classes\Password;
 use App\Models\Model;
-// use App\Interfaces\InterfaceLogin;
 
 class Login {
 

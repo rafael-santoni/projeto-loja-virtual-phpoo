@@ -8,7 +8,6 @@ use App\Classes\Filters;
 use App\Classes\Redirect;
 use App\Classes\Logado;
 use App\Models\Site\UserModel;
-// use App\Models\Site\UserLogin;
 
 class LoginController extends BaseController {
 

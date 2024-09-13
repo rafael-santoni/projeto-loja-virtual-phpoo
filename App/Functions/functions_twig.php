@@ -1,6 +1,5 @@
 <?php
 
-// use App\Repositories\Site\CategoriaRepository;
 use App\Repositories\Site\ProdutoRepository;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\BreadCrumb;
