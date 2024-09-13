@@ -8,6 +8,7 @@ use App\Classes\ErrorsValidate;
 use App\Classes\Filters;
 use App\Classes\Redirect;
 use App\Classes\Email;
+use App\Classes\TemplateContato;
 
 class ContatoController extends BaseController {
 
@@ -48,14 +49,15 @@ class ContatoController extends BaseController {
                 $mensagem = $filters->filter('mensagem','string');
 
                 $phpMailer = new Email();
-                $phpMailer->setPara('contato@meuemail.com.br');
+                $phpMailer->setPara('contato@empresa.com.br');
                 $phpMailer->setQuem($email);
                 $phpMailer->setAssunto($assunto);
                 $phpMailer->setMensagem([
                     'nome' => $nome,
-                    'data' => date('d/m/T H:i:s')
+                    'data' => date('d/m/Y H:i:s'),
+                    'mensagem' => $mensagem
                 ]);
-                $phpMailer->setTemplate($template);
+                $phpMailer->setTemplate(new TemplateContato);
 
                 if($phpMailer->enviar()) {
                     $redirect->redirect('/contato');

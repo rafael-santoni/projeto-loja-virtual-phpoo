@@ -1,4 +1,8 @@
 <?php
+/*
+    --************************--
+    ***** Deprecated Class *****
+    --************************--
 
 namespace App\Classes;
 
@@ -17,3 +21,4 @@ class TemplateEmail {
     }
 
 }
+*/

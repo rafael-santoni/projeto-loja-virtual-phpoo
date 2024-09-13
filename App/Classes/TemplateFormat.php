@@ -9,7 +9,8 @@ class TemplateFormat {
         foreach ($dados as $key => $dado) {
 
             $allKeys[] = '#'.$key;
-            $allValues[] .= $dado;
+            // $allValues[] .= $dado;
+            $allValues[] = $dado;
 
         }
 

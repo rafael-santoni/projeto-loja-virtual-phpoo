@@ -45,18 +45,20 @@ class Email {
 
     public function enviar(){
 
-        $templateEmail = new TemplateEmail($this->template);
+        // $templateEmail = new TemplateEmail($this->template);
 
         $this->email->CharSet = 'UTF-8';
         $this->email->SMTPSecure = 'ssl';
+        // $this->email->SMTPSecure = 'tls';
         $this->email->isSMTP();
         $this->email->Host = '';
-        $this->email->Port = '';
+        $this->email->Port = 0;
+        //$this->email->SMTPAutoTLS = true;
         $this->email->SMTPAuth = true;
         $this->email->Username = '';
         $this->email->Password = '';
         $this->email->isHTML(true);
-        $this->email->setFrom('contato@meuemail.com.br');
+        $this->email->setFrom('contato@empresa.com.br');
         $this->email->FromName = $this->quem;
         $this->email->addAddress($this->para);
 
@@ -68,9 +70,11 @@ class Email {
 
         $this->email->Subject = $this->assunto;
         $this->email->AltBody = 'Este email contém HTML e não poder ser carrgado.';
-        $this->email->MsgHTML($templateEmail->show($this->mensagem));
+        // $this->email->MsgHTML($templateEmail->show($this->mensagem));
+        $this->email->MsgHTML($this->template->template($this->mensagem));
 
         if(!$this->email->send()){
+            dump($this->email->ErrorInfo);
             return false;
         }
 
