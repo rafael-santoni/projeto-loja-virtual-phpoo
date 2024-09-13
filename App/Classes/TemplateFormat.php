@@ -4,13 +4,20 @@ namespace App\Classes;
 
 class TemplateFormat {
 
+    const PATH_TO_EMAILS_FORMATED = 'emails';
+
+    private $allKeys = [];
+    private $allValues = [];
+
     public function replaceVariables($template, $dados){
+
+        // $allValues = []
 
         foreach ($dados as $key => $dado) {
 
-            $allKeys[] = '#'.$key;
+            $this->$allKeys[] = '#'.$key;
             // $allValues[] .= $dado;
-            $allValues[] = $dado;
+            $this->$allValues[] = $dado;
 
         }
 
