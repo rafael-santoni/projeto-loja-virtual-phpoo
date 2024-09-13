@@ -5,7 +5,7 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Classes\Validate;
 use App\Classes\ErrorsValidate;
-use App\Classes\FiltersValidate;
+use App\Classes\Filters;
 use App\Classes\Redirect;
 use App\Classes\Email;
 
@@ -48,10 +48,13 @@ class ContatoController extends BaseController {
                 $mensagem = $filters->filter('mensagem','string');
 
                 $phpMailer = new Email();
-                $phpMailer->setPara('contato@meuamil.com.br');
+                $phpMailer->setPara('contato@meuemail.com.br');
                 $phpMailer->setQuem($email);
                 $phpMailer->setAssunto($assunto);
-                $phpMailer->setMensagem($mensagem);
+                $phpMailer->setMensagem([
+                    'nome' => $nome,
+                    'data' => date('d/m/T H:i:s')
+                ]);
                 $phpMailer->setTemplate($template);
 
                 if($phpMailer->enviar()) {
