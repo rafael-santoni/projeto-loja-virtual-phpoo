@@ -33,6 +33,15 @@
 						R$ {{ produto.produto_valor | number_format(2,',','.') }}
 					</span>
 				{% endif %}
+				<br />
+
+				<!-- estoque do produto -->
+				{% if(estoque(produto.id) == 0) %}
+					<span style="color: red; font-style: italic; font-size: 12px;">Indisponível</span>
+				{% else %}
+					Estoque: {{ estoque(produto.id) }}
+				{% endif %}
+
 			</div>
 		</div>
 
@@ -88,6 +97,15 @@
 						R$ {{ produtoPromocao.produto_valor | number_format(2,',','.') }}
 					</span>
 				{% endif %}
+				<br />
+
+				<!-- estoque do produto -->
+				{% if(estoque(produtoPromocao.id) == 0) %}
+					<span style="color: red; font-style: italic; font-size: 12px;">Indisponível</span>
+				{% else %}
+					Estoque: {{ estoque(produtoPromocao.id) }}
+				{% endif %}
+
 			</div>
 
 		</div>

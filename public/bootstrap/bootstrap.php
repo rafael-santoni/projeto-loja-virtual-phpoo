@@ -22,6 +22,7 @@ $twig->addFunction($user);
 $twig->addFunction($errorField);
 $twig->addFunction($persist);
 $twig->addFunction($flash);
+$twig->addFunction($estoque);
 
 /**
  * Chamando o controller digitado na URL

@@ -4,6 +4,7 @@ use App\Repositories\Site\ProdutoRepository;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\BreadCrumb;
 use App\Classes\Carrinho;
+use App\Classes\Estoque;
 use App\Classes\Frete;
 use App\Classes\Logado;
 use App\Classes\ErrorsValidate;
@@ -120,4 +121,11 @@ $flash = new \Twig_SimpleFunction('flash', function($index){
 	$flash = new FlashMessage;
 
 	return $flash->show($index);
+});
+
+// Estoque dos produtos
+$estoque = new \Twig_SimpleFunction('estoque', function($id){
+	$estoque = new Estoque;
+
+	return $estoque->estoqueAtual($id);
 });
