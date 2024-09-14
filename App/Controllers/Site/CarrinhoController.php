@@ -61,8 +61,20 @@ class CarrinhoController extends BaseController {
 
             $this->carrinho->update($id, $qtd);
             echo 'updated';
-            
+
         }
+
+    }
+
+    public function delete(){
+
+        $id = (int)$_POST['id'];
+
+        $this->carrinho->remove($id);
+
+        unset($_SESSION['frete']);
+
+        echo 'deleted';
 
     }
 
