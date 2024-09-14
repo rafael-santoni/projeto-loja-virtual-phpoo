@@ -54,7 +54,15 @@ class Carrinho {
     public function update($id, $qtd){
 
         if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
+
+            if(!$this->estoque->temNoEstoque($id, $qtd)) {
+                echo 'semEstoque';
+                die();
+            }
+
             $_SESSION['carrinho'][$id] = $qtd;
+            $this->carrinhoModel->update($id, $qtd);
+
         }
 
     }
@@ -63,6 +71,7 @@ class Carrinho {
 
         if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
             unset($_SESSION['carrinho'][$id]);
+            $this->carrinhoModel->remove($id);
         }
 
     }

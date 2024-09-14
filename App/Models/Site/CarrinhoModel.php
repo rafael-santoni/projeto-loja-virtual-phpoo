@@ -23,8 +23,8 @@ class CarrinhoModel extends Model {
 
     public function update($id, $qtd){
 
-        $sql = "UPDATE {this->table} SET quantidade = ? WHERE produto = ?";
-        $this->typeDatabase->prepare();
+        $sql = "UPDATE {$this->table} SET quantidade = ? WHERE produto = ?";
+        $this->typeDatabase->prepare($sql);
         $this->typeDatabase->bindValue(1, $qtd);
         $this->typeDatabase->bindValue(2, $id);
         $this->typeDatabase->execute();
