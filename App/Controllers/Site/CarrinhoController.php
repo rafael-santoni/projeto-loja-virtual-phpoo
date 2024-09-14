@@ -22,7 +22,7 @@ class CarrinhoController extends BaseController {
     public function index(){
 
         $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
-        
+
         $frete = new Frete;
 
         $dados = [
@@ -45,6 +45,25 @@ class CarrinhoController extends BaseController {
             'numeroProdutosCarrinho' => count($this->carrinho->produtosCarrinho()),
             'valorProdutosCarrinho' => $this->produtosCarrinhoRepository->totalProdutosCarrinho()
         ]);
+    }
+
+    public function update(){
+
+        $id = (int)$_POST['id'];
+        $qtd = (int)$_POST['qtd'];
+
+        if($qtd == '' || $qtd == 0) {
+
+            $this->carrinho->remove($id);
+            echo 'deleted';
+
+        } else {
+
+            $this->carrinho->update($id, $qtd);
+            echo 'updated';
+            
+        }
+
     }
 
 }
