@@ -1,4 +1,11 @@
 <?php
+/*
+    --************************--
+    ***** Deprecated Class *****
+    ***** Esta classe foi  *****
+    *****  renomeada para  *****
+    ***** TemplateEmail.php ****
+    --************************--
 
 namespace App\Classes;
 
@@ -28,3 +35,4 @@ class TemplateFormat {
     }
 
 }
+*/

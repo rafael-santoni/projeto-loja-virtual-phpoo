@@ -3,9 +3,9 @@
 namespace App\Classes;
 
 use App\Interfaces\InterfaceTemplateEmail;
-use App\Classes\TemplateFormat;
+use App\Classes\TemplateEmail;
 
-class TemplateContato extends TemplateFormat implements InterfaceTemplateEmail {
+class TemplateContato extends TemplateEmail implements InterfaceTemplateEmail {
 
     public function template($dados){
 

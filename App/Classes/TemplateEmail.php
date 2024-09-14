@@ -1,24 +1,28 @@
 <?php
-/*
-    --************************--
-    ***** Deprecated Class *****
-    --************************--
 
 namespace App\Classes;
 
-use App\Interfaces\InterfaceTemplateEmail;
-
 class TemplateEmail {
 
-    private $interfaceTemplateEmail;
+    const PATH_TO_EMAILS_FORMATED = 'emails';
 
-    public function __construct(InterfaceTemplateEmail $interfaceTemplateEmail){
-        $this->interfaceTemplateEmail = $interfaceTemplateEmail;
-    }
+    private $allKeys = [];
+    private $allValues = [];
 
-    public function show($data){
-        return $this->interfaceTemplateEmail->template($data);
+    public function replaceVariables($template, $dados){
+
+
+        foreach ($dados as $key => $dado) {
+
+            $this->$allKeys[] = '#'.$key;
+            $this->$allValues[] = $dado;
+
+        }
+
+        $data = str_replace($allKeys, $allValues, $template);
+
+        return $data;
+
     }
 
 }
-*/

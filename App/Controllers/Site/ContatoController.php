@@ -9,6 +9,8 @@ use App\Classes\Filters;
 use App\Classes\Redirect;
 use App\Classes\Email;
 use App\Classes\TemplateContato;
+use App\Classes\PersistInput;
+use App\Classes\FlashMessage;
 
 class ContatoController extends BaseController {
 
@@ -42,6 +44,8 @@ class ContatoController extends BaseController {
 
             if(!$errosValidate->erroValidacao()) {
 
+                $flash = new FlashMessage;
+
                 $filters = new Filters;
                 $nome = $filters->filter('nome','string');
                 $email = $filters->filter('email','email');
@@ -60,8 +64,18 @@ class ContatoController extends BaseController {
                 $phpMailer->setTemplate(new TemplateContato);
 
                 if($phpMailer->enviar()) {
+
+                    $flash->add('mensagem_contato', 'Contato enviado com sucesso!', 'success');
+
+                    PersistInput::removeInputs();
+
                     $redirect->redirect('/contato');
+
                 }
+
+                $flash->add('mensagem_contato', 'Erro ao enviar, tente novamente mais tarde!');
+
+                $redirect->redirect('/contato');
 
             }
 
