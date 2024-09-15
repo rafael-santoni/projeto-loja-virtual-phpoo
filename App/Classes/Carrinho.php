@@ -39,7 +39,7 @@ class Carrinho {
                     2 => 1,
                     3 => IdRandom::generateId(),
                     4 => date('Y-m-d H:i:s'),
-                    5 => date('Y-m-d H:i:s', strtotime('+1minute'))
+                    5 => date('Y-m-d H:i:s', strtotime('+30minutes'))
                 ]);
 
             }
