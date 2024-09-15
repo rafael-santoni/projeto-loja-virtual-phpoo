@@ -7,6 +7,7 @@ use App\Classes\Pagseguro;
 use App\Classes\Correios;
 use App\Classes\Logado;
 use App\Classes\Frete;
+use App\Classes\IdRandom;
 use App\Models\Site\PedidosProdutosModel;
 use App\Models\Site\PedidosModel;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
@@ -47,9 +48,36 @@ class CheckoutController extends BaseController {
 
         // Verifica se calculou o frete
         $frete = new Frete;
-        if(!$frete->calculouFrete()) {
+        if($frete->pegarFrete() == 0) {
             echo json_encode('frete');
             die();
+        }
+
+        $pedidosCadastrado = false;
+        foreach ($produtosCarrinho as $produto) {
+
+            $attributes = [
+                $produto['produtos']->id,
+                $produto['valor'],
+                $produto['qtd'],
+                IdRandom::generateId(),
+                $_SESSION['id'],
+                $produto['subtotal']
+            ];
+
+            if($this->pedidosProdutos->create($attributes)){
+                $pedidosCadastrado = true;
+            }
+
+        }
+
+        $pedidoCadastrado = false;
+        if($this->pedidos->create([$_SESSION['id'],date('Y-m-d H:i:s'),$frete->pegarFrete(),2,IdRandom::generateId()])) {
+            $pedidoCadastrado = true;
+        }
+
+        if($pedidosCadastrado && $pedidoCadastrado) {
+            // realizar interação com o PagSeguro
         }
 
     }
