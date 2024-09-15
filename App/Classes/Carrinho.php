@@ -43,6 +43,8 @@ class Carrinho {
 
             }
 
+            $this->estoque->atualizaEstoque($id, ($this->estoque->estoqueAtual($id) - 1));
+
         }
 
     }
@@ -58,6 +60,16 @@ class Carrinho {
             if(!$this->estoque->temNoEstoque($id, $qtd)) {
                 echo 'semEstoque';
                 die();
+            }
+
+            $estoqueAtual = $this->estoque->estoqueAtual($id);
+            $diferenca = abs($_SESSION['carrinho'][$id] - $qtd);
+            if($_SESSION['carrinho'][$id] > $qtd) {
+
+                (!$estoqueAtual > $diferenca) ?: $this->estoque->atualizaEstoque($id, ($estoqueAtual + $diferenca)) ;
+
+            } else {
+                $this->estoque->atualizaEstoque($id, ($estoqueAtual - $diferenca));
             }
 
             $_SESSION['carrinho'][$id] = $qtd;

@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Repositories\Site\EstoqueRepository;
+use App\Models\Site\EstoqueModel;
 
 class Estoque {
 
@@ -23,6 +24,13 @@ class Estoque {
         }
 
         return true;
+
+    }
+
+    public function atualizaEstoque($id, $qtd){
+
+        $estoqueModel = new EstoqueModel;
+        $estoqueModel->update($id, $qtd);
 
     }
 
