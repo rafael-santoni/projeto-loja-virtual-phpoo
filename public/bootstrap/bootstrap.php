@@ -3,6 +3,8 @@
 use App\Classes\Template;
 use App\Classes\Parameters;
 
+date_default_timezone_set('America/Sao_Paulo');
+
 $template = new Template;
 $twig = $template->init();
 

@@ -5,6 +5,7 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Classes\Carrinho;
 use App\Classes\Frete;
+use App\Classes\CarrinhoProdutosVencidos;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 
 class CarrinhoController extends BaseController {
@@ -20,6 +21,9 @@ class CarrinhoController extends BaseController {
     }
 
     public function index(){
+
+        $produtosVencidos = new CarrinhoProdutosVencidos;
+		$produtosVencidos->verificarProdutosVencidosCarrinho();
 
         $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
 
