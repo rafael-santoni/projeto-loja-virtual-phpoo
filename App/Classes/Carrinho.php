@@ -4,6 +4,7 @@ namespace App\Classes;
 
 use App\Classes\StatusCarrinho;
 use App\Classes\Estoque;
+use App\Classes\IdRandom;
 use App\Models\Site\CarrinhoModel;
 
 class Carrinho {
@@ -36,7 +37,7 @@ class Carrinho {
                 $this->carrinhoModel->add([
                     1 => $id,
                     2 => 1,
-                    3 => '123',
+                    3 => IdRandom::generateId(),
                     4 => date('Y-m-d H:i:s'),
                     5 => date('Y-m-d H:i:s', strtotime('+1minute'))
                 ]);
@@ -82,8 +83,11 @@ class Carrinho {
     public function remove($id){
 
         if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
-            unset($_SESSION['carrinho'][$id]);
+
             $this->carrinhoModel->remove($id);
+            $this->estoque->atualizaEstoque($id, ($this->estoque->estoqueAtual($id) + $this->produtoCarrinho($id)));
+            unset($_SESSION['carrinho'][$id]);
+
         }
 
     }
