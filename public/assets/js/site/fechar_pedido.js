@@ -16,6 +16,11 @@ $(document).ready(function() {
             },
             success: function(retorno) {
                 console.log(retorno);
+
+                if(retorno == 'empty'){
+
+                }
+                
             }
         });
 
