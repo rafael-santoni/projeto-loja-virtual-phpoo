@@ -21,23 +21,25 @@ class CarrinhoModel extends Model {
 
     }
 
-    public function update($id, $qtd){
+    public function update($id, $qtd, $sessao){
 
-        $sql = "UPDATE {$this->table} SET quantidade = ? WHERE produto = ?";
+        $sql = "UPDATE {$this->table} SET quantidade = ? WHERE produto = ? AND sessao = ?";
         $this->typeDatabase->prepare($sql);
         $this->typeDatabase->bindValue(1, $qtd);
         $this->typeDatabase->bindValue(2, $id);
+        $this->typeDatabase->bindValue(3, $id);
         $this->typeDatabase->execute();
 
         return $this->typeDatabase->rowCount();
 
     }
 
-    public function remove($id){
+    public function remove($id, $sessao){
 
-        $sql = "DELETE FROM {$this->table} WHERE produto = ?";
+        $sql = "DELETE FROM {$this->table} WHERE produto = ? AND sessao = ?";
         $this->typeDatabase->prepare($sql);
         $this->typeDatabase->bindValue(1, $id);
+        $this->typeDatabase->bindValue(2, $sessao);
 
         return $this->typeDatabase->execute();
 

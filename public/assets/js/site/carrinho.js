@@ -50,7 +50,14 @@ $(document).ready(function() {
             type: "POST",
             success: function(retorno){
 
-                if(retorno == 'updated' || retorno == 'deleted'){
+                if(retorno == "semEstoque") {
+
+                    alert("Este produto não tem mais em estoque.");
+                    location.reload();
+                    
+                }
+
+                if(retorno == "updated" || retorno == "deleted"){
                     location.reload();
                 }
 
