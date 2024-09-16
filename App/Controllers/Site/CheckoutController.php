@@ -7,9 +7,11 @@ use App\Classes\Pagseguro;
 use App\Classes\Correios;
 use App\Classes\Logado;
 use App\Classes\Frete;
+use App\Classes\Carrinho;
 use App\Classes\IdRandom;
 use App\Models\Site\PedidosProdutosModel;
 use App\Models\Site\PedidosModel;
+use App\Models\Site\UserModel;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 
 class CheckoutController extends BaseController {
@@ -72,7 +74,7 @@ class CheckoutController extends BaseController {
         }
 
         $pedidoCadastrado = false;
-        if($this->pedidos->create([$_SESSION['id'],date('Y-m-d H:i:s'),$frete->pegarFrete(),2,IdRandom::generateId()])) {
+        if($this->pedidos->create([$_SESSION['id'],date('Y-m-d H:i:s'),$frete->pegarFrete(),2,IdRandom::generateId(), $this->produtosCarrinho->totalProdutosCarrinho()])) {
             $pedidoCadastrado = true;
         }
 
@@ -91,22 +93,30 @@ class CheckoutController extends BaseController {
 
             array_push($produtosCarrinho, $data);
 
+            $userModel = new UserModel;
+            $dadosUser = $userModel->find('id',$_SESSION['id']);
+
             $pagseguro->setItemAdd($produtosCarrinho);
-            $pagseguro->setNome('Rafael');
-            $pagseguro->setSobreNome('Dev');
-            $pagseguro->setEmail('rafasantoni.dev@gmail.com');
-            $pagseguro->setDdd('19');
-            $pagseguro->setTelefone('999999999');
+            $pagseguro->setNome($dadosUser->name);
+            $pagseguro->setSobreNome($dadosUser->sobrenome);
+            $pagseguro->setEmail($dadosUser->email);
+            $pagseguro->setDdd($dadosUser->ddd);
+            $pagseguro->setTelefone($dadosUser->telefone);
             $pagseguro->setIdReferencia(IdRandom::generateId());
 
+            $carrinho = new Carrinho;
             try {
 
-                $url = $pagseguro->enviarPagseguro();
+                $url = '/'; // $pagseguro->enviarPagseguro();
 
                 $retorno = [
                     'url' => $url,
                     'redirecionar' => 'sim'
                 ];
+
+                $carrinho->clear();
+                $frete->limparFrete();
+                IdRandom::clear();
 
                 echo json_encode($retorno);
 

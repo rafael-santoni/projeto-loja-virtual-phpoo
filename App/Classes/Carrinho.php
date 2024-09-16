@@ -24,7 +24,7 @@ class Carrinho {
 
     public function add($id){
 
-        if($this->estoque->estoqueAtual($id) > 1) {
+        if($this->estoque->estoqueAtual($id) > 0) {
 
             if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
 

@@ -14,4 +14,8 @@ class IdRandom {
 
     }
 
+    public static function clear(){
+        unset($_SESSION['idSession']);
+    }
+
 }

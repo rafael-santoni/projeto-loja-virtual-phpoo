@@ -10,7 +10,7 @@ class PedidosModel extends Model{
 
     public function create($attributes){
 
-        $sql = "INSERT INTO {$this->table} (pedido_user,created_at,pedido_frete,pedido_status,sessao) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO {$this->table} (pedido_user,created_at,pedido_frete,pedido_status,sessao,total) VALUES (?,?,?,?,?,?)";
         $this->typeDatabase->prepare($sql);
 
         $i = 1;
