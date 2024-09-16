@@ -3,6 +3,8 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
+use App\Classes\PagseguroAdapter;
+use App\Classes\PagseguroStatusTransaction;
 
 class RetornoController extends BaseController {
 
@@ -29,8 +31,8 @@ class RetornoController extends BaseController {
 
             $transaction = simplexml_load_string($transaction_curl);
 
-            dump($transaction);
-            exit;
+            $statusPagamento = new PagseguroAdapter(new PagseguroStatusTransaction($transaction));
+            $statusPagamento->gerenciaStatus($transaction->status);
 
 
         // }    ## DEScomentar para usar no Ambiente de Produção
