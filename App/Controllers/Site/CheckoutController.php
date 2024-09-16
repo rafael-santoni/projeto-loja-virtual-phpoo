@@ -77,7 +77,43 @@ class CheckoutController extends BaseController {
         }
 
         if($pedidosCadastrado && $pedidoCadastrado) {
-            // realizar interação com o PagSeguro
+
+            $pagseguro = new Pagseguro;
+
+            $data = [
+                'produtos' => (object)[
+                    'id' => 1,
+                    'produto_nome' => 'Frete'
+                ],
+                'qtd' => 1,
+                'valor' => $frete->pegarFrete()
+            ];
+
+            array_push($produtosCarrinho, $data);
+
+            $pagseguro->setItemAdd($produtosCarrinho);
+            $pagseguro->setNome('Rafael');
+            $pagseguro->setSobreNome('Dev');
+            $pagseguro->setEmail('rafasantoni.dev@gmail.com');
+            $pagseguro->setDdd('19');
+            $pagseguro->setTelefone('999999999');
+            $pagseguro->setIdReferencia(IdRandom::generateId());
+
+            try {
+
+                $url = $pagseguro->enviarPagseguro();
+
+                $retorno = [
+                    'url' => $url,
+                    'redirecionar' => 'sim'
+                ];
+
+                echo json_encode($retorno);
+
+            } catch (\Exception $e) {
+                echo json_encode($e->getMessage());
+            }
+
         }
 
     }

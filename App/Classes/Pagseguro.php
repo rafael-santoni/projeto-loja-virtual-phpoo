@@ -55,6 +55,7 @@ class Pagseguro {
         $this->pagseguroConfig->setReference($this->idReferencia);
         // $this->pagseguroConfig->setShippingAddress('cep','rua','numero','complemento','bairro','cidade','estado','pais');
         $this->pagseguroConfig->setShippingAddress(null);
+        $this->pagseguroConfig->setCurrency('BRL');
 
         foreach ($this->itemAdd as $item) {
 
