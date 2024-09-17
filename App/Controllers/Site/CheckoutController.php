@@ -4,7 +4,7 @@ namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Classes\Pagseguro;
-use App\Classes\Correios;
+use App\Classes\CheckoutValidate;
 use App\Classes\Logado;
 use App\Classes\Frete;
 use App\Classes\Carrinho;
@@ -17,14 +17,12 @@ use App\Repositories\Site\ProdutosCarrinhoRepository;
 class CheckoutController extends BaseController {
 
     private $produtosCarrinho;
-    private $correios;
     private $pedidosProdutos;
     private $pedidos;
 
     public function __construct(){
 
         $this->produtosCarrinho = new ProdutosCarrinhoRepository;
-        $this->correios = new Correios;
         $this->pedidosProdutos = new PedidosProdutosModel;
         $this->pedidos = new PedidosModel;
 
@@ -33,25 +31,11 @@ class CheckoutController extends BaseController {
     public function index(){
 
         // pegando os produtos do carrinho
-        $produtosCarrinho = $this->produtosCarrinho->produtosNoCarrinho();
+        $produtosCarrinho = new ProdutosCarrinhoRepository;
 
-        // Vefirica se existe produtos no carrinho
-        if(empty($produtosCarrinho)) {
-            echo json_encode('empty');
-            die();
-        }
-
-        // Verifica de o usuário está logado
-        $logado = new Logado;
-        if(!$logado->logado()) {
-            echo json_encode('notLoggedIn');
-            die();
-        }
-
-        // Verifica se calculou o frete
-        $frete = new Frete;
-        if($frete->pegarFrete() == 0) {
-            echo json_encode('frete');
+        $checkoutValidate = new CheckoutValidate;
+        if(!$checkoutValidate->validateCheckout()) {
+            echo json_encode($checkoutValidate->erro);
             die();
         }
 
