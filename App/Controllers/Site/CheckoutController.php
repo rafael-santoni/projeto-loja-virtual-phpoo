@@ -5,6 +5,8 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Classes\Pagseguro;
 use App\Classes\CheckoutValidate;
+use App\Classes\Pedidos;
+use App\Classes\User;
 use App\Classes\Logado;
 use App\Classes\Frete;
 use App\Classes\Carrinho;
@@ -35,34 +37,14 @@ class CheckoutController extends BaseController {
 
         $checkoutValidate = new CheckoutValidate;
         if(!$checkoutValidate->validateCheckout()) {
+
             echo json_encode($checkoutValidate->erro);
             die();
-        }
-
-        $pedidosCadastrado = false;
-        foreach ($produtosCarrinho as $produto) {
-
-            $attributes = [
-                $produto['produtos']->id,
-                $produto['valor'],
-                $produto['qtd'],
-                IdRandom::generateId(),
-                $_SESSION['id'],
-                $produto['subtotal']
-            ];
-
-            if($this->pedidosProdutos->create($attributes)){
-                $pedidosCadastrado = true;
-            }
 
         }
 
-        $pedidoCadastrado = false;
-        if($this->pedidos->create([$_SESSION['id'],date('Y-m-d H:i:s'),$frete->pegarFrete(),2,IdRandom::generateId(), $this->produtosCarrinho->totalProdutosCarrinho()])) {
-            $pedidoCadastrado = true;
-        }
-
-        if($pedidosCadastrado && $pedidoCadastrado) {
+        $pedidos = new Pedidos;
+        if($pedidos->create(IdRandom::generateId())) {
 
             $pagseguro = new Pagseguro;
 
@@ -77,8 +59,8 @@ class CheckoutController extends BaseController {
 
             array_push($produtosCarrinho, $data);
 
-            $userModel = new UserModel;
-            $dadosUser = $userModel->find('id',$_SESSION['id']);
+            $user = new User;
+            $dadosUser = $user->user(new UserModel);
 
             $pagseguro->setItemAdd($produtosCarrinho);
             $pagseguro->setNome($dadosUser->name);
@@ -108,6 +90,8 @@ class CheckoutController extends BaseController {
                 echo json_encode($e->getMessage());
             }
 
+        } else {
+            $this->pedidos->remover(IdRandom::generateId());
         }
 
     }

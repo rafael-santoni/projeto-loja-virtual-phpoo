@@ -38,4 +38,14 @@ abstract class Model {
 
 	}
 
+	public function delete($field, $value){
+
+		$sql = "DELETE FROM {$this->table} WHERE {$field} = ?";
+		$this->typeDatabase->prepare($sql);
+		$this->typeDatabase->bindValue(1, $value);
+
+		return $this->typeDatabase->execute();
+
+	}
+
 }
