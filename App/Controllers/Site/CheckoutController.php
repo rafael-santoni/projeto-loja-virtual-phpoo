@@ -7,33 +7,15 @@ use App\Classes\Pagseguro;
 use App\Classes\CheckoutValidate;
 use App\Classes\Pedidos;
 use App\Classes\User;
-use App\Classes\Logado;
 use App\Classes\Frete;
 use App\Classes\Carrinho;
 use App\Classes\IdRandom;
-use App\Models\Site\PedidosProdutosModel;
-use App\Models\Site\PedidosModel;
 use App\Models\Site\UserModel;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 
 class CheckoutController extends BaseController {
 
-    private $produtosCarrinho;
-    private $pedidosProdutos;
-    private $pedidos;
-
-    public function __construct(){
-
-        $this->produtosCarrinho = new ProdutosCarrinhoRepository;
-        $this->pedidosProdutos = new PedidosProdutosModel;
-        $this->pedidos = new PedidosModel;
-
-    }
-
     public function index(){
-
-        // pegando os produtos do carrinho
-        $produtosCarrinho = new ProdutosCarrinhoRepository;
 
         $checkoutValidate = new CheckoutValidate;
         if(!$checkoutValidate->validateCheckout()) {
@@ -46,7 +28,7 @@ class CheckoutController extends BaseController {
         $pedidos = new Pedidos;
         if($pedidos->create(IdRandom::generateId())) {
 
-            $pagseguro = new Pagseguro;
+            $frete = new Frete;
 
             $data = [
                 'produtos' => (object)[
@@ -57,11 +39,15 @@ class CheckoutController extends BaseController {
                 'valor' => $frete->pegarFrete()
             ];
 
+            $produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
+            $produtosCarrinho = $produtosCarrinhoRepository->produtosNoCarrinho();
+
             array_push($produtosCarrinho, $data);
 
             $user = new User;
             $dadosUser = $user->user(new UserModel);
 
+            $pagseguro = new Pagseguro;
             $pagseguro->setItemAdd($produtosCarrinho);
             $pagseguro->setNome($dadosUser->name);
             $pagseguro->setSobreNome($dadosUser->sobrenome);
@@ -73,7 +59,8 @@ class CheckoutController extends BaseController {
             $carrinho = new Carrinho;
             try {
 
-                $url = '/'; // $pagseguro->enviarPagseguro();
+                // $url = $pagseguro->enviarPagseguro();    ## DEScomentar para usar no Ambiente de Produção
+                $url = '/';    ## COMENTAR esta linha para usar no Ambiente de Produção
 
                 $retorno = [
                     'url' => $url,
@@ -91,7 +78,8 @@ class CheckoutController extends BaseController {
             }
 
         } else {
-            $this->pedidos->remover(IdRandom::generateId());
+            $pedidos->remove(IdRandom::generateId());
+            echo json_encode('erroCadastro');
         }
 
     }

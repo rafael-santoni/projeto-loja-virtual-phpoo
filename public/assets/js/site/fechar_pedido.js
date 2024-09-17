@@ -23,7 +23,6 @@ $(document).ready(function() {
                     $(btn_fechar_pedido).text("Fechar Pedido");
                     alert("Você precisa ter algum produto no carrinho para fechar o pedido!");
 
-
                 }
 
                 if(retorno == "notLoggedIn") {
@@ -42,9 +41,17 @@ $(document).ready(function() {
 
                 }
 
+                if(retorno == "erroCadastro") {
+
+                    $(btn_fechar_pedido).text("Fechar Pedido");
+                    alert("Erro ao cadsatrar seu pedido, tente novamente!");
+
+                }
+
                 if(retorno.redirecionar == "sim") {
                     window.location.href = retorno.url;
                 }
+
 
             }
         });

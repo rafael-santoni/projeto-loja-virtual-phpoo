@@ -5,6 +5,7 @@ namespace App\Classes;
 use App\Models\Site\PedidosModel;
 use App\Models\Site\PedidosProdutosModel;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
+use App\Classes\Frete;
 
 class Pedidos {
 
@@ -23,7 +24,7 @@ class Pedidos {
     private function cadastroPedidos($sessao){
 
         $pedidosCadastrado = false;
-        foreach ($this->produtosCarrinho as $produto) {
+        foreach ($this->produtosCarrinho->produtosNoCarrinho() as $produto) {
 
             $attributes = [
                 $produto['produtos']->id,
@@ -46,6 +47,7 @@ class Pedidos {
 
     private function cadastroPedido($sessao){
 
+        $frete = new Frete;
         $pedidoCadastrado = false;
         if($this->pedidos->create([
                                 $_SESSION['id'], date('Y-m-d H:i:s'), $frete->pegarFrete(),
