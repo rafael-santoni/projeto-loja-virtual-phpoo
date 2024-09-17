@@ -14,12 +14,12 @@ class TemplateEmail {
 
         foreach ($dados as $key => $dado) {
 
-            $this->$allKeys[] = '#'.$key;
-            $this->$allValues[] = $dado;
+            $this->allKeys[] = '#'.$key;
+            $this->allValues[] = $dado;
 
         }
 
-        $data = str_replace($allKeys, $allValues, $template);
+        $data = str_replace($this->allKeys, $this->allValues, $template);
 
         return $data;
 
