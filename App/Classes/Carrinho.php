@@ -46,29 +46,29 @@ class Carrinho {
         return $_SESSION['carrinho'][$id];
     }
 
-    public function update($id, $qtd){
+    public static function update($id, $qtd){
 
-        if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
-
-            $gerenciaEstoqueCarrinho = new GerenciaQuantidadeEstoqueCarrinho;
-            $gerenciaEstoqueCarrinho->gerenciaEstoqueNoCarrinho($id, $qtd);
-
+        // if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
+        //
+        //     $gerenciaEstoqueCarrinho = new GerenciaQuantidadeEstoqueCarrinho;
+        //     $gerenciaEstoqueCarrinho->gerenciaEstoqueNoCarrinho($id, $qtd);
+        //
             $_SESSION['carrinho'][$id] = $qtd;
-            // $this->carrinhoModel->update($id, $qtd, IdRandom::generateId());
-
-        }
+        //     // $this->carrinhoModel->update($id, $qtd, IdRandom::generateId());
+        //
+        // }
 
     }
 
-    public function remove($id){
+    public static function remove($id){
 
-        if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
+        // if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
 
             // $this->carrinhoModel->remove($id, IdRandom::generateId());
-            $this->estoque->atualizaEstoque($id, ($this->estoque->estoqueAtual($id) + $this->produtoCarrinho($id)));
+            // $this->estoque->atualizaEstoque($id, ($this->estoque->estoqueAtual($id) + $this->produtoCarrinho($id)));
             unset($_SESSION['carrinho'][$id]);
 
-        }
+        // }
 
     }
 

@@ -5,6 +5,7 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Classes\Carrinho;
 use App\Classes\CarrinhoService;
+use App\Classes\EstoqueCarrinho;
 use App\Classes\Frete;
 use App\Classes\CarrinhoProdutosVencidos;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
@@ -57,7 +58,7 @@ class CarrinhoController extends BaseController {
 
     public function get(){
         echo json_encode([
-            'numeroProdutosCarrinho' => count($this->carrinho->produtosCarrinho()),
+            'numeroProdutosCarrinho' => count(Carrinho::produtosCarrinho()),
             'valorProdutosCarrinho' => $this->produtosCarrinhoRepository->totalProdutosCarrinho()
         ]);
     }
@@ -65,19 +66,24 @@ class CarrinhoController extends BaseController {
     public function update(){
 
         $id = (int)$_POST['id'];
-        $qtd = (int)$_POST['qtd'];
+        $quantidade = (int)$_POST['qtd'];
 
-        if($qtd == '' || $qtd == 0) {
+        $estoqueCarrinho = new EstoqueCarrinho;
+        $estoqueCarrinho->gerenciaEstoque($id, $quantidade);
 
-            $this->carrinho->remove($id);
-            echo 'deleted';
+        // if($qtd == '' || $qtd == 0) {
+        //
+        //     $this->carrinho->remove($id);
+        //     echo 'deleted';
+        //
+        // } else {
+        //
+        //     $this->carrinho->update($id, $quantidade);
+        //     echo 'updated';
+        //
+        // }
 
-        } else {
-
-            $this->carrinho->update($id, $qtd);
-            echo 'updated';
-
-        }
+        return $this->carrinhoService->update($id, $quantidade);
 
     }
 

@@ -31,4 +31,24 @@ class CarrinhoService {
 
     }
 
+    public function update($id, $quantidade){
+
+        if($quantidade == '' || $quantidade == 0){
+
+            $this->carrinhoBanco->removeProduct($id, IdRandom());
+            Carrinho::remove($id);
+
+            echo 'deleted';
+
+        } else {
+
+            $this->carrinhoBanco->update($id);
+            Carrinho::update($id, $quantidade);
+
+            echo 'updated';
+
+        }
+
+    }
+
 }

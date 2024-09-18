@@ -4,7 +4,7 @@ namespace App\Classes;
 
 use App\Classes\Estoque;
 
-class GerenciaQuantidadeEstoqueCarrinho {
+class EstoqueCarrinho {
 
     private $estoque;
 
@@ -27,7 +27,7 @@ class GerenciaQuantidadeEstoqueCarrinho {
         }
     }
 
-    public function gerenciaEstoqueNoCarrinho($id, $quantidade){
+    public function gerenciaEstoque($id, $quantidade){
 
         $diferenca = $this->diferenca($id, $quantidade);
         $estoqueAtual = $this->estoqueAtual($id);
