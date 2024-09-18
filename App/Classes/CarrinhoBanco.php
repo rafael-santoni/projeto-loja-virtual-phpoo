@@ -3,8 +3,7 @@
 namespace App\Classes;
 
 use App\Models\Site\CarrinhoModel;
-use App\Classes\Carrinho;
-use App\Classes\IdRandom;
+// use App\Classes\Carrinho;
 
 class CarrinhoBanco {
 
@@ -19,7 +18,7 @@ class CarrinhoBanco {
         $this->carrinhoModel->add([
             1 => $id,
             2 => 1,
-            3 => IdRandom::generateId(),
+            3 => IdRandom(),
             4 => date('Y-m-d H:i:s'),
             5 => date('Y-m-d H:i:s', strtotime('+30minutes'))
         ]);
@@ -27,7 +26,7 @@ class CarrinhoBanco {
     }
 
     public function update($id){
-        $this->carrinhoModel->update($id, Carrinho::produtoCarrinho($id), IdRandom::generateId());
+        $this->carrinhoModel->update($id, Carrinho::produtoCarrinho($id), IdRandom());
     }
 
     public function remove($sessao){

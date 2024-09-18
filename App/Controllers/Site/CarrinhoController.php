@@ -4,6 +4,7 @@ namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Classes\Carrinho;
+use App\Classes\CarrinhoService;
 use App\Classes\Frete;
 use App\Classes\CarrinhoProdutosVencidos;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
@@ -11,11 +12,13 @@ use App\Repositories\Site\ProdutosCarrinhoRepository;
 class CarrinhoController extends BaseController {
 
     private $carrinho;
+    private $carrinhoService;
     private $produtosCarrinhoRepository;
 
     public function __construct(){
 
         $this->carrinho = new Carrinho;
+        $this->carrinhoService = new CarrinhoService;
         $this->produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
 
     }
@@ -41,7 +44,15 @@ class CarrinhoController extends BaseController {
     }
 
     public function add($param){
-        $this->carrinho->add($param[0]);
+
+        $id = $param[0];
+        if($this->estoque->estoqueAtual($id) > 0){
+
+            $this->carrinhoService->add($id);
+            $this->estoque->atualizaEstoque($id, ($this->estoque->estoqueAtual($id) - 1));
+
+        }
+
     }
 
     public function get(){

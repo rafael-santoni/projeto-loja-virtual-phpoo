@@ -4,7 +4,6 @@ namespace App\Classes;
 
 use App\Classes\StatusCarrinho;
 use App\Classes\Estoque;
-use App\Classes\IdRandom;
 use App\Classes\GerenciaQuantidadeEstoqueCarrinho;
 // use App\Models\Site\CarrinhoModel;
 
@@ -23,20 +22,24 @@ class Carrinho {
 
     }
 
-    public function add($id){
+    public static function add($id){
 
-        if($this->estoque->estoqueAtual($id) > 0) {
+        // if($this->estoque->estoqueAtual($id) > 0) {
 
-            if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
+            // if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
                 $_SESSION['carrinho'][$id] += 1;
-            } else {
-                $_SESSION['carrinho'][$id] = 1;
-            }
+            // } else {
+            //     $_SESSION['carrinho'][$id] = 1;
+            // }
 
-            $this->estoque->atualizaEstoque($id, ($this->estoque->estoqueAtual($id) - 1));
+            // $this->estoque->atualizaEstoque($id, ($this->estoque->estoqueAtual($id) - 1));
 
-        }
+        // }
 
+    }
+
+    public static function addOneMore($id){
+        $_SESSION['carrinho'][$id] += 1;
     }
 
     public static function produtoCarrinho($id){
