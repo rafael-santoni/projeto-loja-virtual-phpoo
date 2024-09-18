@@ -5,6 +5,7 @@ namespace App\Classes;
 use App\Classes\StatusCarrinho;
 use App\Classes\Estoque;
 use App\Classes\IdRandom;
+use App\Classes\GerenciaQuantidadeEstoqueCarrinho;
 use App\Models\Site\CarrinhoModel;
 
 class Carrinho {
@@ -29,7 +30,7 @@ class Carrinho {
             if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
 
                 $_SESSION['carrinho'][$id] += 1;
-                $this->carrinhoModel->update($id, $this->produtoCarrinho($id));
+                $this->carrinhoModel->update($id, $this->produtoCarrinho($id), IdRandom::generateId());
 
             } else {
 
@@ -58,23 +59,8 @@ class Carrinho {
 
         if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
 
-            $estoqueAtual = $this->estoque->estoqueAtual($id);
-            $diferenca = abs($_SESSION['carrinho'][$id] - $qtd);
-
-            if($_SESSION['carrinho'][$id] > $qtd) {
-
-                (!$estoqueAtual > $diferenca) ?: $this->estoque->atualizaEstoque($id, ($estoqueAtual + $diferenca)) ;
-
-            } else {
-
-                if(!$this->estoque->temNoEstoque($id, $diferenca)) {
-                    echo 'semEstoque';
-                    die();
-                }
-
-                $this->estoque->atualizaEstoque($id, ($estoqueAtual - $diferenca));
-                
-            }
+            $gerenciaEstoqueCarrinho = new GerenciaQuantidadeEstoqueCarrinho;
+            $gerenciaEstoqueCarrinho->gerenciaEstoqueNoCarrinho($id, $qtd);
 
             $_SESSION['carrinho'][$id] = $qtd;
             $this->carrinhoModel->update($id, $qtd, IdRandom::generateId());
