@@ -4,7 +4,7 @@ namespace App\Classes;
 
 class Frete {
 
-    private function calculouFrete(){
+    private static function calculouFrete(){
 
         if(!isset($_SESSION['frete']) || $_SESSION['frete'] != true) {
             return false;
@@ -21,9 +21,9 @@ class Frete {
 
     }
 
-    public function pegarFrete(){
+    public static function pegarFrete(){
 
-        if($this->calculouFrete()){
+        if(self::calculouFrete()){
             return $_SESSION['valor'];
         }
 
@@ -31,7 +31,7 @@ class Frete {
 
     }
 
-    public function limparFrete(){
+    public static function limparFrete(){
 
         unset($_SESSION['frete']);
         unset($_SESSION['valor']);

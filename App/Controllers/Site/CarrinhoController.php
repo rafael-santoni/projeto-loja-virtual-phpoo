@@ -3,6 +3,7 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
+use App\Classes\Estoque;
 use App\Classes\Carrinho;
 use App\Classes\CarrinhoService;
 use App\Classes\EstoqueCarrinho;
@@ -13,13 +14,13 @@ use App\Repositories\Site\ProdutosCarrinhoRepository;
 
 class CarrinhoController extends BaseController {
 
-    private $carrinho;
+    private $estoque;
     private $carrinhoService;
     private $produtosCarrinhoRepository;
 
     public function __construct(){
 
-        $this->carrinho = new Carrinho;
+        $this->estoque = new Estoque;
         $this->carrinhoService = new CarrinhoService;
         $this->produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
 
@@ -32,12 +33,10 @@ class CarrinhoController extends BaseController {
 
         $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
 
-        $frete = new Frete;
-
         $dados = [
             'titulo' => 'Loja Virtual - RS-Dev | Carrinho',
             'produtos' => $produtos,
-            'frete' => $frete->pegarFrete()
+            'frete' => Frete::pegarFrete()
         ];
 
         $template = $this->twig->loadTemplate('site_carrinho.html');
@@ -72,18 +71,6 @@ class CarrinhoController extends BaseController {
         $estoqueCarrinho = new EstoqueCarrinho;
         $estoqueCarrinho->gerenciaEstoque($id, $quantidade);
 
-        // if($qtd == '' || $qtd == 0) {
-        //
-        //     $this->carrinho->remove($id);
-        //     echo 'deleted';
-        //
-        // } else {
-        //
-        //     $this->carrinho->update($id, $quantidade);
-        //     echo 'updated';
-        //
-        // }
-
         $retorno = $this->carrinhoService->update($id, $quantidade);
 
         echo $retorno;
@@ -97,12 +84,7 @@ class CarrinhoController extends BaseController {
         $retornaEstoque = new RetornaEstoque;
         $retornaEstoque->retornaProdutoEstoque($id, IdRandom());
 
-        // unset($_SESSION['frete']);
         Frete::limparFrete();
-
-        // $this->carrinho->remove($id);
-
-        // echo 'deleted';
 
         $retorno = $this->carrinhoService->remove($id);
 

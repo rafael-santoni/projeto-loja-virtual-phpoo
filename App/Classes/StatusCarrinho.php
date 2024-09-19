@@ -17,15 +17,7 @@ class StatusCarrinho {
     }
 
     public static function produtoEstaNoCarrinho($id){
-
-        // if(isset($_SESSION['carrinho'][$id])) {
-        //     return true;
-        // }
-        //
-        // return false;
-
         return isset($_SESSION['carrinho'][$id]) ? true : false;
-
     }
 
     public static function carrinho(){

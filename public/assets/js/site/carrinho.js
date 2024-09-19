@@ -78,6 +78,8 @@ $(document).ready(function() {
             type: "POST",
             success: function(retorno) {
 
+                // console.log(retorno);
+
                 if(retorno == 'deleted'){
                     location.reload();
                 }

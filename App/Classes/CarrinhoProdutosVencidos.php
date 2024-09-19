@@ -16,8 +16,8 @@ class CarrinhoProdutosVencidos {
 
         foreach ($produtosVencidos as $produto) {
 
-            $carrinhoModel->remove($produto->produto);
-            $carrinho->remove($produto->produto);
+            // $carrinhoModel->remove($produto->produto);
+            // $carrinho->remove($produto->produto);
 
         }
 

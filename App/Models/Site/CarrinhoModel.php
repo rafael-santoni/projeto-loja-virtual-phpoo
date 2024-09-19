@@ -27,7 +27,7 @@ class CarrinhoModel extends Model {
         $this->typeDatabase->prepare($sql);
         $this->typeDatabase->bindValue(1, $qtd);
         $this->typeDatabase->bindValue(2, $id);
-        $this->typeDatabase->bindValue(3, $id);
+        $this->typeDatabase->bindValue(3, $sessao);
         $this->typeDatabase->execute();
 
         return $this->typeDatabase->rowCount();

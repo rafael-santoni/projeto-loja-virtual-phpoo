@@ -4,6 +4,7 @@ namespace App\Classes;
 
 use App\Classes\Carrinho;
 use App\Classes\CarrinhoBanco;
+use App\Classes\StatusCarrinho;
 
 class CarrinhoService {
 
@@ -17,7 +18,7 @@ class CarrinhoService {
 
     public function add($id){
 
-        if(!Carrinho::produtoEstaNoCarrinho($id)){
+        if(!StatusCarrinho::produtoEstaNoCarrinho($id)){
 
             Carrinho::add($id);
             $this->carrinhoBanco->add($id);

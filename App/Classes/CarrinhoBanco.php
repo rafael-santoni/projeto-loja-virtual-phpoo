@@ -3,7 +3,6 @@
 namespace App\Classes;
 
 use App\Models\Site\CarrinhoModel;
-// use App\Classes\Carrinho;
 
 class CarrinhoBanco {
 
