@@ -43,8 +43,8 @@ class CarrinhoService {
 
         } else {
 
-            $this->carrinhoBanco->update($id);
             Carrinho::update($id, $quantidade);
+            $this->carrinhoBanco->update($id);
 
             echo 'updated';
 

@@ -27,21 +27,24 @@ class EstoqueCarrinho {
         }
     }
 
+    private function somaEstoque($id, $diferenca){
+        (!$this->estoqueAtual($id) > $diferenca) ?: $this->estoque->atualizaEstoque($id, ($this->estoqueAtual($id) + $diferenca)) ;
+    }
+
+    private function diminuiEstoque($id, $diferenca){
+        $this->estoque->atualizaEstoque($id, ($this->estoqueAtual($id) - $diferenca));
+    }
+
     public function gerenciaEstoque($id, $quantidade){
 
         $diferenca = $this->diferenca($id, $quantidade);
-        $estoqueAtual = $this->estoqueAtual($id);
+
+        $this->verificaEstoque($id, $diferenca);
 
         if($_SESSION['carrinho'][$id] > $quantidade) {
-
-            (!$estoqueAtual > $diferenca) ?: $this->estoque->atualizaEstoque($id, ($estoqueAtual + $diferenca)) ;
-
+            $this->somaEstoque($id, $diferenca);
         } else {
-
-            $this->verificaEstoque($id, $diferenca);
-
-            $this->estoque->atualizaEstoque($id, ($estoqueAtual - $diferenca));
-
+            $this->diminuiEstoque($id, $diferenca);
         }
 
     }
