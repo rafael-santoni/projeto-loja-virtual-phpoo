@@ -3,45 +3,77 @@
 namespace App\Classes;
 
 use App\Repositories\Site\ProdutosCarrinhoRepository;
+use App\Traits\ErrorsCheckoutValidate;
 use App\Classes\Frete;
 use App\Classes\Logado;
+use App\Classes\QueuedOperations;
 
-class CheckoutValidate {
+class CheckoutValidate extends QueuedOperations {
 
-    public $erro;
+    use ErrorsCheckoutValidate;
 
-    public function validateCheckout(){
+    private function produtosCarrinho(){
+
+        // pegando os produtos do carrinho
+        $produtosCarrinho = new ProdutosCarrinhoRepository;
+        // Vefirica se existe produtos no carrinho
+        if(empty($produtosCarrinho->produtosNoCarrinho())) {
+            $this->error('empty');
+        }
+
+    }
+
+    private function isLoggedIn(){
+
+        // Verifica de o usuário está logado
+        $logado = new Logado;
+        if(!$logado->logado()) {
+            $this->error('notLoggedIn');
+        }
+
+    }
+
+    private function freteCalculado(){
+
+        // Verifica se calculou o frete
+        $frete = new Frete;
+        if($frete->pegarFrete() == 0) {
+            $this->error('frete');
+        }
+
+    }
+
+    /* public function validateCheckout(){
 
         // pegando os produtos do carrinho
         $produtosCarrinho = new ProdutosCarrinhoRepository;
 
         // Vefirica se existe produtos no carrinho
         if(empty($produtosCarrinho->produtosNoCarrinho())) {
-            // echo json_encode('empty');
-            $this->erro = 'empty';
-            return false;
-
+            $this->error('empty');
         }
 
         // Verifica de o usuário está logado
         $logado = new Logado;
         if(!$logado->logado()) {
-            // echo json_encode('notLoggedIn');
-            $this->erro = 'notLoggedIn';
-            return false;
-
+            $this->error('notLoggedIn');
         }
 
         // Verifica se calculou o frete
         $frete = new Frete;
         if($frete->pegarFrete() == 0) {
-            // echo json_encode('frete');
-            $this->erro = 'frete';
-            return false;
-
+            $this->error('frete');
         }
 
         return true;
+
+    } */
+
+    public function handle(){
+
+        $this->isLoggedIn();
+        $this->produtosCarrinho();
+        $this->freteCalculado();
 
     }
 

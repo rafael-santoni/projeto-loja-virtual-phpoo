@@ -3,16 +3,12 @@
         "symfony/var-dumper": "^3.0",
         "twig/twig": "^1.24",
         "cagartner/correios-consulta": "^0.1.3",
-        "phpmailer/phpmailer": "5.2.16",
+        "phpmailer/phpmailer": "^5.2",
         "pagseguro/php": "^2.7"
     },
     "autoload":{
         "psr-4":{
-            "App\\Controllers\\": "App/Controllers",
-            "App\\Models\\": "App/Models",
-            "App\\Interfaces\\": "App/Interfaces",
-            "App\\Repositories\\": "App/Repositories",
-            "App\\Classes\\": "App/Classes"
+            "App\\": "App"
         }
     }
 }

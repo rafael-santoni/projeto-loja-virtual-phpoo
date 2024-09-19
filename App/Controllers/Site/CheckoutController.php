@@ -17,13 +17,14 @@ class CheckoutController extends BaseController {
 
     public function index(){
 
-        $checkoutValidate = new CheckoutValidate;
-        if(!$checkoutValidate->validateCheckout()) {
-
-            echo json_encode($checkoutValidate->erro);
-            die();
-
-        }
+        // $checkoutValidate = new CheckoutValidate;
+        // if(!$checkoutValidate->validateCheckout()) {
+        //
+        //     echo json_encode($checkoutValidate->erro);
+        //     die();
+        //
+        // }
+        CheckoutValidate::queued();
 
         $pedidos = new Pedidos;
         if($pedidos->create(IdRandom::generateId())) {
