@@ -45,9 +45,9 @@ class CarrinhoModel extends Model {
 
     }
 
-    public function produtosVencidos(){
+    public function carrinhosAbandonados(){
 
-        $sql = "SELECT * FROM {$this->table} WHERE NOW() > expire";
+        $sql = "SELECT * FROM {$this->table} WHERE NOW() > expire AND status = 2";
         $this->typeDatabase->prepare($sql);
         $this->typeDatabase->execute();
 

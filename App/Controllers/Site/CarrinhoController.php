@@ -9,7 +9,7 @@ use App\Classes\CarrinhoService;
 use App\Classes\EstoqueCarrinho;
 use App\Classes\RetornaEstoque;
 use App\Classes\Frete;
-use App\Classes\CarrinhoProdutosVencidos;
+use App\Classes\CarrinhosAbandonados;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 
 class CarrinhoController extends BaseController {
@@ -28,8 +28,9 @@ class CarrinhoController extends BaseController {
 
     public function index(){
 
-        $produtosVencidos = new CarrinhoProdutosVencidos;
-		$produtosVencidos->verificarProdutosVencidosCarrinho();
+        // $produtosVencidos = new CarrinhosAbandonados;
+		// $produtosVencidos->removeProducts(new RetornaEstoque);
+		CarrinhosAbandonados::remove(new RetornaEstoque);
 
         $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
 

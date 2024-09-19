@@ -4,14 +4,16 @@ namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Repositories\Site\ProdutoRepository;
-use App\Classes\CarrinhoProdutosVencidos;
+use App\Classes\CarrinhosAbandonados;
+use App\Classes\RetornaEstoque;
 
 class HomeController extends BaseController {
 
 	public function index()	{
 
-		$produtosVencidos = new CarrinhoProdutosVencidos;
-		$produtosVencidos->verificarProdutosVencidosCarrinho();
+		// $produtosVencidos = new CarrinhosAbandonados;
+		// $produtosVencidos->removeProducts(new RetornaEstoque);
+		CarrinhosAbandonados::remove(new RetornaEstoque);
 
 		$produtoRepository = new ProdutoRepository;
 

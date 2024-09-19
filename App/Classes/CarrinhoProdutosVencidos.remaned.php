@@ -1,4 +1,11 @@
 <?php
+/*
+    --*******************************--
+    *****    Deprecated Class     *****
+    *****    Esta classe foi      *****
+    *****     renomeada para      *****
+    ***** CarrinhosAbandonados.php ****
+    --*******************************--
 
 namespace App\Classes;
 
@@ -16,11 +23,12 @@ class CarrinhoProdutosVencidos {
 
         foreach ($produtosVencidos as $produto) {
 
-            // $carrinhoModel->remove($produto->produto);
-            // $carrinho->remove($produto->produto);
+            $carrinhoModel->remove($produto->produto);
+            $carrinho->remove($produto->produto);
 
         }
 
     }
 
 }
+*/
