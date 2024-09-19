@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Classes\Carrinho;
 use App\Classes\CarrinhoService;
 use App\Classes\EstoqueCarrinho;
+use App\Classes\RetornaEstoque;
 use App\Classes\Frete;
 use App\Classes\CarrinhoProdutosVencidos;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
@@ -83,19 +84,29 @@ class CarrinhoController extends BaseController {
         //
         // }
 
-        return $this->carrinhoService->update($id, $quantidade);
+        $retorno = $this->carrinhoService->update($id, $quantidade);
+
+        echo $retorno;
 
     }
 
-    public function delete(){
+    public function remove(){
 
         $id = (int)$_POST['id'];
 
-        $this->carrinho->remove($id);
+        $retornaEstoque = new RetornaEstoque;
+        $retornaEstoque->retornaProdutoEstoque($id, IdRandom());
 
-        unset($_SESSION['frete']);
+        // unset($_SESSION['frete']);
+        Frete::limparFrete();
 
-        echo 'deleted';
+        // $this->carrinho->remove($id);
+
+        // echo 'deleted';
+
+        $retorno = $this->carrinhoService->remove($id);
+
+        echo $retorno;
 
     }
 

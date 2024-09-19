@@ -51,4 +51,13 @@ class CarrinhoService {
 
     }
 
+    public function remove($id){
+
+        $this->carrinhoBanco->removeProduct($id, IdRandom());
+        Carrinho::remove($id, IdRandom());
+
+        return 'deleted';
+
+    }
+
 }

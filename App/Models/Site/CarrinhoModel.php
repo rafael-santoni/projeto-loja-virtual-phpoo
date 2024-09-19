@@ -10,7 +10,7 @@ class CarrinhoModel extends Model {
 
     public function add(Array $attributes){
 
-        $sql = "INSERT INTO {$this->table} (produto,quantidade,sessao,created_at,expire) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO {$this->table} (produto,quantidade,sessao,created_at,expire,status) VALUES (?,?,?,?,?,?)";
         $this->typeDatabase->prepare($sql);
 
         foreach ($attributes as $key=>$value) {

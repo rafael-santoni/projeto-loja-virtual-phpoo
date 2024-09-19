@@ -4,29 +4,31 @@ namespace App\Classes;
 
 class StatusCarrinho {
 
-    public function carrinhoExiste(){
+    public static function carrinhoExiste(){
         return (isset($_SESSION['carrinho'])) ? true : false;
     }
 
-    public function criarCarrinho(){
+    public static function criarCarrinho(){
 
-        if(!$this->carrinhoExiste()) {
+        if(!self::carrinhoExiste()) {
             $_SESSION['carrinho'] = [];
         }
 
     }
 
-    public function produtoEstaNoCarrinho($id){
+    public static function produtoEstaNoCarrinho($id){
 
-        if(isset($_SESSION['carrinho'][$id])) {
-            return true;
-        }
+        // if(isset($_SESSION['carrinho'][$id])) {
+        //     return true;
+        // }
+        //
+        // return false;
 
-        return false;
+        return isset($_SESSION['carrinho'][$id]) ? true : false;
 
     }
 
-    public function carrinho(){
+    public static function carrinho(){
         return $_SESSION['carrinho'];
     }
 

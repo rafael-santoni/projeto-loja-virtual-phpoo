@@ -54,7 +54,7 @@ $(document).ready(function() {
 
                     alert("Este produto não tem mais em estoque.");
                     location.reload();
-                    
+
                 }
 
                 if(retorno == "updated" || retorno == "deleted"){
@@ -73,7 +73,7 @@ $(document).ready(function() {
         var id = $(this).attr("data-id");
 
         $.ajax({
-            url: "/carrinho/delete",
+            url: "/carrinho/remove",
             data: "id="+id,
             type: "POST",
             success: function(retorno) {

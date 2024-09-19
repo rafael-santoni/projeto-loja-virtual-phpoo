@@ -3,21 +3,22 @@
 namespace App\Classes;
 
 use App\Classes\StatusCarrinho;
-use App\Classes\Estoque;
-use App\Classes\GerenciaQuantidadeEstoqueCarrinho;
+// use App\Classes\Estoque;
+// use App\Classes\GerenciaQuantidadeEstoqueCarrinho;
 // use App\Models\Site\CarrinhoModel;
 
 class Carrinho {
 
     private $statusCarrinho;
-    private $estoque;
+    // private $estoque;
     // private $carrinhoModel;
 
     public function __construct(){
 
-        $this->statusCarrinho = new StatusCarrinho;
-        $this->statusCarrinho->criarCarrinho();
-        $this->estoque = new Estoque;
+        // $this->statusCarrinho = new StatusCarrinho;
+        // $this->statusCarrinho->criarCarrinho();
+        StatusCarrinho::criarCarrinho();
+        // $this->estoque = new Estoque;
         // $this->carrinhoModel = new CarrinhoModel;
 
     }
@@ -27,7 +28,7 @@ class Carrinho {
         // if($this->estoque->estoqueAtual($id) > 0) {
 
             // if($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
-                $_SESSION['carrinho'][$id] += 1;
+                $_SESSION['carrinho'][$id] = 1;
             // } else {
             //     $_SESSION['carrinho'][$id] = 1;
             // }
@@ -72,18 +73,20 @@ class Carrinho {
 
     }
 
-    public function clear(){
+    public static function clear(){
 
-        if($this->statusCarrinho->carrinhoExiste()) {
+        // if($this->statusCarrinho->carrinhoExiste()) {
+        if(StatusCarrinho::carrinhoExiste()) {
             unset($_SESSION['carrinho']);
         }
 
     }
 
-    public function produtosCarrinho(){
+    public static function produtosCarrinho(){
 
-        if($this->statusCarrinho->carrinhoExiste()) {
-            return $this->statusCarrinho->carrinho();
+        // if($this->statusCarrinho->carrinhoExiste()) {
+        if(StatusCarrinho::carrinhoExiste()) {
+            return StatusCarrinho::carrinho();
         }
 
     }
