@@ -14,7 +14,7 @@ class CheckoutValidate extends QueuedOperations {
 
     private function produtosCarrinho(){
 
-        // pegando os produtos do carrinho
+        // Pegando os produtos do carrinho
         $produtosCarrinho = new ProdutosCarrinhoRepository;
         // Vefirica se existe produtos no carrinho
         if(empty($produtosCarrinho->produtosNoCarrinho())) {
@@ -42,32 +42,6 @@ class CheckoutValidate extends QueuedOperations {
         }
 
     }
-
-    /* public function validateCheckout(){
-
-        // pegando os produtos do carrinho
-        $produtosCarrinho = new ProdutosCarrinhoRepository;
-
-        // Vefirica se existe produtos no carrinho
-        if(empty($produtosCarrinho->produtosNoCarrinho())) {
-            $this->error('empty');
-        }
-
-        // Verifica de o usuário está logado
-        $logado = new Logado;
-        if(!$logado->logado()) {
-            $this->error('notLoggedIn');
-        }
-
-        // Verifica se calculou o frete
-        $frete = new Frete;
-        if($frete->pegarFrete() == 0) {
-            $this->error('frete');
-        }
-
-        return true;
-
-    } */
 
     public function handle(){
 
