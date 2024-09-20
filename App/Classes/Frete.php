@@ -31,6 +31,21 @@ class Frete {
 
     }
 
+    public static function formatFreteToObject(){
+
+        $data = [
+            'produtos' => (object)[
+                'id' => 1,
+                'produto_nome' => 'Frete'
+            ],
+            'qtd' => 1,
+            'valor' => self::pegarFrete()
+        ];
+
+        return $data;
+
+    }
+
     public static function limparFrete(){
 
         unset($_SESSION['frete']);

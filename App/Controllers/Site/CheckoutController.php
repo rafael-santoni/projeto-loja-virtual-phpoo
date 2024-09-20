@@ -26,19 +26,19 @@ class CheckoutController extends BaseController {
         // }
         CheckoutValidate::queued();
 
-        $pedidos = new Pedidos;
+        $pedidos = new Pedidos(new ProdutosCarrinhoRepository);
         if($pedidos->create(IdRandom::generateId())) {
 
-            $frete = new Frete;
-
-            $data = [
-                'produtos' => (object)[
-                    'id' => 1,
-                    'produto_nome' => 'Frete'
-                ],
-                'qtd' => 1,
-                'valor' => $frete->pegarFrete()
-            ];
+            // $frete = new Frete;
+            //
+            // $data = [
+            //     'produtos' => (object)[
+            //         'id' => 1,
+            //         'produto_nome' => 'Frete'
+            //     ],
+            //     'qtd' => 1,
+            //     'valor' => $frete->pegarFrete()
+            // ];
 
             $produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
             $produtosCarrinho = $produtosCarrinhoRepository->produtosNoCarrinho();

@@ -13,11 +13,12 @@ class Pedidos {
     private $pedidosProdutos;
     private $produtosCarrinho;
 
-    public function __construct(){
+    public function __construct(ProdutosCarrinhoRepository $produtosCarrinhoRepository){
 
         $this->pedidos = new PedidosModel;
         $this->pedidosProdutos = new PedidosProdutosModel;
-        $this->produtosCarrinho = new ProdutosCarrinhoRepository;
+        // $this->produtosCarrinho = new ProdutosCarrinhoRepository;
+        $this->produtosCarrinho = $produtosCarrinhoRepository;
 
     }
 
