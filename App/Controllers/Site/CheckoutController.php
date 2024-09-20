@@ -40,43 +40,58 @@ class CheckoutController extends BaseController {
             //     'valor' => $frete->pegarFrete()
             // ];
 
-            $produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
-            $produtosCarrinho = $produtosCarrinhoRepository->produtosNoCarrinho();
+            // $produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
+            // $produtosCarrinho = $produtosCarrinhoRepository->produtosNoCarrinho();
 
-            array_push($produtosCarrinho, $data);
+            $checkout = new Checkout;
+            $retorno = $checkout->checkoutAndPayment([
+                'name' => $dadosUser->name,
+                'sobrenome' => $dadosUser->sobrenome,
+                'email' => $dadosUser->email,
+                'ddd' => $dadosUser->ddd,
+                'telefone' => $dadosUser->telefone,
+                'idReferencia' => IdRandom()
+            ], new Pagseguro);
 
-            $user = new User;
-            $dadosUser = $user->user(new UserModel);
+            echo json_encode([
+                'redirecionar' => 'sim',
+                'url' => $retorno
+            ]);
 
-            $pagseguro = new Pagseguro;
-            $pagseguro->setItemAdd($produtosCarrinho);
-            $pagseguro->setNome($dadosUser->name);
-            $pagseguro->setSobreNome($dadosUser->sobrenome);
-            $pagseguro->setEmail($dadosUser->email);
-            $pagseguro->setDdd($dadosUser->ddd);
-            $pagseguro->setTelefone($dadosUser->telefone);
-            $pagseguro->setIdReferencia(IdRandom::generateId());
-
-            $carrinho = new Carrinho;
-            try {
-
-                // $url = $pagseguro->enviarPagseguro();    ## DEScomentar para usar no Ambiente de Produção
-                $url = '/';    ## COMENTAR esta linha para usar no Ambiente de Produção
-
-                $retorno = [
-                    'url' => $url,
-                    'redirecionar' => 'sim'
-                ];
-
-                $carrinho->clear();
-                $frete->limparFrete();
-                IdRandom::clear();
-
-                echo json_encode($retorno);
-
-            } catch (\Exception $e) {
-                echo json_encode($e->getMessage());
-            }
+            // array_push($produtosCarrinho, $data);
+            //
+            // $user = new User;
+            // $dadosUser = $user->user(new UserModel);
+            //
+            // $pagseguro = new Pagseguro;
+            // $pagseguro->setItemAdd($produtosCarrinho);
+            // $pagseguro->setNome($dadosUser->name);
+            // $pagseguro->setSobreNome($dadosUser->sobrenome);
+            // $pagseguro->setEmail($dadosUser->email);
+            // $pagseguro->setDdd($dadosUser->ddd);
+            // $pagseguro->setTelefone($dadosUser->telefone);
+            // $pagseguro->setIdReferencia(IdRandom::generateId());
+            //
+            // $carrinho = new Carrinho;
+            // try {
+            //
+            //     // $url = $pagseguro->enviarPagseguro();    ## DEScomentar para usar no Ambiente de Produção
+            //     $url = '/';    ## COMENTAR esta linha para usar no Ambiente de Produção
+            //
+            //     $retorno = [
+            //         'url' => $url,
+            //         'redirecionar' => 'sim'
+            //     ];
+            //
+            //     $carrinho->clear();
+            //     $frete->limparFrete();
+            //     IdRandom::clear();
+            //
+            //     echo json_encode($retorno);
+            //
+            // } catch (\Exception $e) {
+            //     echo json_encode($e->getMessage());
+            // }
 
         } else {
             $pedidos->remove(IdRandom::generateId());
