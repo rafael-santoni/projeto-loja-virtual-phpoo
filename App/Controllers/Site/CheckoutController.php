@@ -5,6 +5,7 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Classes\Pagseguro;
 use App\Classes\CheckoutValidate;
+use App\Classes\Checkout;
 use App\Classes\Pedidos;
 use App\Classes\User;
 use App\Classes\Frete;
@@ -27,7 +28,7 @@ class CheckoutController extends BaseController {
         CheckoutValidate::queued();
 
         $pedidos = new Pedidos(new ProdutosCarrinhoRepository);
-        if($pedidos->create(IdRandom::generateId())) {
+        if($pedidos->create(IdRandom())) {
 
             // $frete = new Frete;
             //
@@ -42,6 +43,9 @@ class CheckoutController extends BaseController {
 
             // $produtosCarrinhoRepository = new ProdutosCarrinhoRepository;
             // $produtosCarrinho = $produtosCarrinhoRepository->produtosNoCarrinho();
+
+            $user = new User;
+            $dadosUser = $user->user(new UserModel);
 
             $checkout = new Checkout;
             $retorno = $checkout->checkoutAndPayment([
@@ -94,8 +98,10 @@ class CheckoutController extends BaseController {
             // }
 
         } else {
-            $pedidos->remove(IdRandom::generateId());
+
+            $pedidos->remove(IdRandom());
             echo json_encode('erroCadastro');
+
         }
 
     }

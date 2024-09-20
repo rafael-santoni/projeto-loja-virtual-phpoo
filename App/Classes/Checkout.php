@@ -5,6 +5,7 @@ namespace App\Classes;
 use App\Interfaces\InterfacePayment;
 use App\Classes\Carrinho;
 use App\Classes\CarrinhoBanco;
+use App\Classes\IdRandom;
 
 class Checkout {
 
