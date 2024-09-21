@@ -4,7 +4,7 @@ namespace App\Classes;
 
 class PersistInput {
 
-    public function add($value){
+    public static function add($value){
 
         if(!isset($_SESSION['persist'][$value])) {
             $_SESSION['persist'][$value] = $_POST[$value];
@@ -12,7 +12,7 @@ class PersistInput {
 
     }
 
-    public function show($value){
+    public static function show($value){
 
         if(isset($_SESSION['persist'][$value])) {
             $persist = $_SESSION['persist'][$value];

@@ -4,7 +4,7 @@ namespace App\Classes;
 
 class ErrorsValidate {
 
-    public function add($field, $message){
+    public static function add($field, $message){
 
         if(!isset($_SESSION['error'][$field])) {
             $_SESSION['error'][$field] = $message;
@@ -12,7 +12,7 @@ class ErrorsValidate {
 
     }
 
-    public function show($field){
+    public static function show($field){
 
         if(isset($_SESSION['error'][$field])) {
             $message = $_SESSION['error'][$field];
