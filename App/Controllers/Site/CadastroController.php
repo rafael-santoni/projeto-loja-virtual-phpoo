@@ -44,11 +44,11 @@ class CadastroController extends BaseController {
                 'email' => 'required|email:user',
                 'ddd' => 'required',
                 'telefone' => 'required',
-                // 'endereco' => 'required',
-                // 'bairro' => 'required',
-                // 'cidade' => 'required',
-                // 'estado' => 'required',
+                'endereco' => 'required',
+                'bairro' => 'required',
+                'cidade' => 'required',
                 'cep' => 'required',
+                'estado' => 'required',
             ];
 
             $validate = new Validate($rules);

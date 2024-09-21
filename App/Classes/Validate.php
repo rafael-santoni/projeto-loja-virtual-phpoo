@@ -38,10 +38,8 @@ class Validate {
 
     }
 
-    // public static function validate($rules){
     public function validate(){
 
-        // foreach ($rules as $field => $method) {
         foreach ($this->rules as $field => $method) {
 
             if(substr_count($method, ':') > 0) $method = strstr($method, ':', true);
