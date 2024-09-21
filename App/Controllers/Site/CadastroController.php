@@ -44,7 +44,7 @@ class CadastroController extends BaseController {
             $rules = [
                 'nome' => 'required',
                 'sobrenome' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email:user',
                 'ddd' => 'required',
                 'telefone' => 'required',
                 // 'endereco' => 'required',

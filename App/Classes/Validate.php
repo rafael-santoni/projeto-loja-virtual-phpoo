@@ -2,10 +2,18 @@
 
 namespace App\Classes;
 
+use App\Interfaces\InterfaceRepeatedRegisters;
+use App\Classes\RepeatedRegisters;
 use App\Classes\TypesValidation;
 use App\Classes\PersistInput;
 
 class Validate {
+
+    private $rules;
+
+    public function __construct($rules){
+        $this->rules = $rules;
+    }
 
     private static function callMethodAndValidate($validateMethod, $field){
 
@@ -23,9 +31,18 @@ class Validate {
 
     }
 
-    public static function validate($rules){
+    public function repeatedRegisters(InterfaceRepeatedRegisters $repeat){
 
-        foreach ($rules as $field => $method) {
+        $repeatedRegisters =  new RepeatedRegisters($repeat);
+        $repeatedRegisters->validate($this->rules);
+
+    }
+
+    // public static function validate($rules){
+    public static function validate(){
+
+        // foreach ($rules as $field => $method) {
+        foreach ($this->rules as $field => $method) {
 
             if(substr_count($method, '|') > 0) {
 
