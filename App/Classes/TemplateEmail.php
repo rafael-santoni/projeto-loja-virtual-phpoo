@@ -4,7 +4,7 @@ namespace App\Classes;
 
 class TemplateEmail {
 
-    const PATH_TO_EMAILS_FORMATED = 'emails';
+    const PATH_TO_EMAILS_FORMATED = 'emails/';
 
     private $allKeys = [];
     private $allValues = [];

@@ -7,10 +7,8 @@ use App\Classes\Validate;
 use App\Classes\ErrorsValidate;
 use App\Classes\Filters;
 use App\Classes\Redirect;
-use App\Classes\Email;
+use App\Classes\SendEmail;
 use App\Classes\TemplateContato;
-use App\Classes\PersistInput;
-use App\Classes\FlashMessage;
 
 class ContatoController extends BaseController {
 
@@ -36,15 +34,9 @@ class ContatoController extends BaseController {
                 'mensagem' => 'required',
             ];
 
-            $validate = new Validate;
-            $validate->validate($rules);
+            Validate::validate($rules);
 
-            $errosValidate = new ErrorsValidate;
-            $redirect = new Redirect;
-
-            if(!$errosValidate->erroValidacao()) {
-
-                $flash = new FlashMessage;
+            if(!ErrorsValidate::erroValidacao()) {
 
                 $filters = new Filters;
                 $nome = $filters->filter('nome','string');
@@ -52,34 +44,24 @@ class ContatoController extends BaseController {
                 $assunto = $filters->filter('assunto','string');
                 $mensagem = $filters->filter('mensagem','string');
 
-                $phpMailer = new Email();
-                $phpMailer->setPara('contato@empresa.com.br');
-                $phpMailer->setQuem($email);
-                $phpMailer->setAssunto($assunto);
-                $phpMailer->setMensagem([
+                $sendEmail = new SendEmail;
+                $sendEmail->setMensagem([
                     'nome' => $nome,
                     'data' => date('d/m/Y H:i:s'),
                     'mensagem' => $mensagem
                 ]);
-                $phpMailer->setTemplate(new TemplateContato);
 
-                if($phpMailer->enviar()) {
+                $sendEmail->send([
+                    'contato@empresa.com',
+                    $email,
+                    $assunto
+                ], new TemplateContato);
 
-                    $flash->add('mensagem_contato', 'Contato enviado com sucesso!', 'success');
-
-                    PersistInput::removeInputs();
-
-                    $redirect->redirect('/contato');
-
-                }
-
-                $flash->add('mensagem_contato', 'Erro ao enviar, tente novamente mais tarde!');
-
-                $redirect->redirect('/contato');
+                return Redirect::redirect('/contato');
 
             }
 
-            return $redirect->redirect('/contato');
+            return Redirect::redirect('/contato');
 
         }
 

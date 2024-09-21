@@ -23,7 +23,7 @@ class Validate {
 
     }
 
-    public function validate($rules){
+    public static function validate($rules){
 
         foreach ($rules as $field => $method) {
 
