@@ -3,25 +3,26 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
-use App\Classes\Login;
+// use App\Classes\Login;
+use App\Classes\Logar;
 use App\Classes\Filters;
 use App\Classes\Redirect;
 use App\Classes\Logado;
-use App\Models\Site\UserModel;
+// use App\Models\Site\UserModel;
 
 class LoginController extends BaseController {
 
-    private $redirect;
-
-    public function __construct(){
-        $this->redirect = new Redirect;
-    }
+    // private $redirect;
+    //
+    // public function __construct(){
+    //     $this->redirect = new Redirect;
+    // }
 
     public function index(){
 
         $logado = new Logado;
         if($logado->logado()) {
-            $this->redirect->redirect('/');
+            Redirect::redirect('/');
         }
 
         $dados = [
@@ -37,23 +38,24 @@ class LoginController extends BaseController {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            $filter = new Filters;
-            $email = $filter->filter('email', 'string');
-            $password = $filter->filter('password', 'string');
+            // $filter = new Filters;
+            $email = Filters::filter('email', 'string');
+            $password = Filters::filter('password', 'string');
 
-            $login = new Login;
-            $login->setEmail($email);
-            $login->setPassword($password);
+            // $login = new Login;
+            // $login->setEmail($email);
+            // $login->setPassword($password);
 
-            if($login->logar(new UserModel)) {
-                return $this->redirect->redirect('/');
+            // if($login->logar(new UserModel)) {
+            if(Logar::logarUser($email, $password)) {
+                return Redirect::redirect('/');
             }
 
-            return $this->redirect->redirect('/login');
+            return Redirect::redirect('/login');
 
         }
 
-        return $this->redirect->redirect('/');
+        return Redirect::redirect('/');
 
     }
 
@@ -65,7 +67,7 @@ class LoginController extends BaseController {
         unset($_SESSION['name']);
         unset($_SESSION['logado']);
 
-        $this->redirect->redirect('/');
+        Redirect::redirect('/');
 
     }
 

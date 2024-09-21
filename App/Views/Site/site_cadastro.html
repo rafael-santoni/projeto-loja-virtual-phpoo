@@ -32,8 +32,15 @@
 
                 <div class="form_row">
                     <label class="contact"><strong>E-mail</strong></label>
-                    <input type="text" class="contact_input" name="email" placeholder="E-mail" value="{{ persist('email') }}" />
+                    <input type="email" class="contact_input" name="email" placeholder="E-mail" value="{{ persist('email') }}" />
                     {{ errorField('email') | raw }}
+                    <br /><br />
+                </div>
+
+                <div class="form_row">
+                    <label class="contact"><strong>Senha</strong></label>
+                    <input type="password" class="contact_input" name="password" placeholder="Senha" value="{{ persist('password') }}" />
+                    {{ errorField('password') | raw }}
                     <br /><br />
                 </div>
 
@@ -73,16 +80,16 @@
                 </div>
 
                 <div class="form_row">
-                    <label class="contact"><strong>Estado</strong></label>
-                    <input type="text" class="contact_input" name="estado" placeholder="Estado" value="{{ persist('estado') }}" />
-                    {{ errorField('estado') | raw }}
+                    <label class="contact"><strong>CEP</strong></label>
+                    <input type="text" class="contact_input" name="cep" placeholder="CEP" value="{{ persist('cep') }}" />
+                    {{ errorField('cep') | raw }}
                     <br /><br />
                 </div>
 
                 <div class="form_row">
-                    <label class="contact"><strong>CEP</strong></label>
-                    <input type="text" class="contact_input" name="cep" placeholder="CEP" value="{{ persist('cep') }}" />
-                    {{ errorField('cep') | raw }}
+                    <label class="contact"><strong>Estado</strong></label>
+                    <input type="text" class="contact_input" name="estado" placeholder="Estado" value="{{ persist('estado') }}" />
+                    {{ errorField('estado') | raw }}
                     <br /><br />
                 </div>
 

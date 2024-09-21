@@ -10,7 +10,7 @@ class UserModel extends Model {
 
 	public function create(Array $attributes){
 
-		$sql = "INSERT INTO {$this->table} (name,sobrenome,email,ddd,telefone,endereco,bairro,cidade,estado,cep) VALUES (?,?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO {$this->table} (name,sobrenome,is_admin,email,password,ddd,telefone,endereco,bairro,cidade,cep,estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		$this->typeDatabase->prepare($sql);
 
 		$i=1;

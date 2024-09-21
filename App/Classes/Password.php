@@ -4,7 +4,7 @@ namespace App\Classes;
 
 class Password {
 
-    public function hash($password){
+    public static function hash($password){
 
         //  PHP < 7
         // $options =[

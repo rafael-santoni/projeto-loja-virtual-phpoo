@@ -1,4 +1,11 @@
 <?php
+/*
+    --**************************--
+    *****  Deprecated Class  *****
+    *****  Esta classe foi   *****
+    *****   renomeada para   *****
+    *****      Auth.php      *****
+    --************************--
 
 namespace App\Classes;
 
@@ -45,3 +52,4 @@ class Login {
     }
 
 }
+*/

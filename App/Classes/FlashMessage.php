@@ -4,7 +4,7 @@ namespace App\Classes;
 
 class FlashMessage {
 
-    public function add($index, $mensagem, $tipo=null){
+    public static function add($index, $mensagem, $tipo=null){
 
         $tipoMensagem = ($tipo == null) ? 'danger' : $tipo;
 
@@ -14,7 +14,7 @@ class FlashMessage {
 
     }
 
-    public function show($index){
+    public static function show($index){
 
         if(isset($_SESSION['flash'][$index])) {
             $mensagem = $_SESSION['flash'][$index];
