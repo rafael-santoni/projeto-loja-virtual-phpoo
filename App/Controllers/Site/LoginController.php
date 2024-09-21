@@ -3,27 +3,18 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
-// use App\Classes\Login;
 use App\Classes\Logar;
+use App\Classes\Logado;
+use App\Classes\Logout;
 use App\Classes\Filters;
 use App\Classes\Redirect;
-use App\Classes\Logado;
-// use App\Models\Site\UserModel;
+use App\Classes\FlashMessage;
 
 class LoginController extends BaseController {
 
-    // private $redirect;
-    //
-    // public function __construct(){
-    //     $this->redirect = new Redirect;
-    // }
-
     public function index(){
 
-        $logado = new Logado;
-        if($logado->logado()) {
-            Redirect::redirect('/');
-        }
+        if(Logado::logado()) Redirect::redirect();
 
         $dados = [
             'titulo' => 'Loja Virtual - RS-Dev | Login',
@@ -38,36 +29,29 @@ class LoginController extends BaseController {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            // $filter = new Filters;
-            $email = Filters::filter('email', 'string');
-            $password = Filters::filter('password', 'string');
+            $filter = new Filters;
+            $email = $filter->filter('email', 'string');
+            $password = $filter->filter('password', 'string');
+            // $email = Filters::filter('email', 'string');
+            // $password = Filters::filter('password', 'string');
 
-            // $login = new Login;
-            // $login->setEmail($email);
-            // $login->setPassword($password);
+            if(Logar::logarUser($email, $password)) return Redirect::redirect();
 
-            // if($login->logar(new UserModel)) {
-            if(Logar::logarUser($email, $password)) {
-                return Redirect::redirect('/');
-            }
+            FlashMessage::add('login','Erro ao logar, usuário e/ou senha inválidos');
 
             return Redirect::redirect('/login');
 
         }
 
-        return Redirect::redirect('/');
+        return Redirect::redirect();
 
     }
 
     public function logout(){
 
-        //session_destroy();
+        Logout::logoutUser();
 
-        unset($_SESSION['id']);
-        unset($_SESSION['name']);
-        unset($_SESSION['logado']);
-
-        Redirect::redirect('/');
+        Redirect::redirect();
 
     }
 

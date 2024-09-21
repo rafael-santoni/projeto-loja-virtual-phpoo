@@ -4,7 +4,7 @@ namespace App\Classes;
 
 class Logado {
 
-    public function logado(){
+    public static function logado(){
 
         if(isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
             return true;

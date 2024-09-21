@@ -4,6 +4,8 @@
 
 <h2>Login do usuário</h2>
 
+{{ flash('login') | raw }}<br />
+
 <form action="/login/logar" method="post">
     <label for="email">E-mail</label>
     <input type="text" name="email" placeholder="Digite seu e-mail" />
