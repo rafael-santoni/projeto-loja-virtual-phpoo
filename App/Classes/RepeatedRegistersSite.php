@@ -3,8 +3,9 @@
 namespace App\Classes;
 
 use App\Interfaces\InterfaceRepeatedRegisters;
+use App\Classes\RepeatedRegistersValidate;
 
-class RepeatedRegistersSite implements InterfaceRepeatedRegisters {
+class RepeatedRegistersSite extends RepeatedRegistersValidate implements InterfaceRepeatedRegisters {
 
     CONST SITE_NAMESPACE = "App\\Models\\Site\\";
 
@@ -12,7 +13,7 @@ class RepeatedRegistersSite implements InterfaceRepeatedRegisters {
 
         $model = self::SITE_NAMESPACE.ucfirst($data[1]).'Model';
         return new $model;
-        
+
     }
 
 }

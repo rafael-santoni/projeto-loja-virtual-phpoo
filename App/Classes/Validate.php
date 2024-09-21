@@ -44,6 +44,8 @@ class Validate {
         // foreach ($rules as $field => $method) {
         foreach ($this->rules as $field => $method) {
 
+            if(substr_count($method, ':') > 0) $method = strstr($method, ':', true);
+
             if(substr_count($method, '|') > 0) {
 
                 // contém o pipe no method

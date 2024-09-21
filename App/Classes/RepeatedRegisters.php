@@ -13,7 +13,7 @@ class RepeatedRegisters {
     }
 
     public function validate($rules){
-        $this->repeatedRegisters->validate($rules);
+        $this->repeatedRegisters->validate ($rules);
     }
 
 }
