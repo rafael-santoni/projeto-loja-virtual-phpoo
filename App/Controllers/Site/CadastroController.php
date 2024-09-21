@@ -4,6 +4,7 @@ namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Classes\Validate;
+use App\Classes\RepeatedRegistersSite;
 use App\Classes\ErrorsValidate;
 use App\Classes\Redirect;
 use App\Classes\Filters;
@@ -17,13 +18,9 @@ use App\Models\Site\UserModel;
 class CadastroController extends BaseController {
 
     private $filter;
-    private $userModel;
 
     public function __construct(){
-
         $this->filter = new Filters;
-        $this->userModel = new UserModel;
-
     }
 
     public function index(){
@@ -54,7 +51,8 @@ class CadastroController extends BaseController {
                 'cep' => 'required',
             ];
 
-            Validate::validate($rules);
+            $validate = new Validate($rules);
+            $validate->validate($rules)->repeatedRegisters(new RepeatedRegistersSite);
 
             if(!ErrorsValidate::erroValidacao()) {
 
@@ -72,7 +70,8 @@ class CadastroController extends BaseController {
 
                 $attributes = [$nome,$sobrenome,2,$email,Password::hash($password),$ddd,$telefone,$endereco,$bairro,$cidade,$cep,$estado];
 
-                if($this->userModel->create($attributes)) {
+                $userModel = new UserModel;
+                if($userModel->create($attributes)) {
 
                     FlashMessage::add('mensagem_cadastro', 'Cadastrado com sucesso!', 'success');
 

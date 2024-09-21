@@ -39,7 +39,7 @@ class Validate {
     }
 
     // public static function validate($rules){
-    public static function validate(){
+    public function validate(){
 
         // foreach ($rules as $field => $method) {
         foreach ($this->rules as $field => $method) {
@@ -60,6 +60,8 @@ class Validate {
             }
 
         }
+
+        return $this;
 
     }
 
