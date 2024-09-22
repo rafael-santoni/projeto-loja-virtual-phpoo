@@ -20,7 +20,21 @@
                 message.html("Recuperando dados, aguarde...");
             },
             success: function(retorno) {
-                console.log(retorno);
+
+                if(retorno == "enviado") {
+
+                    message.html("");
+                    alert("Enviado o email para redefinir a senha com sucesso!");
+
+                }
+
+                if(retorno == "user" || retorno == "erroValidate") {
+
+                    message.html("");
+                    location.reload();
+
+                }
+
             }
         });
 

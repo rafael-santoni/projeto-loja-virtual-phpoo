@@ -7,6 +7,9 @@ use App\Models\Site\UserModel;
 use App\Models\Site\PasswordReminderModel;
 use App\Classes\Validate;
 use App\Classes\ErrorsValidate;
+use App\Classes\FlashMessage;
+use App\Classes\SendEmail;
+use App\Classes\TemplateRedefinirSenha;
 
 class EsqueciController extends BaseController {
 
@@ -53,11 +56,31 @@ class EsqueciController extends BaseController {
                     IdRandom()
                 ]);
 
+                $sendEmail = new SendEmail;
+                $sendEmail->setMensagem([
+                    'nome' => $userEncontrado->name,
+                    'copy' => 'http://localhost:8127/esqueci/senha/'.IdRandom(),
+                    'link' => '<a href="http://localhost:8127/esqueci/senha/'.IdRandom().'">Cique aqui para redefinir sua senha</a>',
+                    'data' => date('d/m/Y H:i:s')
+                ]);
+
+                $sendEmail->send([
+                    $userEncontrado->email,
+                    // 'contato@empresa.com',
+                    'Loja Virtual - RS-Dev',
+                    'Atualize sua senha'
+                ], new TemplateRedefinirSenha);
+
+                echo 'enviado';
+
             } else {
                 // Usuário não encontrado
+                FlashMessage::add('esqueci', 'Não encontramos esse email em nosso banco de dados.');
                 echo 'user';
             }
 
+        } else {
+            echo 'erroValidate';
         }
 
     }
