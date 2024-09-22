@@ -7,7 +7,8 @@ use App\Classes\Validate;
 use App\Classes\RepeatedRegistersSite;
 use App\Classes\ErrorsValidate;
 use App\Classes\Redirect;
-use App\Classes\Filters;
+use App\Classes\MassFilter;
+// use App\Classes\Filters;
 use App\Classes\PersistInput;
 use App\Classes\FlashMessage;
 use App\Classes\Logar;
@@ -17,11 +18,11 @@ use App\Models\Site\UserModel;
 
 class CadastroController extends BaseController {
 
-    private $filter;
-
-    public function __construct(){
-        $this->filter = new Filters;
-    }
+    // private $filter;
+    //
+    // public function __construct(){
+    //     $this->filter = new Filters;
+    // }
 
     public function index(){
 
@@ -56,19 +57,22 @@ class CadastroController extends BaseController {
 
             if(!ErrorsValidate::erroValidacao()) {
 
-                $nome = $this->filter->filter('nome','string');
-                $sobrenome = $this->filter->filter('sobrenome','string');
-                $email = $this->filter->filter('email','email');
-                $password = $this->filter->filter('password','string');
-                $ddd = $this->filter->filter('ddd','string');
-                $telefone = $this->filter->filter('telefone','string');
-                $endereco = $this->filter->filter('endereco','string');
-                $bairro = $this->filter->filter('bairro','string');
-                $cidade = $this->filter->filter('cidade','string');
-                $cep = $this->filter->filter('cep','string');
-                $estado = $this->filter->filter('estado','string');
+                // $nome = $this->filter->filter('nome','string');
+                // $sobrenome = $this->filter->filter('sobrenome','string');
+                // $email = $this->filter->filter('email','email');
+                // $password = $this->filter->filter('password','string');
+                // $ddd = $this->filter->filter('ddd','string');
+                // $telefone = $this->filter->filter('telefone','string');
+                // $endereco = $this->filter->filter('endereco','string');
+                // $bairro = $this->filter->filter('bairro','string');
+                // $cidade = $this->filter->filter('cidade','string');
+                // $cep = $this->filter->filter('cep','string');
+                // $estado = $this->filter->filter('estado','string');
+                //
+                // $attributes = [$nome,$sobrenome,2,$email,Password::hash($password),$ddd,$telefone,$endereco,$bairro,$cidade,$cep,$estado];
 
-                $attributes = [$nome,$sobrenome,2,$email,Password::hash($password),$ddd,$telefone,$endereco,$bairro,$cidade,$cep,$estado];
+                $filter = new MassFilter;
+                $filter->filterInputs('nome', 'sobrenome', 'is_admin:int=2', 'email:email', 'password', 'ddd', 'telefone', 'endereco', 'bairro', 'cidade', 'cep', 'estado');
 
                 $userModel = new UserModel;
                 if($userModel->create($attributes)) {
