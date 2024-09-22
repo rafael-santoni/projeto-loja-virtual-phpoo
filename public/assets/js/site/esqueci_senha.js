@@ -20,7 +20,7 @@
                 message.html("Recuperando dados, aguarde...");
             },
             success: function(retorno) {
-
+                console.log(retorno);
             }
         });
 
