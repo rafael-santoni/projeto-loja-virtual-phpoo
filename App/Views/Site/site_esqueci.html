@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+
+<h2 class="center_title_bar">Redefinir minha senha</h2>
+
+<p>Digite abaixo seu email cadastrado no portal, assim você receberá um link para redefinir sua senha.</p>
+
+<form>
+
+    <div class="ui form">
+        <div class="fields">
+
+            <div class="field">
+                <input type="text" name="email" id="email_esqueci_senha" placeholder="Email" />
+                {{ errorField('email') | raw }}
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <button id="btn-esqueci-senha" class="ui green button">Redefinir</button>
+
+</form>
+
+<div id="message"></div>
+
+{% endblock %}
