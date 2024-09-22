@@ -13,16 +13,18 @@ use App\Classes\PersistInput;
 use App\Classes\FlashMessage;
 use App\Classes\Logar;
 use App\Classes\Logado;
-use App\Classes\Password;
+// use App\Classes\Password;
 use App\Models\Site\UserModel;
 
 class CadastroController extends BaseController {
 
     // private $filter;
-    //
-    // public function __construct(){
-    //     $this->filter = new Filters;
-    // }
+    private $userModel;
+
+    public function __construct(){
+        // $this->filter = new Filters;
+        $this->userModel = new UserModel;
+    }
 
     public function index(){
 
@@ -72,16 +74,19 @@ class CadastroController extends BaseController {
                 // $attributes = [$nome,$sobrenome,2,$email,Password::hash($password),$ddd,$telefone,$endereco,$bairro,$cidade,$cep,$estado];
 
                 $filter = new MassFilter;
-                $filter->filterInputs('nome', 'sobrenome', 'is_admin:int=2', 'email:email', 'password', 'ddd', 'telefone', 'endereco', 'bairro', 'cidade', 'cep', 'estado');
+                $filter->filterInputs('nome', 'sobrenome', 'is_admin:int=2', 'email:email', 'password', 'ddd:int',
+                                      'telefone:int', 'endereco', 'bairro', 'cidade', 'cep', 'estado');
 
-                $userModel = new UserModel;
-                if($userModel->create($attributes)) {
+                // $userModel = new UserModel;
+                // if($userModel->create($attributes)) {
+                if($this->userModel->create($filter->all(true))) {
 
                     FlashMessage::add('mensagem_cadastro', 'Cadastrado com sucesso!', 'success');
 
                     PersistInput::removeInputs();
 
-                    Logar::logarUser($email, $password);
+                    // Logar::logarUser($email, $password);
+                    Logar::logarUser($filter->get('email'), $filter->get('password'));
                     if(Logado::logado()) return Redirect::redirect();
 
                     return Redirect::redirect('/cadastro');

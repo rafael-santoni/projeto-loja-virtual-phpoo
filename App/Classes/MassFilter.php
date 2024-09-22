@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Classes\Filters;
+use App\Classes\Password;
 
 class MassFilter extends Filters {
 
@@ -30,8 +31,14 @@ class MassFilter extends Filters {
         return $this->object[$key];
     }
 
-    public function all(){
+    public function all($passwordEncrypt = null){
+
+        if($passwordEncrypt == true) {
+            $this->object['password'] = Password::hash($this->get('password'));
+        }
+
         return $this->object;
+
     }
 
 }

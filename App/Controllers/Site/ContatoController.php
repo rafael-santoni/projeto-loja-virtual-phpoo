@@ -34,27 +34,36 @@ class ContatoController extends BaseController {
                 'mensagem' => 'required',
             ];
 
-            Validate::validate($rules);
+            // Validate::validate($rules);
+            $validate = new Validate;
+            $validate->validate($rules);
 
             if(!ErrorsValidate::erroValidacao()) {
 
-                $filters = new Filters;
-                $nome = $filters->filter('nome','string');
-                $email = $filters->filter('email','email');
-                $assunto = $filters->filter('assunto','string');
-                $mensagem = $filters->filter('mensagem','string');
+                // $filters = new Filters;
+                // $nome = $filters->filter('nome','string');
+                // $email = $filters->filter('email','email');
+                // $assunto = $filters->filter('assunto','string');
+                // $mensagem = $filters->filter('mensagem','string');
+
+                $filter = new MassFilter;
+                $filter->filterInputs('nome', 'email:email', 'assunto', 'mensagem');
 
                 $sendEmail = new SendEmail;
                 $sendEmail->setMensagem([
-                    'nome' => $nome,
+                    // 'nome' => $nome,
+                    'nome' => $filter->get('nome'),
                     'data' => date('d/m/Y H:i:s'),
-                    'mensagem' => $mensagem
+                    // 'mensagem' => $mensagem
+                    'mensagem' => $filter->get('mensagem')
                 ]);
 
                 $sendEmail->send([
                     'contato@empresa.com',
-                    $email,
-                    $assunto
+                    // $email,
+                    $filter->get('email'),
+                    // $assunto
+                    $filter->get('assunto')
                 ], new TemplateContato);
 
                 return Redirect::redirect('/contato');
