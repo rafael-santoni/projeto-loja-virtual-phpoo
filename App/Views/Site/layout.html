@@ -10,7 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/button.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/form.css" />
 
-	<link rel="stylesheet" type="text/css" href="{{ site_url() }}/assets/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="{{ site_url() }}/assets/css/site/style.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="{{ site_url() }}/assets/css/dist/site/all.css" /> -->
 
 	<script type="text/javascript" src="{{ site_url() }}/assets/js/boxOver.js"></script>
 </head>
@@ -97,7 +98,7 @@
 			</div>
 
 			<div class="center_footer">
-				Loja Virtual RS-Dev. Todos os direitos reservados {{ 'now' | date('d/m/Y') }} <br />
+				Loja Virtual RS-Dev. Todos os direitos reservados {{ 'now' | date('Y') }} <br />
 				<!--imagem da loja-->
 				<img src="{{ site_url() }}/assets/images/payment.gif" alt="" />
 			</div>
@@ -111,11 +112,11 @@
 	<script type="text/javascript" src="{{ site_url() }}/bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="{{ site_url() }}/bower_components/numeral/numeral.js"></script>
 	<script type="text/javascript" src="{{ site_url() }}/bower_components/numeral/languages/pt-br.js"></script>
-	<script type="text/javascript" src="{{ site_url() }}/assets/js/dist/site/all.js"></script>
-	<!-- <script type="text/javascript" src="{{ site_url() }}/assets/js/site/language.js"></script>
+	<!-- <script type="text/javascript" src="{{ site_url() }}/assets/js/dist/site/all.js"></script> -->
+	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/language.js"></script>
 	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/carrinho.js"></script>
 	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/frete.js"></script>
 	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/fechar_pedido.js"></script>
-	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/esqueci_senha.js"></script> -->
+	<script type="text/javascript" src="{{ site_url() }}/assets/js/site/esqueci_senha.js"></script>
 </body>
 </html>

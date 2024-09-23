@@ -1,10 +1,13 @@
 var gulp = require("gulp");
 var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
+var cleanCSS = require("gulp-clean-css");
 
-gulp.task("default", function() {
-    // place code for your default task here
-});
+// gulp.task("default", function() {
+//     // place code for your default task here
+// });
+
+gulp.task("default", ["sitejs", "adminjs"]);
 
 gulp.task("sitejs", function() {
 
@@ -21,5 +24,22 @@ gulp.task("adminjs", function() {
     .pipe(concat("all.js"))
     .pipe(uglify())
     .pipe(gulp.dest("./public/assets/js/dist/admin"));
+
+});
+
+gulp.task("sitecss", function(){
+
+	return gulp.src("./public/assets/css/site/*.css")
+	.pipe(concat("all.css"))
+	.pipe(cleanCSS({compatibility: "ie8"}))
+	.pipe(gulp.dest("./public/assets/css/dist/site"));
+
+});
+
+gulp.task("watch", function() {
+
+   gulp.watch("./public/assets/js/site/*.js", ["sitejs"]);
+   gulp.watch("./public/assets/js/admin/*.js", ["adminjs"]);
+   gulp.watch("./public/assets/css/site/*.css", ["sitecss"]);
 
 });
