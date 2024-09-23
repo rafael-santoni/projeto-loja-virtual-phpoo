@@ -23,7 +23,18 @@ $(document).ready(function() {
                 console.log(retorno);
 
                 if(retorno == "login") {
-                    window.location.href = "/login"
+                    swal({
+                        title: "Você não está logado!",
+                        text: "Você precisa estar logado para calcular o frete.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Ir para a página de login",
+                        closeOnConfirm: false,
+                    },
+                    function() {
+                        window.location.href = "/login"
+                    });
                 }
 
                 if(retorno == "produto") {
