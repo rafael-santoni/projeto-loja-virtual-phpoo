@@ -1,0 +1,16 @@
+{
+  "name": "Loja Virtual RS-Dev",
+  "version": "1.0.0",
+  "description": "Loja Virtual desenvolvida em PHP Orientado a Objetos, sem o uso de frameworks",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rafael Santoni | RS-Dev",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.0.0"
+  }
+}
