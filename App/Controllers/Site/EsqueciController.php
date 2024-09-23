@@ -8,6 +8,7 @@ use App\Models\Site\PasswordReminderModel;
 use App\Classes\Validate;
 use App\Classes\ErrorsValidate;
 use App\Classes\FlashMessage;
+use App\Classes\Redirect;
 use App\Classes\SendEmail;
 use App\Classes\TemplateRedefinirSenha;
 
