@@ -23,4 +23,15 @@ class UserModel extends Model {
 
 	}
 
+	public function updatePassword($password, $email){
+
+		$sql = "UPDATE {$this->table} SET password=? WHERE email=?";
+		$this->typeDatabase->prepare($sql);
+		$this->typeDatabase->bindValue(1, $password);
+		$this->typeDatabase->bindValue(2, $email);
+
+		return $this->typeDatabase->execute();
+
+	}
+
 }

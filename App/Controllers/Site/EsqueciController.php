@@ -85,4 +85,26 @@ class EsqueciController extends BaseController {
 
     }
 
+    public function senha($params){
+
+        $dadosPassword = $this->passwordReminder->find('hash', $params[0]);
+
+        if(!$dadosPassword){
+            return Redirect::redirect();
+        }
+
+        if(strtotime($dadosPassword->expire) < strtotime(date('Y-m-d H:i:s'))) {
+            return Redirect::redirect();
+        }
+
+        $dados = [
+            'titulo' => 'Loja Virtual - RS-Dev | Redefinir Senha',
+            'hash' => $dadosPassword->hash
+        ];
+
+        $template = $this->twig->loadTemplate('site_reset_password.html');
+        $template->display($dados);
+
+    }
+
 }
