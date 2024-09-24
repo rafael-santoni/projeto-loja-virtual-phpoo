@@ -16,27 +16,26 @@ $(document).ready(function() {
                 $(btn_fechar_pedido).text("Fechando pedido...");
             },
             success: function(retorno) {
-                console.log(retorno);
+                // console.log(retorno);
 
                 if(retorno == "empty") {
 
                     $(btn_fechar_pedido).text("Fechar Pedido");
-                    alert("Você precisa ter algum produto no carrinho para fechar o pedido!");
+                    alertDefault("warnig", "Carrinho Vazio", "Você precisa ter algum produto no carrinho para fechar o pedido!");
 
                 }
 
                 if(retorno == "notLoggedIn") {
 
                     $(btn_fechar_pedido).text("Fechar Pedido");
-                    alert("Você precisa estar logado para finalizar a compra!");
-                    window.location.href = '/login';
+                    alertNotLoggedIn("Não está logado!", "Você precisa estar logado para calcular o frete.");
 
                 }
 
                 if(retorno == "frete") {
 
                     $(btn_fechar_pedido).text("Fechar Pedido");
-                    alert("Você precisa calcular o frete para finalizar a compra!");
+                    alertDefault("warnig", "Erro de frete!", "Você precisa calcular o frete para finalizar a compra.");
                     $(input_frete).focus();
 
                 }
@@ -44,14 +43,18 @@ $(document).ready(function() {
                 if(retorno == "erroCadastro") {
 
                     $(btn_fechar_pedido).text("Fechar Pedido");
-                    alert("Erro ao cadsatrar seu pedido, tente novamente!");
+                    alertDefault("warnig", "Erro ao cadastrar pedido!", "Ocorreu um erro ao fechar seu pedido, tente novamente.");
 
                 }
 
                 if(retorno.redirecionar == "sim") {
-                    window.location.href = retorno.url;
-                }
 
+                    alertDefault("success", "Pedido Fechado!", "Em 5 segundos você será redirecionado para finalizar a sua compra.");
+                    setTimeout(function() {
+                        window.location.href = retorno.url;
+                    },5000);
+
+                }
 
             }
         });

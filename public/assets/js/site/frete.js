@@ -24,7 +24,7 @@ $(document).ready(function() {
 
                 if(retorno == "login") {
 
-                    alertNotLoggedIn("Você não está logado!", "Você precisa estar logado para calcular o frete.");
+                    alertNotLoggedIn("Não está logado!", "Você precisa estar logado para calcular o frete.");
                     mensagem_frete.html("");
 
                 }
