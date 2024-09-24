@@ -14,35 +14,35 @@ $(document).ready(function() {
         $.ajax({
             url: "/frete/calcular",
             type: "POST",
-            data: "frete=" + frete,
+            data: "frete="+frete,
             dataType: "json",
             beforeSend: function() {
-                mensagem_frete.html("Calculando o frete");
+                mensagem_frete.html("Calculando o frete...");
             },
             success: function(retorno) {
-                console.log(retorno);
+                // console.log(retorno);
 
                 if(retorno == "login") {
-                    swal({
-                        title: "Você não está logado!",
-                        text: "Você precisa estar logado para calcular o frete.",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Ir para a página de login",
-                        closeOnConfirm: false,
-                    },
-                    function() {
-                        window.location.href = "/login"
-                    });
+
+                    alertNotLoggedIn("Você não está logado!", "Você precisa estar logado para calcular o frete.");
+                    mensagem_frete.html("");
+
                 }
 
                 if(retorno == "produto") {
-                    mensagem_frete.html("Você precisa ter produtos no carrinho para calcular o frete.");
+
+                    // mensagem_frete.html("Você precisa ter produtos no carrinho para calcular o frete.");
+                    alertDefault("warning", "Você precisa ter produtos no carrinho para calcular o frete.");
+                    mensagem_frete.html("");
+
                 }
 
                 if(retorno.erro == 'sim') {
-                    mensagem_frete.html(retorno.mensagem);
+
+                    // mensagem_frete.html(retorno.mensagem);
+                    alertDefault("warning", retorno.mensagem);
+                    mensagem_frete.html("");
+
                 }
 
                 if(retorno.erro == 'nao') {

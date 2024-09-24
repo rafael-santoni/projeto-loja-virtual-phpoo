@@ -6,7 +6,8 @@ use App\Controllers\BaseController;
 use App\Classes\Logar;
 use App\Classes\Logado;
 use App\Classes\Logout;
-use App\Classes\Filters;
+// use App\Classes\Filters;
+use App\Classes\MassFilter;
 use App\Classes\Redirect;
 use App\Classes\FlashMessage;
 
@@ -29,13 +30,10 @@ class LoginController extends BaseController {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            $filter = new Filters;
-            $email = $filter->filter('email', 'string');
-            $password = $filter->filter('password', 'string');
-            // $email = Filters::filter('email', 'string');
-            // $password = Filters::filter('password', 'string');
+            $filter = new MassFilter;
+            $filter->filterInputs('email', 'password');
 
-            if(Logar::logarUser($email, $password)) return Redirect::redirect();
+            if(Logar::logarUser($filter->get('email'), $filter->get('password'))) return Redirect::redirect();
 
             FlashMessage::add('login','Erro ao logar, usuário e/ou senha inválidos');
 
