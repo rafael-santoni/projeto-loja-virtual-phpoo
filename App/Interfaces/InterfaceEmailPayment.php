@@ -13,7 +13,7 @@ interface InterfaceEmailPayment {
     public function pagamentoDisponivel();
 
     public function emDisputa();
-    
+
     public function valorDevolvido();
 
     public function compraCancelada();

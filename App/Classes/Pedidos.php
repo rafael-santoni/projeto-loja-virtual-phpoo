@@ -77,10 +77,8 @@ class Pedidos {
 
     }
 
-    public function update($sessao, $status){
-
-        $this->pedidos->update($sessao, $status);
-
+    public function update($sessao, $statusPagamento, $status){
+        $this->pedidos->update($sessao, $statusPagamento, $status);
     }
 
 }

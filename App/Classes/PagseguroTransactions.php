@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Interfaces\InterfaceEmailPayment;
+use App\Classes\Success;
 
 class PagseguroTransactions {
 
@@ -25,7 +26,10 @@ class PagseguroTransactions {
     }
 
     public function vendaAprovada(){
+
         $this->email->vendaAprovada();
+
+        SuccessRetorno::run();
     }
 
     public function pagamentoDisponivel(){

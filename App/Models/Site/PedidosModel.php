@@ -24,4 +24,17 @@ class PedidosModel extends Model{
         return $this->typeDatabase->execute();
 
     }
+
+    public function update($sessao, $statusPagamento, $status){
+
+        $sql = "UPDATE {$this->table} SET pedido_status = ?, status_pagamento = ? WHERE sessao = ?";
+        $this->typeDatabase->prepare($sql);
+        $this->typeDatabase->bindValue(1, $status);
+        $this->typeDatabase->bindValue(2, $statusPagamento);
+        $this->typeDatabase->bindValue(3, $sessao);
+        $this->typeDatabase->execute();
+
+        return $this->typeDatabase->rowCount();
+
+    }
 }
