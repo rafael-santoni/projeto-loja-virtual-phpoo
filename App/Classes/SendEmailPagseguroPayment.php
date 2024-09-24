@@ -5,6 +5,7 @@ namespace App\Classes;
 use App\Interfaces\InterfaceEmailPayment;
 use App\Classes\SendEmail;
 use App\Classes\TemplateAguardePagamento;
+use App\Classes\TemplateVendaAprovada;
 
 class SendEmailPagseguroPayment implements InterfaceEmailPayment {
 
@@ -35,6 +36,15 @@ class SendEmailPagseguroPayment implements InterfaceEmailPayment {
     }
 
     public function vendaAprovada(){
+
+        $this->sendEmail->setMensagem([
+            'nome' => $this->transaction->sender->name
+        ]);
+        $this->sendEmail->send([
+            $this->transaction->sender->email,
+            'Loja Virtual - RS-Dev',
+            'Venda Aprovada'
+        ], new TemplateVendaAprovada);
 
     }
 

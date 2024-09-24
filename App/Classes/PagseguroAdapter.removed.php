@@ -1,4 +1,11 @@
 <?php
+/*
+    --***************************--
+    *****    Removed Class    *****
+    *****                     *****
+    *****   Esta classe foi   *****
+    ***** removida do projeto *****
+    --***************************--
 
 namespace App\Classes;
 
@@ -48,3 +55,4 @@ class PagseguroAdapter implements InterfaceGerenciaStatusTransaction {
     }
 
 }
+*/
