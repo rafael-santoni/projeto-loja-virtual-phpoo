@@ -143,8 +143,8 @@ class PagseguroStatusTransaction implements InterfaceStatusTransaction {
         $this->email->setTemplate(new TemplateCompraCancelada);
 
         $this->email->enviar();
-        
+
     }
 
 }
-/*
+*/
