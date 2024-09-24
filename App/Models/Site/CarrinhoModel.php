@@ -47,7 +47,7 @@ class CarrinhoModel extends Model {
 
     public function carrinhosAbandonados(){
 
-        $sql = "SELECT * FROM {$this->table} WHERE NOW() > expire AND status = 2";
+        $sql = "SELECT * FROM {$this->table} WHERE (NOW() > expire AND status = 2) OR (status = 1 AND NOW() > expire + INTERVAL 1 DAY)";
         $this->typeDatabase->prepare($sql);
         $this->typeDatabase->execute();
 

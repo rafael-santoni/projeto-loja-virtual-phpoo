@@ -20,7 +20,7 @@ class CarrinhoBanco {
             2 => 1,
             3 => IdRandom(),
             4 => date('Y-m-d H:i:s'),
-            5 => date('Y-m-d H:i:s', strtotime('+30minutes')),
+            5 => date('Y-m-d H:i:s', strtotime('+1hour')),
             6 => 2
         ]);
 
