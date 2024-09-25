@@ -12,9 +12,9 @@ class CarrinhoBancoBackupModel extends Model {
 
         $sql = "INSERT INTO {$this->table} (produto, quantidade, sessao) VALUES (?,?,?)";
         $this->typeDatabase->prepare($sql);
-        $this->bindValue(1, $produto);
-        $this->bindValue(2, $quantidade);
-        $this->bindValue(3, $sessao);
+        $this->typeDatabase->bindValue(1, $produto);
+        $this->typeDatabase->bindValue(2, $quantidade);
+        $this->typeDatabase->bindValue(3, $sessao);
 
         return $this->typeDatabase->execute();
 
@@ -24,8 +24,8 @@ class CarrinhoBancoBackupModel extends Model {
 
         $sql = "DELETE FROM {$this->table} WHERE produto = ? AND sessao = ?";
         $this->typeDatabase->prepare($sql);
-        $this->bindValue(1, $id);
-        $this->bindValue(2, $sessao);
+        $this->typeDatabase->bindValue(1, $id);
+        $this->typeDatabase->bindValue(2, $sessao);
 
         return $this->typeDatabase->execute();
 

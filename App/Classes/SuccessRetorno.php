@@ -3,12 +3,12 @@
 namespace App\Classes;
 
 use App\Repositories\Site\ProdutosCarrinhoRepository;
-use App\Classes\QueueRetorno;
+use App\Classes\QueuedRetorno;
 use App\Classes\CarrinhoBanco;
 use App\Classes\CarrinhoBancoBackup;
 use App\Classes\Pedidos;
 
-class SuccessRetorno extends QueueRetorno {
+class SuccessRetorno extends QueuedRetorno {
 
     private function carrinhoBackup($transaction){
 
@@ -31,10 +31,15 @@ class SuccessRetorno extends QueueRetorno {
 
     }
 
-    private function handle($transaction){
+    public function handle($transaction){
 
+        // Adicionar produto ao carrinho_backup
         $this->carrinhoBackup($transaction);
+
+        // Deletar os produtos do carrinho
         $this->carrinhoBanco($transaction);
+
+        // Update dos pedidos
         $this->pedidos($transaction);
 
     }

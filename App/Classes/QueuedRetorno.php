@@ -2,9 +2,9 @@
 
 namespace App\Classes;
 
-abstract class QueueRetorno {
+abstract class QueuedRetorno {
 
-    public static function queued($transaction){
+    public static function run($transaction){
         return (new Static)->handle($transaction);
     }
 
