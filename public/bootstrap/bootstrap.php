@@ -8,13 +8,20 @@ use App\Classes\UsersOnline;
 use Predis\Autoloader;
 use Predis\Client;
 
+// Definindo o Fuso Horário
 date_default_timezone_set('America/Sao_Paulo');
 
+// Iniciando o Twig
 $template = new Template;
 $twig = $template->init();
 
+// Chamando o Redis
 Autoloader::register();
-$client = new Client();
+$client = new Client([
+    'scheme' => 'tcp',
+    'host' => '127.0.0.1',
+    'port' => 6379,
+]);
 
 // Chamando as funções do FunctionsTwig
 $functionsTwig = new FunctionsTwig;
