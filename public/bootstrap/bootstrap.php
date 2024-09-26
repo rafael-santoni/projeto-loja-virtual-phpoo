@@ -1,6 +1,8 @@
 <?php
 
 use App\Classes\Template;
+use App\Classes\FunctionsTwig;
+use App\Classes\AddFunctionsTwig;
 use App\Classes\Parameters;
 
 date_default_timezone_set('America/Sao_Paulo');
@@ -8,23 +10,31 @@ date_default_timezone_set('America/Sao_Paulo');
 $template = new Template;
 $twig = $template->init();
 
-// Chamando as funções do functionsTwig
-$twig->addFunction($site_url);
-$twig->addFunction($categorias);
-$twig->addFunction($marcas);
-$twig->addFunction($novidade);
-$twig->addFunction($promocao);
-$twig->addFunction($breadCrumb);
-$twig->addFunction($valorProdutosCarrinho);
-$twig->addFunction($numeroProdutosCarrinho);
-// $twig->addFunction($dadosFrete);
-$twig->addFunction($totalComFrete);
-$twig->addFunction($logado);
-$twig->addFunction($user);
-$twig->addFunction($errorField);
-$twig->addFunction($persist);
-$twig->addFunction($flash);
-$twig->addFunction($estoque);
+// Chamando as funções do FunctionsTwig
+$functionsTwig = new FunctionsTwig;
+$functionsTwig->run();
+
+$addFunctionsTwig = new AddFunctionsTwig;
+$addFunctionsTwig->run($twig, $functionsTwig);
+
+// $twig->addFunction($site_url);
+// $twig->addFunction($categorias);
+// $twig->addFunction($marcas);
+// $twig->addFunction($novidade);
+// $twig->addFunction($promocao);
+// $twig->addFunction($breadCrumb);
+// $twig->addFunction($valorProdutosCarrinho);
+// $twig->addFunction($numeroProdutosCarrinho);
+// // $twig->addFunction($dadosFrete);
+// $twig->addFunction($totalComFrete);
+// $twig->addFunction($logado);
+// $twig->addFunction($user);
+// $twig->addFunction($errorField);
+// $twig->addFunction($persist);
+// $twig->addFunction($flash);
+// $twig->addFunction($estoque);
+// $twig->addFunction($statusPagamento);
+// $twig->addFunction($statusPedido);
 
 /**
  * Chamando o controller digitado na URL

@@ -5,6 +5,7 @@ namespace App\Classes;
 use App\Interfaces\InterfacePayment;
 use App\Classes\Carrinho;
 use App\Classes\CarrinhoBanco;
+use App\Classes\Frete;
 use App\Classes\IdRandom;
 
 class Checkout {
@@ -24,6 +25,7 @@ class Checkout {
 
         Carrinho::clear();
         IdRandom::clear();
+        Frete::limparFrete();
 
     }
 

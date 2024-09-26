@@ -129,3 +129,44 @@ $estoque = new \Twig_SimpleFunction('estoque', function($id){
 
 	return $estoque->estoqueAtual($id);
 });
+
+// Estoque dos produtos
+$statusPagamento = new \Twig_SimpleFunction('statusPagamento', function($id){
+
+	switch ($status) {
+		case '1':
+			return "Aguardando Pagamento";
+			break;
+
+		case '2':
+			return "Pagamento em Análise";
+			break;
+
+		case '3':
+			return "Venda Aprovada";
+			break;
+
+		case '4':
+			return "Pagamento Disponível";
+			break;
+
+		case '5':
+			return "Em Disputa";
+			break;
+
+		case '6':
+			return "Valor Devolvido";
+			break;
+
+		case '7':
+			return "Compra Cancelada";
+			break;
+
+	}
+
+});
+
+// Verificar o Status do pedido
+$statusPedido = new \Twig_SimpleFunction('statusPedido', function($status){
+	return ($status == 1) ? 'positive' : 'negative';
+});
