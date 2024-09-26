@@ -52,7 +52,7 @@ class Pedidos {
         $pedidoCadastrado = false;
         if($this->pedidos->create([
                                 $_SESSION['id'], date('Y-m-d H:i:s'), $frete->pegarFrete(),
-                                2, $sessao, $this->produtosCarrinho->totalProdutosCarrinho()
+                                2, $sessao, $this->produtosCarrinho->totalProdutosCarrinho(), 1
                             ])) {
             $pedidoCadastrado = true;
         }

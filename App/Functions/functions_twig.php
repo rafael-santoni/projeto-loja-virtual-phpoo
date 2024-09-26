@@ -131,7 +131,7 @@ $estoque = new \Twig_SimpleFunction('estoque', function($id){
 });
 
 // Estoque dos produtos
-$statusPagamento = new \Twig_SimpleFunction('statusPagamento', function($id){
+$statusPagamento = new \Twig_SimpleFunction('statusPagamento', function($status){
 
 	switch ($status) {
 		case '1':
