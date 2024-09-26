@@ -19,10 +19,6 @@ class PresentesController extends BaseController {
 
         $cache->expire('produtos_presentes');
 
-
-        // $produtoRepository = new ProdutoRepository;
-        // $produtosParaPresente = $produtoRepository->listarProdutosParaPresentes();
-
         $dados = [
             'titulo' => 'Loja Virtual - RS-Dev | Produtos para Presente',
             'produtos' => $produtosParaPresentes

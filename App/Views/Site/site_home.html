@@ -41,6 +41,9 @@
 				{% else %}
 					Estoque: {{ estoque(produto.id) }}
 				{% endif %}
+				<br />
+				Cliques:
+				{{ cliquesProduto(produto.produto_slug) }}
 
 			</div>
 		</div>
@@ -105,7 +108,9 @@
 				{% else %}
 					Estoque: {{ estoque(produtoPromocao.id) }}
 				{% endif %}
-
+				<br />
+				Cliques:
+				{{ cliquesProduto(produtoPromocao.produto_slug) }}
 			</div>
 
 		</div>

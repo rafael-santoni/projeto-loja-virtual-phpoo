@@ -15,6 +15,7 @@ use App\Classes\FlashMessage;
 use App\Models\Site\MarcaModel;
 use App\Models\Site\CategoriaModel;
 use App\Models\Site\UserModel;
+use Predis\Client;
 
 class FunctionsTwig {
 
@@ -242,6 +243,20 @@ class FunctionsTwig {
 
     }
 
+    private function cliquesProduto(){
+
+        $cache = new Client;
+
+        // Quantidades de cliques de um produto
+        $this->functions['cliquesProduto'] = new \Twig_SimpleFunction('cliquesProduto', function($slug) use($cache){
+        	// return (isset($cache->get('prod_'.$slug))) ? $cache->get('prod_'.$slug) : 0;
+        	return $cache->get('prod_'.$slug) ?? 0;
+        });
+
+        return $this;
+
+    }
+
     public function run(){
 
         $this->siteUrl()
@@ -259,7 +274,8 @@ class FunctionsTwig {
         ->errorField()
         ->persist()
         ->flash()
-        ->estoque();
+        ->estoque()
+        ->cliquesProduto();
 
     }
 

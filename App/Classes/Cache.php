@@ -25,7 +25,7 @@ class Cache {
     }
 
     public function incr($key){
-        $this->cache->incr($key);
+        return $this->cache->incr($key);
     }
 
 }

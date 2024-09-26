@@ -13,8 +13,6 @@ class HomeController extends BaseController {
 
 	public function index()	{
 
-		// $produtosVencidos = new CarrinhosAbandonados;
-		// $produtosVencidos->removeProducts(new RetornaEstoque);
 		CarrinhosAbandonados::remove(new RetornaEstoque);
 
 		$produtoRepository = new ProdutoRepository;
@@ -30,14 +28,6 @@ class HomeController extends BaseController {
 
 		$cache->expire('produtos_destaque');
 		$cache->expire('produtos_promocao');
-
-		// $produtoRepository = new ProdutoRepository;
-		//
-		// // Listar pelo destaque
-		// $produtosDestaque = $produtoRepository->listarProdutosOrdenadosPeloDestaque(6);
-		//
-		// // Listar pela promoção
-		// $produtosPromocao = $produtoRepository->listarProdutosPromocao(6);
 
 		$dados = [
 			'titulo' => 'Loja Virtual - Eletrônicos | SmartPhones | Periféricos Para PC - RS-Dev',
