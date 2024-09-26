@@ -5,11 +5,16 @@ use App\Classes\FunctionsTwig;
 use App\Classes\AddFunctionsTwig;
 use App\Classes\Parameters;
 use App\Classes\UsersOnline;
+use Predis\Autoloader;
+use Predis\Client;
 
 date_default_timezone_set('America/Sao_Paulo');
 
 $template = new Template;
 $twig = $template->init();
+
+Autoloader::register();
+$client = new Client();
 
 // Chamando as funções do FunctionsTwig
 $functionsTwig = new FunctionsTwig;
