@@ -4,6 +4,7 @@ use App\Classes\Template;
 use App\Classes\FunctionsTwig;
 use App\Classes\AddFunctionsTwig;
 use App\Classes\Parameters;
+use App\Classes\UsersOnline;
 
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -35,6 +36,9 @@ $addFunctionsTwig->run($twig, $functionsTwig);
 // $twig->addFunction($estoque);
 // $twig->addFunction($statusPagamento);
 // $twig->addFunction($statusPedido);
+
+$usersOnline = new UsersOnline;
+$usersOnline->run();
 
 /**
  * Chamando o controller digitado na URL
