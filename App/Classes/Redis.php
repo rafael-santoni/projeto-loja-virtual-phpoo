@@ -21,7 +21,7 @@ class Redis implements InterfaceCache {
         return json_decode($this->redis->get($key));
     }
 
-    public function exipire($key){
+    public function expire($key){
         return $this->redis->expireat($key, strtotime(self::TIME_EXPIRE));
     }
 
