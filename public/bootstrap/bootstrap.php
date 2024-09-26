@@ -61,6 +61,7 @@ $calledController = $callController->controller();
 
 $controller = new $calledController();
 $controller->setTwig($twig);
+$controller->setCache($client);
 
 /**
  * Chamando o método digitado na URL
