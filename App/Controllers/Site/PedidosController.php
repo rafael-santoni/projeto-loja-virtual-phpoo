@@ -17,6 +17,10 @@ class PedidosController extends BaseController {
         $pedidosProdutos = new PedidosProdutosRepository;
         $dadosPedidos = $pedidosProdutos->pedidos($dadosPedido->pedido_user, $dadosPedido->sessao);
 
+        $pedido = $pedidosProdutos->produtosPedido($dadosPedidos);
+
+        echo json_encode($pedido);
+
     }
 
 }

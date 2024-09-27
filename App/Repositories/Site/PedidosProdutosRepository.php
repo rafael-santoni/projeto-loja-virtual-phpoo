@@ -3,6 +3,7 @@
 namespace App\Repositories\Site;
 
 use App\Models\Site\PedidosProdutosModel;
+use App\Models\Site\ProdutoModel;
 
 class PedidosProdutosRepository {
 
@@ -21,6 +22,28 @@ class PedidosProdutosRepository {
         $this->pedidos->typeDatabase->execute();
 
         return $this->pedidos->typeDatabase->fetchAll();
+
+    }
+
+    public function produtosPedido($pedidos){
+
+        $produtoModel = new ProdutoModel;
+
+        $produtos = [];
+        foreach ($pedidos as $pedido) {
+
+            $produtoPedido = $produtoModel->find('id', $pedido->produto);
+
+            $produtos[] = [
+                'produtos' => $produtoPedido,
+                'subtotal' => $pedido->subtotal,
+                'qtd' => $pedido->quantidade,
+                'valor' => $pedido->valor
+            ];
+
+        }
+
+        return $produtos;
 
     }
 
