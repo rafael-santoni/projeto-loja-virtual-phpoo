@@ -30,17 +30,19 @@ class CheckoutController extends BaseController {
 
             $checkout = new Checkout;
             $retorno = $checkout->checkoutAndPayment([
-                'name' => $dadosUser->name,
-                'sobrenome' => $dadosUser->sobrenome,
-                'email' => $dadosUser->email,
-                'ddd' => $dadosUser->ddd,
-                'telefone' => $dadosUser->telefone,
+                // 'name' => $dadosUser->name,
+                // 'sobrenome' => $dadosUser->sobrenome,        ## Trecho removido para
+                // 'email' => $dadosUser->email,                ## adequar ao novo método
+                // 'ddd' => $dadosUser->ddd,                    ## de pagamento da API do
+                // 'telefone' => $dadosUser->telefone,          ## PagSeguro / PagBank UOL
+                $dadosUser,
                 'idReferencia' => IdRandom()
             ], new Pagseguro);
 
             echo json_encode([
                 'redirecionar' => 'sim',
-                'url' => $retorno
+                // 'url' => $retorno
+                'url' => "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code={$retorno->code}"
             ]);
 
         } else {

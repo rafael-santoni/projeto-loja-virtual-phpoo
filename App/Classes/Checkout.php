@@ -12,7 +12,7 @@ class Checkout {
 
     public function checkoutAndPayment(array $data, InterfacePayment $payment){
 
-        $returnPayment = $payment->dataPayment($data)->pay();
+        $returnPayment = $payment->dataAndPayment($data);
 
         $this->atualizaStatusCarrinho();
         $this->limparCarrinho();

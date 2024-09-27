@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e212cd5544b59597034d9ef2f1f1fe3",
+    "content-hash": "0fe2f6649ed77305bda59f3225a5e67d",
     "packages": [
         {
             "name": "cagartner/correios-consulta",
-            "version": "0.1.14",
+            "version": "0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cagartner/correios-consulta.git",
-                "reference": "9f61b92c0060df5832e96447ad8b5dfda2790d4e"
+                "reference": "e47cc22ecd354763fb69aded308490c4236f0f82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cagartner/correios-consulta/zipball/9f61b92c0060df5832e96447ad8b5dfda2790d4e",
-                "reference": "9f61b92c0060df5832e96447ad8b5dfda2790d4e",
+                "url": "https://api.github.com/repos/cagartner/correios-consulta/zipball/e47cc22ecd354763fb69aded308490c4236f0f82",
+                "reference": "e47cc22ecd354763fb69aded308490c4236f0f82",
                 "shasum": ""
             },
             "require": {
@@ -25,16 +25,6 @@
                 "php": ">=5.3.0"
             },
             "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Cagartner\\CorreiosConsulta\\ServiceProvider"
-                    ],
-                    "aliases": {
-                        "Correios": "Cagartner\\CorreiosConsulta\\Facade"
-                    }
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Cagartner\\CorreiosConsulta": "src/"
@@ -59,9 +49,9 @@
             ],
             "support": {
                 "issues": "https://github.com/cagartner/correios-consulta/issues",
-                "source": "https://github.com/cagartner/correios-consulta/tree/0.1.14"
+                "source": "https://github.com/cagartner/correios-consulta/tree/master"
             },
-            "time": "2020-01-31T18:20:39+00:00"
+            "time": "2015-08-10T16:25:07+00:00"
         },
         {
             "name": "cagartner/phpquery",
@@ -115,6 +105,47 @@
             "time": "2014-07-18T16:15:43+00:00"
         },
         {
+            "name": "pagseguro/pagseguro-php-sdk",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pagseguro/pagseguro-php-sdk.git",
+                "reference": "f0ca745a285fb6996c5a60e577ec6832f41a5138"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pagseguro/pagseguro-php-sdk/zipball/f0ca745a285fb6996c5a60e577ec6832f41a5138",
+                "reference": "f0ca745a285fb6996c5a60e577ec6832f41a5138",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "lib-curl": "*",
+                "lib-openssl": "*",
+                "php": ">=5.4.27"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PagSeguro\\": "source/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache License 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "PagSeguro"
+                }
+            ],
+            "description": "Biblioteca de integração com o PagSeguro",
+            "support": {
+                "source": "https://github.com/pagseguro/pagseguro-php-sdk/tree/3.0.0"
+            },
+            "time": "2016-09-12T18:03:36+00:00"
+        },
+        {
             "name": "pagseguro/php",
             "version": "2.7.1",
             "source": {
@@ -153,41 +184,24 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v5.2.28",
+            "version": "v5.2.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "acba50393dd03da69a50226c139722af8b153b11"
+                "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/acba50393dd03da69a50226c139722af8b153b11",
-                "reference": "acba50393dd03da69a50226c139722af8b153b11",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a",
+                "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a",
                 "shasum": ""
             },
             "require": {
-                "ext-ctype": "*",
                 "php": ">=5.0.0"
             },
             "require-dev": {
-                "doctrine/annotations": "1.2.*",
-                "jms/serializer": "0.16.*",
-                "phpdocumentor/phpdocumentor": "2.*",
-                "phpunit/phpunit": "4.8.*",
-                "symfony/debug": "2.8.*",
-                "symfony/filesystem": "2.8.*",
-                "symfony/translation": "2.8.*",
-                "symfony/yaml": "2.8.*",
-                "zendframework/zend-cache": "2.5.1",
-                "zendframework/zend-config": "2.5.1",
-                "zendframework/zend-eventmanager": "2.5.1",
-                "zendframework/zend-filter": "2.5.1",
-                "zendframework/zend-i18n": "2.5.1",
-                "zendframework/zend-json": "2.5.1",
-                "zendframework/zend-math": "2.5.1",
-                "zendframework/zend-serializer": "2.5.*",
-                "zendframework/zend-servicemanager": "2.5.*",
-                "zendframework/zend-stdlib": "2.5.1"
+                "phpdocumentor/phpdocumentor": "*",
+                "phpunit/phpunit": "4.7.*"
             },
             "suggest": {
                 "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
@@ -210,12 +224,12 @@
             ],
             "authors": [
                 {
-                    "name": "Marcus Bointon",
-                    "email": "phpmailer@synchromedia.co.uk"
-                },
-                {
                     "name": "Jim Jagielski",
                     "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
                 },
                 {
                     "name": "Andy Prevost",
@@ -228,36 +242,22 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v5.2.28"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/master"
             },
-            "funding": [
-                {
-                    "url": "https://marcus.bointon.com/donations/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/Synchro",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/marcusbointon",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-03-19T14:29:37+00:00"
+            "time": "2016-06-06T09:09:37+00:00"
         },
         {
             "name": "predis/predis",
-            "version": "v1.1.10",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/predis/predis.git",
-                "reference": "a2fb02d738bedadcffdbb07efa3a5e7bd57f8d6e"
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/predis/predis/zipball/a2fb02d738bedadcffdbb07efa3a5e7bd57f8d6e",
-                "reference": "a2fb02d738bedadcffdbb07efa3a5e7bd57f8d6e",
+                "url": "https://api.github.com/repos/predis/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
                 "shasum": ""
             },
             "require": {
@@ -284,33 +284,31 @@
                 {
                     "name": "Daniele Alessandri",
                     "email": "suppakilla@gmail.com",
-                    "homepage": "http://clorophilla.net",
-                    "role": "Creator & Maintainer"
-                },
-                {
-                    "name": "Till Krüss",
-                    "homepage": "https://till.im",
-                    "role": "Maintainer"
+                    "homepage": "http://clorophilla.net"
                 }
             ],
             "description": "Flexible and feature-complete Redis client for PHP and HHVM",
-            "homepage": "http://github.com/predis/predis",
+            "homepage": "http://github.com/nrk/predis",
             "keywords": [
                 "nosql",
                 "predis",
                 "redis"
             ],
             "support": {
-                "issues": "https://github.com/predis/predis/issues",
-                "source": "https://github.com/predis/predis/tree/v1.1.10"
+                "issues": "https://github.com/nrk/predis/issues",
+                "source": "https://github.com/predis/predis/tree/v1.1.1"
             },
             "funding": [
                 {
-                    "url": "https://github.com/sponsors/tillkruss",
+                    "url": "https://www.paypal.me/tillkruss",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/tillkruss",
                     "type": "github"
                 }
             ],
-            "time": "2022-01-05T17:46:08+00:00"
+            "time": "2016-06-16T16:22:20+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -599,16 +597,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.44.8",
+            "version": "v1.44.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "b1f009c449e435a0384814e67205d9190a4d050e"
+                "reference": "0887422319889e442458e48e2f3d9add1a172ad5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b1f009c449e435a0384814e67205d9190a4d050e",
-                "reference": "b1f009c449e435a0384814e67205d9190a4d050e",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/0887422319889e442458e48e2f3d9add1a172ad5",
+                "reference": "0887422319889e442458e48e2f3d9add1a172ad5",
                 "shasum": ""
             },
             "require": {
@@ -661,7 +659,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v1.44.8"
+                "source": "https://github.com/twigphp/Twig/tree/v1.44.7"
             },
             "funding": [
                 {
@@ -673,15 +671,13 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-09T17:17:16+00:00"
+            "time": "2022-09-28T08:38:36+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "predis/predis": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
