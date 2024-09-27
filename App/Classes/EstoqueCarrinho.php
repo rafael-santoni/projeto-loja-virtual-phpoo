@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Classes\Estoque;
+use App\Classes\Carrinho;
 
 class EstoqueCarrinho {
 
@@ -20,8 +21,10 @@ class EstoqueCarrinho {
         return $this->estoque->estoqueAtual($id);
     }
 
-    private function verificaEstoque($id, $diferenca){
-        if(!$this->estoque->temNoEstoque($id, $diferenca)) {
+    // private function verificaEstoque($id, $diferenca){
+    private function verificaEstoque($id, $diferenca, $quantidadeDigitada){
+        // if(!$this->estoque->temNoEstoque($id, $diferenca)) {
+        if(!$this->estoque->temNoEstoque($id, $diferenca, $quantidadeDigitada)) {
             echo 'semEstoque';
             die();
         }
@@ -35,13 +38,15 @@ class EstoqueCarrinho {
         $this->estoque->atualizaEstoque($id, ($this->estoqueAtual($id) - $diferenca));
     }
 
-    public function gerenciaEstoque($id, $quantidade){
+    public function gerenciaEstoque($id, $quantidadeDigitada){
 
-        $diferenca = $this->diferenca($id, $quantidade);
+        $diferenca = $this->diferenca($id, $quantidadeDigitada);
 
-        $this->verificaEstoque($id, $diferenca);
+        // $this->verificaEstoque($id, $diferenca);
+        $this->verificaEstoque($id, $diferenca, $quantidadeDigitada);
 
-        if($_SESSION['carrinho'][$id] > $quantidade) {
+        // if($_SESSION['carrinho'][$id] > $quantidadeDigitada) {
+        if(Carrinho::produtoCarrinho($id) > $quantidadeDigitada) {
             $this->somaEstoque($id, $diferenca);
         } else {
             $this->diminuiEstoque($id, $diferenca);

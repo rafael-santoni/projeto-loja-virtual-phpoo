@@ -4,6 +4,7 @@ namespace App\Classes;
 
 use App\Repositories\Site\EstoqueRepository;
 use App\Models\Site\EstoqueModel;
+use App\Classes\Carrinho;
 
 class Estoque {
 
@@ -17,9 +18,24 @@ class Estoque {
         return $this->estoqueRepository->quantidadeProdutosEstoque($id)->estoque_quantidade;
     }
 
-    public function temNoEstoque($idProduto, $quantidadeProdutoCarrinho){
+    // public function temNoEstoque($idProduto, $quantidadeProdutoCarrinho){
+    public function temNoEstoque($idProduto, $diferenca, $quantidadeDigitada){
 
-        if($this->estoqueAtual($idProduto) < $quantidadeProdutoCarrinho) {
+        // if($this->estoqueAtual($idProduto) < $quantidadeProdutoCarrinho) {
+        //     return false;
+        // }
+        //
+        // return true;
+
+        $estoqueAtual = $this->estoqueAtual($idProduto);
+
+        if($quantidadeDigitada < Carrinho::produtoCarrinho($idProduto)) {
+            $estoque = $estoqueAtual + $diferenca;
+        } else {
+            $estoque = $estoqueAtual - $diferenca;
+        }
+
+        if($estoque < 0){
             return false;
         }
 
