@@ -5,6 +5,8 @@ use App\Classes\FunctionsTwig;
 use App\Classes\AddFunctionsTwig;
 use App\Classes\Parameters;
 use App\Classes\UsersOnline;
+use App\Classes\RetornaEstoque;
+use App\Classes\CarrinhosAbandonados;
 use Predis\Autoloader;
 use Predis\Client;
 
@@ -49,8 +51,12 @@ $addFunctionsTwig->run($twig, $functionsTwig);
 // $twig->addFunction($statusPagamento);
 // $twig->addFunction($statusPedido);
 
+// Registrando Usuários Online no Site
 $usersOnline = new UsersOnline;
 $usersOnline->run();
+
+// Limpando Carrinhos Abandonados
+CarrinhosAbandonados::remove(new RetornaEstoque);
 
 /**
  * Chamando o controller digitado na URL

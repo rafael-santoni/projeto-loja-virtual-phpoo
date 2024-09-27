@@ -3,16 +3,17 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
+use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\Pagseguro;
 use App\Classes\CheckoutValidate;
 use App\Classes\Checkout;
 use App\Classes\Pedidos;
-use App\Classes\User;
-use App\Classes\Frete;
-use App\Classes\Carrinho;
-use App\Classes\IdRandom;
-use App\Models\Site\UserModel;
-use App\Repositories\Site\ProdutosCarrinhoRepository;
+use App\Classes\Authenticated;
+// use App\Classes\User;
+// use App\Classes\Frete;
+// use App\Classes\Carrinho;
+// use App\Classes\IdRandom;
+// use App\Models\Site\UserModel;
 
 class CheckoutController extends BaseController {
 
@@ -23,8 +24,9 @@ class CheckoutController extends BaseController {
         $pedidos = new Pedidos(new ProdutosCarrinhoRepository);
         if($pedidos->create(IdRandom())) {
 
-            $user = new User;
-            $dadosUser = $user->user(new UserModel);
+            // $user = new User;
+            // $dadosUser = $user->user(new UserModel);
+            $dadosUser = Authenticated::user();
 
             $checkout = new Checkout;
             $retorno = $checkout->checkoutAndPayment([

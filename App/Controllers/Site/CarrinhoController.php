@@ -3,14 +3,14 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
+use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\Estoque;
 use App\Classes\Carrinho;
 use App\Classes\CarrinhoService;
 use App\Classes\EstoqueCarrinho;
 use App\Classes\RetornaEstoque;
 use App\Classes\Frete;
-use App\Classes\CarrinhosAbandonados;
-use App\Repositories\Site\ProdutosCarrinhoRepository;
+// use App\Classes\CarrinhosAbandonados;
 
 class CarrinhoController extends BaseController {
 
@@ -28,9 +28,7 @@ class CarrinhoController extends BaseController {
 
     public function index(){
 
-        // $produtosVencidos = new CarrinhosAbandonados;
-		// $produtosVencidos->removeProducts(new RetornaEstoque);
-		CarrinhosAbandonados::remove(new RetornaEstoque);
+        // CarrinhosAbandonados::remove(new RetornaEstoque);
 
         $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
 
