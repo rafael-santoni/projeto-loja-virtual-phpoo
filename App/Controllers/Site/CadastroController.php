@@ -32,8 +32,10 @@ class CadastroController extends BaseController {
             'titulo' => 'Loja Virtual - RS-Dev | Cadastre-se em nosso site',
         ];
 
-        $template = $this->twig->loadTemplate('site_cadastro.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_cadastro.html');
+        $template = $this->twig->load('site_cadastro.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

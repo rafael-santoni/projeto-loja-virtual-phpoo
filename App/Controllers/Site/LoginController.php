@@ -21,8 +21,10 @@ class LoginController extends BaseController {
             'titulo' => 'Loja Virtual - RS-Dev | Login',
         ];
 
-        $template = $this->twig->loadTemplate('site_login.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_login.html');
+        $template = $this->twig->load('site_login.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

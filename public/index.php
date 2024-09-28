@@ -9,7 +9,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER['REQUEST_URI'])) {
 	define('DEFAULT_METHOD','index');
 
 	require '../vendor/autoload.php';
-	require '../App/Functions/functions_twig.php';
+	// require '../App/Functions/functions_twig.php';
 	require '../App/Functions/helpers.php';
 	require 'bootstrap/bootstrap.php';
 

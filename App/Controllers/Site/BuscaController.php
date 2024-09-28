@@ -23,8 +23,10 @@ class BuscaController extends BaseController {
             'produtos' => $produtosEncontrados
         ];
 
-        $template = $this->twig->loadTemplate('site_busca.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_busca.html');
+        $template = $this->twig->load('site_busca.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

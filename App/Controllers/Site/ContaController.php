@@ -25,8 +25,10 @@ class ContaController extends BaseController {
             'user' => $dadosUser
         ];
 
-        $template = $this->twig->loadTemplate('site_conta.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_conta.html');
+        $template = $this->twig->load('site_conta.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

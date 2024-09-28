@@ -28,8 +28,10 @@ class CategoriaController extends BaseController {
             'categoria' => $categoriaEncontrada
         ];
 
-        $template = $this->twig->loadTemplate('site_categoria.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_categoria.html');
+        $template = $this->twig->load('site_categoria.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

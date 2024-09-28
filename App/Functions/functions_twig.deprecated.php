@@ -1,4 +1,8 @@
 <?php
+/*
+    --************************--
+    ***** Deprecated Class *****
+    --************************--
 
 use App\Repositories\Site\ProdutoRepository;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
@@ -170,3 +174,4 @@ $statusPagamento = new \Twig_SimpleFunction('statusPagamento', function($status)
 $statusPedido = new \Twig_SimpleFunction('statusPedido', function($status){
 	return ($status == 1) ? 'positive' : 'negative';
 });
+*/

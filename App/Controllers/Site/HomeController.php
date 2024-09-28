@@ -35,8 +35,10 @@ class HomeController extends BaseController {
 			'produtosPromocao' => $produtosPromocao
 		];
 
-		$template = $this->twig->loadTemplate('site_home.html');
-		$template->display($dados);
+		// $template = $this->twig->loadTemplate('site_home.html');
+		$template = $this->twig->load('site_home.html');
+		// $template->display($dados);
+		echo $template->render($dados);
 
 	}
 

@@ -18,8 +18,10 @@ class ContatoController extends BaseController {
             'titulo' => 'Loja Virtual - RS-Dev | Contato'
         ];
 
-        $template = $this->twig->loadTemplate('site_contato.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_contato.html');
+        $template = $this->twig->load('site_contato.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

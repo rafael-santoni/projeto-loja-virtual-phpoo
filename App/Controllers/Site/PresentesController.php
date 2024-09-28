@@ -24,8 +24,10 @@ class PresentesController extends BaseController {
             'produtos' => $produtosParaPresentes
         ];
 
-        $template = $this->twig->loadTemplate('site_presentes.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_presentes.html');
+        $template = $this->twig->load('site_presentes.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

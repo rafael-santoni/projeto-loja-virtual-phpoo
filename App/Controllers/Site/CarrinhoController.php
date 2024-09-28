@@ -38,8 +38,10 @@ class CarrinhoController extends BaseController {
             'frete' => Frete::pegarFrete()
         ];
 
-        $template = $this->twig->loadTemplate('site_carrinho.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_carrinho.html');
+        $template = $this->twig->load('site_carrinho.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 

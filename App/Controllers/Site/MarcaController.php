@@ -29,8 +29,10 @@ class MarcaController extends BaseController {
             'marca' => $marcasEncontradas
         ];
 
-        $template = $this->twig->loadTemplate('site_marcas.html');
-        $template->display($dados);
+        // $template = $this->twig->loadTemplate('site_marcas.html');
+        $template = $this->twig->load('site_marcas.html');
+        // $template->display($dados);
+        echo $template->render($dados);
 
     }
 
