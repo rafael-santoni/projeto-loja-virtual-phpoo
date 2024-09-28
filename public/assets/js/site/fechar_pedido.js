@@ -21,7 +21,7 @@ $(document).ready(function() {
                 if(retorno == "empty") {
 
                     $(btn_fechar_pedido).text("Fechar Pedido");
-                    alertDefault("warnig", "Carrinho Vazio", "Você precisa ter algum produto no carrinho para fechar o pedido!");
+                    alertDefault("warning", "Carrinho Vazio", "Você precisa ter algum produto no carrinho para fechar o pedido!");
 
                 }
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
                 if(retorno == "frete") {
 
                     $(btn_fechar_pedido).text("Fechar Pedido");
-                    alertDefault("warnig", "Erro de frete!", "Você precisa calcular o frete para finalizar a compra.");
+                    alertDefault("warning", "Erro de frete!", "Você precisa calcular o frete para finalizar a compra.");
                     $(input_frete).focus();
 
                 }
@@ -43,7 +43,7 @@ $(document).ready(function() {
                 if(retorno == "erroCadastro") {
 
                     $(btn_fechar_pedido).text("Fechar Pedido");
-                    alertDefault("warnig", "Erro ao cadastrar pedido!", "Ocorreu um erro ao fechar seu pedido, tente novamente.");
+                    alertDefault("warning", "Erro ao cadastrar pedido!", "Ocorreu um erro ao fechar seu pedido, tente novamente.");
 
                 }
 
