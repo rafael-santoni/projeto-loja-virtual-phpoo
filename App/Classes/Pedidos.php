@@ -17,7 +17,6 @@ class Pedidos {
 
         $this->pedidos = new PedidosModel;
         $this->pedidosProdutos = new PedidosProdutosModel;
-        // $this->produtosCarrinho = new ProdutosCarrinhoRepository;
         $this->produtosCarrinho = $produtosCarrinhoRepository;
 
     }

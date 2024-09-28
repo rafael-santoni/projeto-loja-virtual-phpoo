@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 use App\Classes\Logar;
 use App\Classes\Logado;
 use App\Classes\Logout;
-// use App\Classes\Filters;
 use App\Classes\MassFilter;
 use App\Classes\Redirect;
 use App\Classes\FlashMessage;
@@ -21,9 +20,7 @@ class LoginController extends BaseController {
             'titulo' => 'Loja Virtual - RS-Dev | Login',
         ];
 
-        // $template = $this->twig->loadTemplate('site_login.html');
         $template = $this->twig->load('site_login.html');
-        // $template->display($dados);
         echo $template->render($dados);
 
     }

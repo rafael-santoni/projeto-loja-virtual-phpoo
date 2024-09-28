@@ -22,9 +22,7 @@ class ComprasController extends BaseController {
             'pedidos' => $dadosPedidos
         ];
 
-        // $template = $this->twig->loadTemplate('site_minhas_compras.html');
         $template = $this->twig->load('site_minhas_compras.html');
-        // $template->display($dados);
         echo $template->render($dados);
 
     }

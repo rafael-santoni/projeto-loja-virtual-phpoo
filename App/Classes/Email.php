@@ -45,8 +45,6 @@ class Email {
 
     public function enviar(){
 
-        // $templateEmail = new TemplateEmail($this->template);
-
         $this->email->CharSet = 'UTF-8';
         $this->email->SMTPSecure = 'ssl';
         // $this->email->SMTPSecure = 'tls';
@@ -70,7 +68,6 @@ class Email {
 
         $this->email->Subject = $this->assunto;
         $this->email->AltBody = 'Este email contém HTML e não poder ser carrgado.';
-        // $this->email->MsgHTML($templateEmail->show($this->mensagem));
         $this->email->MsgHTML($this->template->template($this->mensagem));
 
         if(!$this->email->send()){

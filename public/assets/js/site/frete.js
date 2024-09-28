@@ -20,7 +20,6 @@ $(document).ready(function() {
                 mensagem_frete.html("Calculando o frete...");
             },
             success: function(retorno) {
-                // console.log(retorno);
 
                 if(retorno == "login") {
 
@@ -31,7 +30,6 @@ $(document).ready(function() {
 
                 if(retorno == "produto") {
 
-                    // mensagem_frete.html("Você precisa ter produtos no carrinho para calcular o frete.");
                     alertDefault("warning", "Você precisa ter produtos no carrinho para calcular o frete.");
                     mensagem_frete.html("");
 
@@ -39,7 +37,6 @@ $(document).ready(function() {
 
                 if(retorno.erro == 'sim') {
 
-                    // mensagem_frete.html(retorno.mensagem);
                     alertDefault("warning", retorno.mensagem);
                     mensagem_frete.html("");
 

@@ -41,20 +41,16 @@ class Filters {
 
         $value = $this->value($value, $type);
 
-        // switch ($type) {
         switch ($this->type($type)) {
             case 'string':
-                // return filter_var($_POST[$value], FILTER_SANITIZE_STRING);
                 return filter_var($value, FILTER_SANITIZE_STRING);
                 break;
 
             case 'int':
-                // return filter_var($_POST[$value], FILTER_SANITIZE_NUMBER_INT);
                 return filter_var($value, FILTER_SANITIZE_NUMBER_INT);
                 break;
 
             case 'email':
-                // return filter_var($_POST[$value], FILTER_SANITIZE_EMAIL);
                 return filter_var($value, FILTER_SANITIZE_EMAIL);
                 break;
         }

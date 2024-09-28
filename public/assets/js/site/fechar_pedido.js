@@ -16,7 +16,6 @@ $(document).ready(function() {
                 $(btn_fechar_pedido).text("Fechando pedido...");
             },
             success: function(retorno) {
-                // console.log(retorno);
 
                 if(retorno == "empty") {
 

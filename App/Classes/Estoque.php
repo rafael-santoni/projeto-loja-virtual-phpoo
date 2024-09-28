@@ -18,14 +18,7 @@ class Estoque {
         return $this->estoqueRepository->quantidadeProdutosEstoque($id)->estoque_quantidade;
     }
 
-    // public function temNoEstoque($idProduto, $quantidadeProdutoCarrinho){
     public function temNoEstoque($idProduto, $diferenca, $quantidadeDigitada){
-
-        // if($this->estoqueAtual($idProduto) < $quantidadeProdutoCarrinho) {
-        //     return false;
-        // }
-        //
-        // return true;
 
         $estoqueAtual = $this->estoqueAtual($idProduto);
 

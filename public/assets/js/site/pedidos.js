@@ -14,7 +14,6 @@
             type: "POST",
             dataType: "json",
             success: function(retorno) {
-                // console.log(retorno);
 
                 var pedido = "<table class='ui very basic collapsing celled table'>";
 

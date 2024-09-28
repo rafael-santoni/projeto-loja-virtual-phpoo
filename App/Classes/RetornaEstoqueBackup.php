@@ -11,8 +11,6 @@ class RetornaEstoqueBackup {
 
         $estoque = new Estoque;
 
-        // $carrinhoBancoBackupModel = new CarrinhoBancoBackupModel;
-        // $produtosCarrinhoBackup = $carrinhoBancoBackupModel->find('sessao', $sessao, 'all');
         $produtosCarrinhoBackup = (new CarrinhoBancoBackupModel)->find('sessao', $sessao, 'all');
         foreach ($produtosCarrinhoBackup as $produto) {
             $estoque->atualizaEstoque($produto->produto, $estoque->estoqueAtual($produto->produto) + $produto->quantidade);

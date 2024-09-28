@@ -27,9 +27,7 @@ class DetalhesController extends BaseController {
 			'produto' => $produtoEncontrado
 		];
 
-		// $template = $this->twig->loadTemplate('site_detalhes.html');
 		$template = $this->twig->load('site_detalhes.html');
-		// $template->display($dados);
 		echo $template->render($dados);
 
 	}

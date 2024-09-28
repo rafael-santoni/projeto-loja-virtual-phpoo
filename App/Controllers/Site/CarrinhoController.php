@@ -10,7 +10,6 @@ use App\Classes\CarrinhoService;
 use App\Classes\EstoqueCarrinho;
 use App\Classes\RetornaEstoque;
 use App\Classes\Frete;
-// use App\Classes\CarrinhosAbandonados;
 
 class CarrinhoController extends BaseController {
 
@@ -28,8 +27,6 @@ class CarrinhoController extends BaseController {
 
     public function index(){
 
-        // CarrinhosAbandonados::remove(new RetornaEstoque);
-
         $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
 
         $dados = [
@@ -38,9 +35,7 @@ class CarrinhoController extends BaseController {
             'frete' => Frete::pegarFrete()
         ];
 
-        // $template = $this->twig->loadTemplate('site_carrinho.html');
         $template = $this->twig->load('site_carrinho.html');
-        // $template->display($dados);
         echo $template->render($dados);
 
     }

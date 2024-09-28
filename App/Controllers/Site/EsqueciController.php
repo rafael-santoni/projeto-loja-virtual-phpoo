@@ -26,9 +26,7 @@ class EsqueciController extends BaseController {
             'title' => 'Loja Virtual - RS-Dev | Esqueci a senha'
         ];
 
-        // $template = $this->twig->loadTemplate('site_esqueci.html');
         $template = $this->twig->load('site_esqueci.html');
-        // $template->display($dados);
         echo $template->render($dados);
 
     }
@@ -105,9 +103,7 @@ class EsqueciController extends BaseController {
             'hash' => $dadosPassword->hash
         ];
 
-        // $template = $this->twig->loadTemplate('site_reset_password.html');
         $template = $this->twig->load('site_reset_password.html');
-        // $template->display($dados);
         echo $template->render($dados);
 
     }

@@ -21,9 +21,7 @@ class EstoqueCarrinho {
         return $this->estoque->estoqueAtual($id);
     }
 
-    // private function verificaEstoque($id, $diferenca){
     private function verificaEstoque($id, $diferenca, $quantidadeDigitada){
-        // if(!$this->estoque->temNoEstoque($id, $diferenca)) {
         if(!$this->estoque->temNoEstoque($id, $diferenca, $quantidadeDigitada)) {
             echo 'semEstoque';
             die();
@@ -42,10 +40,8 @@ class EstoqueCarrinho {
 
         $diferenca = $this->diferenca($id, $quantidadeDigitada);
 
-        // $this->verificaEstoque($id, $diferenca);
         $this->verificaEstoque($id, $diferenca, $quantidadeDigitada);
 
-        // if($_SESSION['carrinho'][$id] > $quantidadeDigitada) {
         if(Carrinho::produtoCarrinho($id) > $quantidadeDigitada) {
             $this->somaEstoque($id, $diferenca);
         } else {

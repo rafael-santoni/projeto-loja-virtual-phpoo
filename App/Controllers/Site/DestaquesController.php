@@ -18,9 +18,7 @@ class DestaquesController extends BaseController
             'produtos' => $produtosDestaque
         ];
 
-        // $template = $this->twig->loadTemplate('site_destaques.html');
         $template = $this->twig->load('site_destaques.html');
-        // $template->display($dados);
         echo $template->render($dados);
 
     }

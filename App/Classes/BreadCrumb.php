@@ -16,7 +16,7 @@ class BreadCrumb {
 	}
 
 	private function breadCrumbHome(){
-		return '<span style="color: #000;">Navegação</span>: <span style="font-style=italic;color:blue;">Início</span>';
+		return '<span style="color: #000;">Navegação</span>: <span style="font-style:italic; color:blue;">Início</span>';
 	}
 
 	private function breadCrumbRedefinirSenha(){
@@ -35,10 +35,10 @@ class BreadCrumb {
 	private function breadCrumbOtherPages(){
 
 		if($this->breadCrumbRedefinirSenha()) {
-			return '<span style="color: #000;">Navegação</span>: <span style="font-style=italic; color:blue;"> <a href="/" style="text-decoration:none;color:blue;">Início</a>/esqueci/senha</span>';
+			return '<span style="color: #000;">Navegação</span>: <span style="font-style:italic; color:blue;"> <a href="/" style="text-decoration:none;color:blue;">Início</a>/esqueci/senha</span>';
 		}
 
-		return '<span style="color: #000;">Navegação</span>: <span style="font-style=italic; color:blue;"> <a href="/" style="text-decoration:none;color:blue;">Início</a>/'.ltrim($this->uri,'/').'</span>';
+		return '<span style="color: #000;">Navegação</span>: <span style="font-style:italic; color:blue;"> <a href="/" style="text-decoration:none;color:blue;">Início</a>/'.ltrim($this->uri,'/').'</span>';
 
 	}
 
@@ -46,7 +46,7 @@ class BreadCrumb {
 
 		$explodeIgual = explode('=', $this->uri);
 
-		return '<span style="color: #000;">Você está buscando:</span> <span style="font-style=italic;color:blue;">'.str_replace('+', '-', $explodeIgual[1]).'</span>';
+		return '<span style="color: #000;">Você está buscando:</span> <span style="font-style:italic; color:blue;">'.str_replace('+', '-', $explodeIgual[1]).'</span>';
 
 	}
 

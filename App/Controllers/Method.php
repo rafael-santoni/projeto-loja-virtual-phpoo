@@ -16,12 +16,11 @@ class Method {
 
 		if(!$this->uri->emptyUri()){
 			$explodeUri = array_filter(explode('/', $this->uri->getUri()));
-			// return (isset($explodeUri[2])) ? $explodeUri[2] : null ;
 			return (!isset($explodeUri[2])) ?: $explodeUri[2];
 		}
 
 		return DEFAULT_METHOD;
-		
+
 	}
 
 	public function method($object){
@@ -31,7 +30,7 @@ class Method {
 		}
 
 		return DEFAULT_METHOD;
-		
+
 	}
 
 }

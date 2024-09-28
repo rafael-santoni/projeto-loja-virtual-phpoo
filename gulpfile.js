@@ -3,10 +3,6 @@ var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
 var cleanCSS = require("gulp-clean-css");
 
-// gulp.task("default", function() {
-//     // place code for your default task here
-// });
-
 gulp.task("default", ["sitejs", "adminjs"]);
 
 gulp.task("sitejs", function() {
